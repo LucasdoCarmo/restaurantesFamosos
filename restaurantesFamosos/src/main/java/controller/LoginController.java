@@ -54,7 +54,7 @@ public class LoginController {
 			loader.setLocation(getClass().getResource(Main.PATH_VIEW + "Principal.fxml"));
 			try {
 				AnchorPane principalView = (AnchorPane) loader.load();
-				panelPrincipal.setTop(principalView);
+				panelPrincipal.setCenter(principalView);
 			} catch (IOException e1) {
 				e1.printStackTrace();
 			}

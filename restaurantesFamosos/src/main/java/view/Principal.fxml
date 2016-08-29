@@ -10,50 +10,50 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.PrincipalController">
    <children>
-      <BorderPane fx:id="panelPrincipal" prefHeight="200.0" prefWidth="200.0">
+      <BorderPane fx:id="panelPrincipal" prefHeight="800.0" prefWidth="1280.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <top>
-            <Pane prefHeight="803.0" prefWidth="200.0" BorderPane.alignment="CENTER">
-               <children>
-                  <MenuBar layoutX="35.0" layoutY="27.0" prefHeight="81.0" prefWidth="825.0">
-                    <menus>
-                      <Menu fx:id="menuBuscar" mnemonicParsing="false" onAction="#MenuBuscar" text="Buscar" />
-                      <Menu mnemonicParsing="false" text=" Cadastrar">
-                        <items>
-                          <MenuItem mnemonicParsing="false" text="Novo" />
-                        </items>
-                      </Menu>
-                      <Menu mnemonicParsing="false" text="Conta">
-                        <items>
-                          <MenuItem mnemonicParsing="false" text="Editar Perfil" />
-                        </items>
-                      </Menu>
-                        <Menu mnemonicParsing="false" text="Relatório">
-                           <items>
-                              <MenuItem mnemonicParsing="false" text="About" />
-                           </items>
-                        </Menu>
-                        <Menu mnemonicParsing="false" text="Sair">
-                           <items>
-                              <MenuItem mnemonicParsing="false" text="About" />
-                           </items>
-                        </Menu>
-                    </menus>
-                  </MenuBar>
-               </children>
+            <Pane prefHeight="131.0" prefWidth="1280.0" BorderPane.alignment="CENTER">
                <BorderPane.margin>
                   <Insets />
                </BorderPane.margin>
+               <children>
+                  <Button fx:id="btnBuscar" layoutX="14.0" layoutY="20.0" mnemonicParsing="false" onAction="#Buscar" prefHeight="85.0" prefWidth="180.0" text="Buscar" />
+                  <MenuButton layoutX="194.0" layoutY="20.0" mnemonicParsing="false" prefHeight="85.0" prefWidth="195.0" text="Cadastrar">
+                    <items>
+                      <MenuItem fx:id="menuNovo" mnemonicParsing="false" onAction="#CadastrarNovo" text="Novo" />
+                    </items>
+                  </MenuButton>
+                  <MenuButton layoutX="389.0" layoutY="20.0" mnemonicParsing="false" prefHeight="85.0" prefWidth="186.0" text="Conta">
+                     <items>
+                        <MenuItem fx:id="menuEditar" mnemonicParsing="false" onAction="#EditarPerfil" text="Editar Perfil" />
+                     </items>
+                  </MenuButton>
+                  <Button fx:id="btnRelatorio" layoutX="575.0" layoutY="20.0" mnemonicParsing="false" onAction="#GerarRelatorio" prefHeight="86.0" prefWidth="196.0" text="Relatório" />
+                  <Button fx:id="btnSair" layoutX="771.0" layoutY="21.0" mnemonicParsing="false" onAction="#Sair" prefHeight="85.0" prefWidth="186.0" text="Sair" />
+               </children>
             </Pane>
          </top>
+         <center>
+            <Pane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+               <children>
+                  <Label layoutX="433.0" layoutY="335.0" text="BEM VINDO">
+                     <font>
+                        <Font size="23.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="lblNomeUsuario" layoutX="605.0" layoutY="335.0" text="NomeUsuário">
+                     <font>
+                        <Font size="23.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="412.0" layoutY="376.0" text="AO SEU SISTEMA DE RESTAURANTES">
+                     <font>
+                        <Font size="23.0" />
+                     </font>
+                  </Label>
+               </children>
+            </Pane>
+         </center>
       </BorderPane>
-      <HBox layoutX="71.0" layoutY="154.0" prefHeight="100.0" prefWidth="694.0">
-         <children>
-            <Button fx:id="btnBuscar" mnemonicParsing="false" onAction="#Buscar" prefHeight="59.0" prefWidth="141.0" text="Buscar" />
-            <Button fx:id="btnBuscar1" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#Buscar" prefHeight="59.0" prefWidth="141.0" text="Buscar" />
-            <Button fx:id="btnBuscar11" layoutX="151.0" layoutY="10.0" mnemonicParsing="false" onAction="#Buscar" prefHeight="59.0" prefWidth="141.0" text="Buscar" />
-            <Button fx:id="btnBuscar111" layoutX="292.0" layoutY="10.0" mnemonicParsing="false" onAction="#Buscar" prefHeight="59.0" prefWidth="141.0" text="Buscar" />
-            <Button fx:id="btnBuscar1111" layoutX="412.0" layoutY="10.0" mnemonicParsing="false" onAction="#Buscar" prefHeight="59.0" prefWidth="141.0" text="Buscar" />
-         </children>
-      </HBox>
    </children>
 </AnchorPane>

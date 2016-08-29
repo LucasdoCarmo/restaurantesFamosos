@@ -22,6 +22,7 @@ public class Main extends Application {
 			Main.primaryStage = primaryStage;
 			Main.rootLayout = (AnchorPane) FXMLLoader.load(getClass().getResource(PATH_VIEW + "Login.fxml"));
 
+			primaryStage.setTitle("Restaurantes Famosos");
 			Scene scene = new Scene(rootLayout);
 			primaryStage.setScene(scene);
 			primaryStage.show();
