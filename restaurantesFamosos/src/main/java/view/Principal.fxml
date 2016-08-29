@@ -12,7 +12,7 @@
    <children>
       <BorderPane fx:id="panelPrincipal" prefHeight="800.0" prefWidth="1280.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <top>
-            <Pane prefHeight="131.0" prefWidth="1280.0" BorderPane.alignment="CENTER">
+            <Pane prefHeight="108.0" prefWidth="1280.0" BorderPane.alignment="CENTER">
                <BorderPane.margin>
                   <Insets />
                </BorderPane.margin>
