@@ -1,8 +1,44 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane xmlns:fx="http://javafx.com/fxml/1">
-	<!-- TODO Add Nodes -->
-</AnchorPane>
 
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1280.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="controller.ConfirmaCadastroController">
+   <children>
+      <Pane layoutX="458.0" layoutY="112.0" prefHeight="800.0" prefWidth="1280.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <Text layoutX="177.0" layoutY="154.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Confirmação de Cadastro">
+               <font>
+                  <Font size="35.0" />
+               </font>
+            </Text>
+            <Text layoutX="177.0" layoutY="200.0" strokeType="OUTSIDE" strokeWidth="0.0" text="(* Os campos com asterisco devem ser preenchidos obrigatoriamente)." wrappingWidth="491.744140625">
+               <font>
+                  <Font name="System Italic" size="14.0" />
+               </font>
+            </Text>
+            <Label layoutX="177.0" layoutY="254.0" text="Você recebeu um e-mail com código de confirmação de cadastro.">
+               <font>
+                  <Font name="System Italic" size="13.0" />
+               </font>
+            </Label>
+            <Label layoutX="177.0" layoutY="336.0" text="Código: *">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <TextField fx:id="tfCodigo" layoutX="175.0" layoutY="388.0" prefHeight="41.0" prefWidth="428.0">
+               <font>
+                  <Font size="17.0" />
+               </font>
+            </TextField>
+            <Button fx:id="btnEntrar" layoutX="1015.0" layoutY="669.0" mnemonicParsing="false" onAction="#Entrar" prefHeight="38.0" prefWidth="105.0" text="Entar" />
+            <Button fx:id="btnVoltar" layoutX="856.0" layoutY="669.0" mnemonicParsing="false" onAction="#Voltar" prefHeight="38.0" prefWidth="105.0" text="&lt; Voltar" />
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>

@@ -1,8 +1,74 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane xmlns:fx="http://javafx.com/fxml/1">
-	<!-- TODO Add Nodes -->
-</AnchorPane>
 
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1280.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="controller.CadastraUsuarioController">
+   <children>
+      <Pane layoutX="-144.0" layoutY="-290.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <Text layoutX="208.0" layoutY="84.0" strokeType="OUTSIDE" strokeWidth="0.0" text="(* Os campos com asterisco devem ser preenchidos obrigatoriamente)." wrappingWidth="491.744140625">
+               <font>
+                  <Font name="System Italic" size="14.0" />
+               </font>
+            </Text>
+            <Label layoutX="200.0" layoutY="172.0" text="Nome completo:">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Label layoutX="200.0" layoutY="390.0" text="Confirme seu E-mail: *">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Label layoutX="200.0" layoutY="278.0" text="E-mail: *">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Label layoutX="200.0" layoutY="497.0" text="Digite sua senha: *">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Label layoutX="200.0" layoutY="585.0" text="Digite novamente sua senha: *">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <TextField fx:id="tfNome" layoutX="200.0" layoutY="207.0" prefHeight="38.0" prefWidth="280.0">
+               <font>
+                  <Font size="19.0" />
+               </font>
+            </TextField>
+            <TextField fx:id="tfEmail" layoutX="200.0" layoutY="328.0" prefHeight="38.0" prefWidth="280.0">
+               <font>
+                  <Font size="19.0" />
+               </font>
+            </TextField>
+            <TextField fx:id="tfConfirmaEmail" layoutX="200.0" layoutY="430.0" prefHeight="38.0" prefWidth="280.0">
+               <font>
+                  <Font size="19.0" />
+               </font>
+            </TextField>
+            <TextField fx:id="tfSenha" layoutX="200.0" layoutY="527.0" prefHeight="38.0" prefWidth="280.0">
+               <font>
+                  <Font size="19.0" />
+               </font>
+            </TextField>
+            <TextField fx:id="tfConfirmaSenha" layoutX="200.0" layoutY="618.0" prefHeight="38.0" prefWidth="280.0">
+               <font>
+                  <Font size="19.0" />
+               </font>
+            </TextField>
+            <Button fx:id="btnVoltar" layoutX="913.0" layoutY="704.0" mnemonicParsing="false" onAction="#Voltar" prefHeight="38.0" prefWidth="105.0" text="&lt; Voltar" />
+            <Button fx:id="btnFinaliza" layoutX="1062.0" layoutY="704.0" mnemonicParsing="false" onAction="#FinalizaCadastro" prefHeight="38.0" prefWidth="139.0" text="Finalizar Cadastro" />
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>

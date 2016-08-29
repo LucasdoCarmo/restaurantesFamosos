@@ -12,7 +12,7 @@
    <children>
       <BorderPane fx:id="panelPrincipal" prefHeight="200.0" prefWidth="200.0">
          <top>
-            <Pane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+            <Pane prefHeight="803.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                <children>
                   <MenuBar layoutX="35.0" layoutY="27.0" prefHeight="81.0" prefWidth="825.0">
                     <menus>
@@ -39,7 +39,6 @@
                         </Menu>
                     </menus>
                   </MenuBar>
-                  <Button fx:id="btnBuscar" layoutX="53.0" layoutY="131.0" mnemonicParsing="false" onAction="#Buscar" text="Buscar" />
                </children>
                <BorderPane.margin>
                   <Insets />
@@ -47,5 +46,14 @@
             </Pane>
          </top>
       </BorderPane>
+      <HBox layoutX="71.0" layoutY="154.0" prefHeight="100.0" prefWidth="694.0">
+         <children>
+            <Button fx:id="btnBuscar" mnemonicParsing="false" onAction="#Buscar" prefHeight="59.0" prefWidth="141.0" text="Buscar" />
+            <Button fx:id="btnBuscar1" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#Buscar" prefHeight="59.0" prefWidth="141.0" text="Buscar" />
+            <Button fx:id="btnBuscar11" layoutX="151.0" layoutY="10.0" mnemonicParsing="false" onAction="#Buscar" prefHeight="59.0" prefWidth="141.0" text="Buscar" />
+            <Button fx:id="btnBuscar111" layoutX="292.0" layoutY="10.0" mnemonicParsing="false" onAction="#Buscar" prefHeight="59.0" prefWidth="141.0" text="Buscar" />
+            <Button fx:id="btnBuscar1111" layoutX="412.0" layoutY="10.0" mnemonicParsing="false" onAction="#Buscar" prefHeight="59.0" prefWidth="141.0" text="Buscar" />
+         </children>
+      </HBox>
    </children>
 </AnchorPane>
