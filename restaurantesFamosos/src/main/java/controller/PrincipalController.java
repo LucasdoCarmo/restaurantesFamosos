@@ -37,7 +37,7 @@ public class PrincipalController {
 	@FXML
 	void Buscar(ActionEvent event) {
 		// método usado para dispensar o exesso de código para abrir telas
-		AbreTela("RedefiniSenha.fxml");
+		AbreTela("Buscar.fxml");
 
 	}
 

@@ -1,14 +1,23 @@
 package controller;
 
+import java.io.IOException;
+
+import application.Main;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.BorderPane;
 
 public class BuscarController {
 
+	@FXML
+	private BorderPane panelSecundario;
+	
     @FXML
     private Button btnAvaliar;
 
@@ -90,7 +99,17 @@ public class BuscarController {
 
     @FXML
     void BuscaAvancada(ActionEvent event) {
-
+    	AbreTela("BuscaAvancada.fxml");
     }
-
+    
+    public void AbreTela(String tela) {
+		FXMLLoader loader = new FXMLLoader();
+		loader.setLocation(getClass().getResource(Main.PATH_VIEW + tela));
+		try {
+			AnchorPane telaView = (AnchorPane) loader.load();
+			panelSecundario.setTop(telaView);
+		} catch (IOException e1) {
+			e1.printStackTrace();
+		}
+	}    
 }

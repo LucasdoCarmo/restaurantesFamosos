@@ -1,12 +1,21 @@
 package controller;
 
+import java.io.IOException;
+
+import application.Main;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.BorderPane;
 
 public class RecuperaSenhaController {
 
+	@FXML
+	private BorderPane panelPrincipal;
+	
     @FXML
     private Button btnConfirmar;
 
@@ -15,6 +24,9 @@ public class RecuperaSenhaController {
 
     @FXML
     private TextField tfCodigo;
+
+    @FXML
+    private Button btnCancelar;
 
     @FXML
     private TextField tfEmail;
@@ -26,7 +38,23 @@ public class RecuperaSenhaController {
 
     @FXML
     void Confirmar(ActionEvent event) {
-
+    	AbreTela("RedefiniSenha.fxml");
     }
+
+    @FXML
+    void Cancelar(ActionEvent event) {
+    	AbreTela("Login.fxml");
+    }
+    
+    public void AbreTela(String tela) {
+		FXMLLoader loader = new FXMLLoader();
+		loader.setLocation(getClass().getResource(Main.PATH_VIEW + tela));
+		try {
+			AnchorPane telaView = (AnchorPane) loader.load();
+			panelPrincipal.setCenter(telaView);
+		} catch (IOException e1) {
+			e1.printStackTrace();
+		}
+	}
 
 }

@@ -1,11 +1,17 @@
 package controller;
 
+import java.io.IOException;
+
+import application.Main;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.BorderPane;
 
 public class CadastraRestauranteController {
 
@@ -29,6 +35,9 @@ public class CadastraRestauranteController {
 
     @FXML
     private TextField tfNumero;
+
+    @FXML
+    private BorderPane panelSecundario;
 
     @FXML
     private TextField tfTelefone;
@@ -58,7 +67,18 @@ public class CadastraRestauranteController {
 
     @FXML
     void Avaliacao(ActionEvent event) {
-
+    	AbreTela("Avaliacao.fxml");
     }
+    
+    public void AbreTela(String tela) {
+		FXMLLoader loader = new FXMLLoader();
+		loader.setLocation(getClass().getResource(Main.PATH_VIEW + tela));
+		try {
+			AnchorPane telaView = (AnchorPane) loader.load();
+			panelSecundario.setCenter(telaView);
+		} catch (IOException e1) {
+			e1.printStackTrace();
+		}
+	}  
 
 }
