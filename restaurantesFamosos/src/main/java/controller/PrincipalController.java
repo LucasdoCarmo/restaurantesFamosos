@@ -1,7 +1,6 @@
 package controller;
 
 import java.io.IOException;
-
 import application.Main;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -14,82 +13,72 @@ import javafx.scene.layout.BorderPane;
 
 public class PrincipalController {
 
-    @FXML
-    private BorderPane panelPrincipal;
+	@FXML
+	private BorderPane panelPrincipal;
 
-    @FXML
-    private Label lblNomeUsuario;
+	@FXML
+	private Label lblNomeUsuario;
 
-    @FXML
-    private Button btnRelatorio;
+	@FXML
+	private Button btnRelatorio;
 
-    @FXML
-    private MenuItem menuNovo;
+	@FXML
+	private MenuItem menuNovo;
 
-    @FXML
-    private Button btnSair;
+	@FXML
+	private Button btnSair;
 
-    @FXML
-    private MenuItem menuEditar;
+	@FXML
+	private MenuItem menuEditar;
 
-    @FXML
-    private Button btnBuscar;
+	@FXML
+	private Button btnBuscar;
 
-    @FXML
-    void Buscar(ActionEvent event) {
-		// exemplo de como abrir uma tela dentro de outra
+	@FXML
+	void Buscar(ActionEvent event) {
+		// método usado para dispensar o exesso de código para abrir telas
+		AbreTela("RedefiniSenha.fxml");
+
+	}
+
+	@FXML
+	void CadastrarNovo(ActionEvent event) {
+		AbreTela("CadastraRestaurante.fxml");
+
+	}
+
+	@FXML
+	void EditarPerfil(ActionEvent event) {
+		AbreTela("EditaPerfil.fxml");
+
+	}
+
+	@FXML
+	void GerarRelatorio(ActionEvent event) {
+		AbreTela("Relatorio.fxml");
+	}
+
+	@FXML
+	void Sair(ActionEvent event) {
 		FXMLLoader loader = new FXMLLoader();
-		loader.setLocation(getClass().getResource(Main.PATH_VIEW + "RedefiniSenha.fxml"));
+		loader.setLocation(getClass().getResource(Main.PATH_VIEW + "Login.fxml"));
 		try {
-			AnchorPane buscarView = (AnchorPane) loader.load();
-			panelPrincipal.setCenter(buscarView);
+			AnchorPane telaView = (AnchorPane) loader.load();
+			panelPrincipal.setTop(telaView);
 		} catch (IOException e1) {
 			e1.printStackTrace();
 		}
+	}
 
-    }
-
-    @FXML
-    void CadastrarNovo(ActionEvent event) {
-    	FXMLLoader loader = new FXMLLoader();
-		loader.setLocation(getClass().getResource(Main.PATH_VIEW + "CadastraRestaurante.fxml"));
-		try {
-			AnchorPane cadastroRestauranteView = (AnchorPane) loader.load();
-			panelPrincipal.setCenter(cadastroRestauranteView);
-		} catch (IOException e1) {
-			e1.printStackTrace();
-		}
-
-    }
-
-    @FXML
-    void EditarPerfil(ActionEvent event) {
-    	FXMLLoader loader = new FXMLLoader();
-		loader.setLocation(getClass().getResource(Main.PATH_VIEW + "EditaPerfil.fxml"));
-		try {
-			AnchorPane editaPerfilView = (AnchorPane) loader.load();
-			panelPrincipal.setCenter(editaPerfilView);
-		} catch (IOException e1) {
-			e1.printStackTrace();
-		}
-    }
-
-    @FXML
-    void GerarRelatorio(ActionEvent event) {
+	public void AbreTela(String tela) {
 		FXMLLoader loader = new FXMLLoader();
-		loader.setLocation(getClass().getResource(Main.PATH_VIEW + "Relatorio.fxml"));
+		loader.setLocation(getClass().getResource(Main.PATH_VIEW + tela));
 		try {
-			AnchorPane relatorioView = (AnchorPane) loader.load();
-			panelPrincipal.setCenter(relatorioView);
+			AnchorPane telaView = (AnchorPane) loader.load();
+			panelPrincipal.setCenter(telaView);
 		} catch (IOException e1) {
 			e1.printStackTrace();
 		}
-    }
-
-    @FXML
-    void Sair(ActionEvent event) {
-
-    }
+	}
 
 }
-
