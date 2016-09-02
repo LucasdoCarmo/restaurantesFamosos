@@ -7,7 +7,6 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import lombok.Getter;
 
-
 public class Main extends Application {
 	public final static String PATH_VIEW = "../view/";
 
@@ -22,10 +21,11 @@ public class Main extends Application {
 			Main.primaryStage = primaryStage;
 			Main.rootLayout = (AnchorPane) FXMLLoader.load(getClass().getResource(PATH_VIEW + "Login.fxml"));
 
+			primaryStage.setTitle("Restaurantes Famosos");
 			Scene scene = new Scene(rootLayout);
 			primaryStage.setScene(scene);
 			primaryStage.show();
-			
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
