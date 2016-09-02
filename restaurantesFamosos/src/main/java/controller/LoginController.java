@@ -41,7 +41,7 @@ public class LoginController {
 
 	@FXML
 	void CriarConta(ActionEvent event) {
-
+		AbreTela("CadastraUsuario.fxml");
 	}
 
 	@FXML
@@ -49,14 +49,8 @@ public class LoginController {
 		if ("admin".equals(tfSenha.getText()) && "admin".equals(tfLogin.getText())) {
 			Alert alert = new Alert(AlertType.INFORMATION, "Login efetuado com sucesso!", ButtonType.CLOSE);
 			alert.show();
-			FXMLLoader loader = new FXMLLoader();
-			loader.setLocation(getClass().getResource(Main.PATH_VIEW + "Principal.fxml"));
-			try {
-				AnchorPane principalView = (AnchorPane) loader.load();
-				panelPrincipal.setCenter(principalView);
-			} catch (IOException e1) {
-				e1.printStackTrace();
-			}
+			// abre a tela principal de seta o menu no topo
+			AbreTela("Principal.fxml");
 		} else {
 			Alert alert = new Alert(AlertType.ERROR, "Atenção!! Os dados estão incorretos", ButtonType.CLOSE);
 			alert.show();
@@ -65,12 +59,23 @@ public class LoginController {
 
 	@FXML
 	void LembrarSenha(ActionEvent event) {
-
+		
 	}
 
 	@FXML
 	void EsqueciSenha(ActionEvent event) {
-
+		AbreTela("RecuperaSenha.fxml");
+	}
+	
+	public void AbreTela(String tela) {
+		FXMLLoader loader = new FXMLLoader();
+		loader.setLocation(getClass().getResource(Main.PATH_VIEW + tela));
+		try {
+			AnchorPane telaView = (AnchorPane) loader.load();
+			panelPrincipal.setCenter(telaView);
+		} catch (IOException e1) {
+			e1.printStackTrace();
+		}
 	}
 
 }
