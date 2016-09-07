@@ -4,19 +4,18 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
-
-public class ConexaoMysqlProducao implements Conexao{
+public class ConexaoMysqlProducao implements Conexao {
 
 	private static Connection connection;
 
 	static {
 		createConnection();
 	}
-	
-	private static void createConnection(){
+
+	private static void createConnection() {
 		String url = "jdbc:mysql://localhost:3306/RestaurantesFamosos";
 		String user = "root";
-		String password = "Eagle15";
+		String password = "pc";
 		try {
 			connection = DriverManager.getConnection(url, user, password);
 		} catch (SQLException ex) {
@@ -24,11 +23,10 @@ public class ConexaoMysqlProducao implements Conexao{
 			System.out.println("Erro de conexão com o banco de dados");
 		}
 	}
-	
-	
-	public Connection get(){
+
+	public Connection get() {
 		try {
-			if(connection.isClosed()){
+			if (connection.isClosed()) {
 				createConnection();
 			}
 		} catch (SQLException e) {
@@ -36,8 +34,8 @@ public class ConexaoMysqlProducao implements Conexao{
 		}
 		return connection;
 	}
-	
-	public void close(){
+
+	public void close() {
 		try {
 			connection.close();
 		} catch (SQLException e) {
