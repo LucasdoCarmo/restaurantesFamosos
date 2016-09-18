@@ -9,116 +9,104 @@ import java.util.Collection;
 import java.util.List;
 
 import conexao.Conexao;
-import model.Pais;
+import model.Cidade;
 
-public class PaisJDBC implements PaisDAO {
+public class CidadeJDBC implements CidadeDAO {
 
 	private Conexao conexao;
 
-	/**
-	 * Conexão com o banco de dados.
-	 * 
-	 * @param conexao.get()
-	 */
-	public PaisJDBC(Conexao conexao) {
+	public CidadeJDBC(Conexao conexao) {
 		this.conexao = conexao;
 	}
 
-	public void inserir(Pais objeto) {
-		String insert = "insert into Pais (nome) values(?)";
+	public void inserir(Cidade objeto) {
+		String insert = "insert into Cidade (nome) values(?)";
 		try {
 			PreparedStatement ps = conexao.get().prepareStatement(insert, Statement.RETURN_GENERATED_KEYS);
 			ps.setString(1, objeto.getNome());
 
 			ps.executeUpdate();
-			// Popular o objeto com o código gerado.
 			ResultSet rs = ps.getGeneratedKeys();
 			rs.next();
 			objeto.setCodigo(rs.getLong(1));
-		} catch (SQLException e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
 			conexao.close();
 		}
 	}
 
-	public void alterar(Pais objeto) {
-		String update = "update Pais set nome=?" + "where idPais = ?";
+	public void alterar(Cidade objeto) {
+		String update = "update Cidade set nome=?" + "where idCidade= ?";
 		try {
 			PreparedStatement ps = conexao.get().prepareStatement(update);
 			ps.setString(1, objeto.getNome());
-
-			ps.setLong(3, objeto.getCodigo());
+			ps.setLong(2, objeto.getCodigo());
 			ps.executeUpdate();
-		} catch (SQLException e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
 			conexao.close();
 		}
-
 	}
 
-	@Override
 	public void excluir(Long codigo) {
-		String delete = "delete from Pais " + "where idPais = ?";
+		String del = "delete from Cidade" + "where idCidade = ?";
 		try {
-			PreparedStatement ps = conexao.get().prepareStatement(delete);
+			PreparedStatement ps = conexao.get().prepareStatement(del);
 			ps.setLong(1, codigo);
 			ps.executeUpdate();
-		} catch (SQLException e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
 			conexao.close();
 		}
+
 	}
 
-	@Override
-	public Collection<Pais> todos() {
-		String sql = "select * from Pais";
-		List<Pais> Paiss = new ArrayList<>();
+	public Collection<Cidade> todos() {
+		String sql = "select *from Cidade";
+		List<Cidade> cidades = new ArrayList<>();
 		try {
 			PreparedStatement ps = conexao.get().prepareStatement(sql);
 			ResultSet rs = ps.executeQuery();
-			Paiss = getLista(rs);
-		} catch (SQLException e) {
+			cidades = getLista(rs);
+		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
 			conexao.close();
 		}
-		return Paiss;
+		return cidades;
 	}
 
-	@Override
-	public Pais get(Long codigo) {
-		String sql = "select * from Pais where idPais = ?";
-		Pais Pais = null;
+	public Cidade get(Long codigo) {
+		String sql = "select *from Cidade where idCidade =?";
+		Cidade cidade = null;
 		try {
 			PreparedStatement ps = conexao.get().prepareStatement(sql);
 			ps.setLong(1, codigo);
 			ResultSet rs = ps.executeQuery();
-			// Passa por todos os registros que vieram do banco.
 			while (rs.next()) {
-				Pais = getPais(rs);
+				cidade = getCidade(rs);
 			}
-		} catch (SQLException e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
 			conexao.close();
 		}
-		return Pais;
+		return cidade;
 	}
 
-	private List<Pais> getLista(ResultSet rs) throws SQLException {
-		List<Pais> Paiss = new ArrayList<>();
+	private List<Cidade> getLista(ResultSet rs) throws SQLException {
+		List<Cidade> cidades = new ArrayList<>();
 		while (rs.next()) {
-			Paiss.add(getPais(rs));
+			cidades.add(getCidade(rs));
 		}
-		return Paiss;
+		return cidades;
 	}
 
-	private Pais getPais(ResultSet rs) throws SQLException {
-		Pais pais = new Pais(rs.getLong("idPais"), rs.getString("nome"));
-		return pais;
+	private Cidade getCidade(ResultSet rs) throws SQLException {
+		Cidade cidade = new Cidade(rs.getLong("idCidade"), rs.getString("nome"));
+		return cidade;
 	}
-
 }
