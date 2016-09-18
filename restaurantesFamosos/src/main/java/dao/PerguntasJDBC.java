@@ -25,9 +25,9 @@ public class PerguntasJDBC implements PerguntasDAO {
 	}
 
 	public void inserir(Perguntas objeto) {
-		String insert = "insert into Perguntas (aparencia_externa,aparencia_interna,bebidas_alcoolicas,bebidas_sem_alcool"
-				+ "espera_por_mesa,limpeza,pagamento,qualidade_do_atendimento,tempo_de_entrega,qualidade_pelo_valor_pago"
-				+ "variedade_cardapio) values(?,?,?,?,?,?,?,?,?,?,?)";
+		String insert = "insert into Perguntas (aparencia_externa,aparencia_interna,bebidas_alcoolicas,bebidas_sem_alcool ,"
+				+ "houve_espera_por_mesa,limpeza,pagamento,"
+				+ "qualidade_do_atendimento,tempo_de_entrega,qualidade_pelo_valor_pago ,variedade_cardapio) values(?,?,?,?,?,?,?,?,?,?,?)";
 		try {
 			PreparedStatement ps = conexao.get().prepareStatement(insert, Statement.RETURN_GENERATED_KEYS);
 			ps.setString(1, objeto.getAparencia_externa());
@@ -56,8 +56,8 @@ public class PerguntasJDBC implements PerguntasDAO {
 
 	public void alterar(Perguntas objeto) {
 		String update = "update Perguntas set aparencia_externa=?,aparencia_interna=?,bebidas_alcoolicas=?,bebidas_sem_alcool=?"
-				+ "espera_por_mesa=?,limpeza,pagamento=?,qualidade_do_atendimento=?,tempo_de_entrega=?,qualidade_pelo_valor_pago=?"
-				+ "variedade_cardapio=?" + "where codPerguntas = ?";
+				+ "houve_espera_por_mesa=?,limpeza=?,pagamento=?,qualidade_do_atendimento=?,tempo_de_entrega=?,qualidade_pelo_valor_pago=?"
+				+ "variedade_cardapio=?" + "where idPerguntas = ?";
 		try {
 			PreparedStatement ps = conexao.get().prepareStatement(update);
 			ps.setString(1, objeto.getAparencia_externa());
@@ -71,8 +71,8 @@ public class PerguntasJDBC implements PerguntasDAO {
 			ps.setString(9, objeto.getTempo_entrega());
 			ps.setString(10, objeto.getValor_total());
 			ps.setString(11, objeto.getVariedade_cardapio());
-
 			ps.setLong(12, objeto.getCodigo());
+
 			ps.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -84,7 +84,7 @@ public class PerguntasJDBC implements PerguntasDAO {
 
 	@Override
 	public void excluir(Long codigo) {
-		String delete = "delete from Perguntas " + "where codPerguntas = ?";
+		String delete = "delete from Perguntas " + "where idPerguntas = ?";
 		try {
 			PreparedStatement ps = conexao.get().prepareStatement(delete);
 			ps.setLong(1, codigo);

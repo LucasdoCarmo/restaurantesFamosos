@@ -25,7 +25,7 @@ public class PaisJDBC implements PaisDAO {
 	}
 
 	public void inserir(Pais objeto) {
-		String insert = "insert into Pais (nome) values(?)";
+		String insert = "insert into Pais (Nome) values(?)";
 		try {
 			PreparedStatement ps = conexao.get().prepareStatement(insert, Statement.RETURN_GENERATED_KEYS);
 			ps.setString(1, objeto.getNome());
@@ -43,12 +43,11 @@ public class PaisJDBC implements PaisDAO {
 	}
 
 	public void alterar(Pais objeto) {
-		String update = "update Pais set nome=?" + "where codPais = ?";
+		String update = "update Pais set Nome=?" + "where idPais = ?";
 		try {
 			PreparedStatement ps = conexao.get().prepareStatement(update);
 			ps.setString(1, objeto.getNome());
-
-			ps.setLong(3, objeto.getCodigo());
+			ps.setLong(2, objeto.getCodigo());
 			ps.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -60,7 +59,7 @@ public class PaisJDBC implements PaisDAO {
 
 	@Override
 	public void excluir(Long codigo) {
-		String delete = "delete from Pais " + "where codPais = ?";
+		String delete = "delete from Pais " + "where idPais = ?";
 		try {
 			PreparedStatement ps = conexao.get().prepareStatement(delete);
 			ps.setLong(1, codigo);
@@ -90,7 +89,7 @@ public class PaisJDBC implements PaisDAO {
 
 	@Override
 	public Pais get(Long codigo) {
-		String sql = "select * from Pais where codPais = ?";
+		String sql = "select * from Pais where idPais = ?";
 		Pais Pais = null;
 		try {
 			PreparedStatement ps = conexao.get().prepareStatement(sql);
@@ -117,7 +116,7 @@ public class PaisJDBC implements PaisDAO {
 	}
 
 	private Pais getPais(ResultSet rs) throws SQLException {
-		Pais pais = new Pais(rs.getLong("codPais"), rs.getString("nome"));
+		Pais pais = new Pais(rs.getLong("idPais"), rs.getString("Nome"));
 		return pais;
 	}
 
