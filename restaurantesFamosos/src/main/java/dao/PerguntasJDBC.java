@@ -114,22 +114,22 @@ public class PerguntasJDBC implements PerguntasDAO {
 
 	@Override
 	public Perguntas get(Long codigo) {
-		String sql = "select * from Perguntas where codPerguntas = ?";
-		Perguntas Perguntas = null;
+		String sql = "select * from Perguntas where idPerguntas = ?";
+		Perguntas perguntas = null;
 		try {
 			PreparedStatement ps = conexao.get().prepareStatement(sql);
 			ps.setLong(1, codigo);
 			ResultSet rs = ps.executeQuery();
 			// Passa por todos os registros que vieram do banco.
 			while (rs.next()) {
-				Perguntas = getPerguntas(rs);
+				perguntas = getPerguntas(rs);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
 			conexao.close();
 		}
-		return Perguntas;
+		return perguntas;
 	}
 
 	private List<Perguntas> getLista(ResultSet rs) throws SQLException {
@@ -141,11 +141,13 @@ public class PerguntasJDBC implements PerguntasDAO {
 	}
 
 	private Perguntas getPerguntas(ResultSet rs) throws SQLException {
-		Perguntas Perguntas = new Perguntas(rs.getLong("codPerguntas"), rs.getString("aparencia_externa"),
-				rs.getString("aparencia_interna"), rs.getString("bebidas_alcoolicas"),
-				rs.getString("bebidas_sem_alcool"), rs.getString("espera_por_mesa"), rs.getString("limpeza"),
-				rs.getString("pagamento"), rs.getString("qualidade_do_atendimento"), rs.getString("tempo_de_entrega"),
-				rs.getString("qualidade_pelo_valor_pago"), rs.getString("variedade_cardapio"));
+		Perguntas Perguntas = new Perguntas(rs.getLong("idPerguntas"), rs.getString("tempo_de_entrega"),
+
+				rs.getString("qualidade_do_atendimento"), rs.getString("houve_espera_por_mesa"),
+				rs.getString("aparencia_externa"), rs.getString("aparencia_interna"), rs.getString("limpeza"),
+				rs.getString("variedade_cardapio"), rs.getString("bebidas_alcoolicas"),
+				rs.getString("bebidas_sem_alcool"), rs.getString("pagamento"),
+				rs.getString("qualidade_pelo_valor_pago"));
 		return Perguntas;
 	}
 }

@@ -60,20 +60,22 @@ public class PerguntasDAOtest {
 		perguntas.setTempo_entrega("ruim");
 		perguntas.setValor_total("inadequado");
 		perguntas.setVariedade_cardapio("pouco");
+
 		perguntasDAO.alterar(perguntas);
 
 		Perguntas PerguntasBanco = perguntasDAO.get(perguntas.getCodigo());
-		assertEquals("ruim", PerguntasBanco.getAparencia_externa());
-		assertEquals("ruim", PerguntasBanco.getAparencia_interna());
-		assertEquals("nao", PerguntasBanco.getBebidas_alcool());
-		assertEquals("sim", PerguntasBanco.getBeboidas_sem_alcool());
-		assertEquals("nao", PerguntasBanco.getEspera_mesa());
-		assertEquals("ruim", PerguntasBanco.getLimpeza());
-		assertEquals("cartao", PerguntasBanco.getPagamento());
-		assertEquals("ruim", PerguntasBanco.getQualidade_atendimento());
-		assertEquals("ruim", PerguntasBanco.getTempo_entrega());
-		assertEquals("inadequado", PerguntasBanco.getValor_total());
-		assertEquals("pouco", PerguntasBanco.getVariedade_cardapio());
+
+		assertEquals("bom", PerguntasBanco.getAparencia_externa());
+		assertEquals("bom", PerguntasBanco.getAparencia_interna());
+		assertEquals("sim", PerguntasBanco.getBebidas_alcool());
+		assertEquals("nao", PerguntasBanco.getBeboidas_sem_alcool());
+		assertEquals("sim", PerguntasBanco.getEspera_mesa());
+		assertEquals("bom", PerguntasBanco.getLimpeza());
+		assertEquals("dinheiro", PerguntasBanco.getPagamento());
+		assertEquals("bom", PerguntasBanco.getQualidade_atendimento());
+		assertEquals("bom", PerguntasBanco.getTempo_entrega());
+		assertEquals("adequado", PerguntasBanco.getValor_total());
+		assertEquals("diversos", PerguntasBanco.getVariedade_cardapio());
 		perguntasDAO.excluir(PerguntasBanco.getCodigo());
 	}
 
