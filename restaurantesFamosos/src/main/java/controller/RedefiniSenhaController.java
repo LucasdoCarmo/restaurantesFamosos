@@ -1,8 +1,6 @@
 package controller;
 
 import java.io.IOException;
-
-import application.Main;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -15,42 +13,42 @@ public class RedefiniSenhaController {
 
 	@FXML
 	private BorderPane panelPrincipal;
-	
-    @FXML
-    private TextField tfNovaSenha;
 
-    @FXML
-    private Button btnRedefinirSenha;
+	@FXML
+	private TextField tfNovaSenha;
 
-    @FXML
-    private Button btnVoltar;
+	@FXML
+	private Button btnRedefinirSenha;
 
-    @FXML
-    private TextField tfConfirmaSenha;
+	@FXML
+	private Button btnVoltar;
 
-    @FXML
-    void NovaSenha(ActionEvent event) {
+	@FXML
+	private TextField tfConfirmaSenha;
 
-    }
+	@FXML
+	void NovaSenha(ActionEvent event) {
 
-    @FXML
-    void ConfirmaSenha(ActionEvent event) {
+	}
 
-    }
+	@FXML
+	void ConfirmaSenha(ActionEvent event) {
 
-    @FXML
-    void Voltar(ActionEvent event) {
-    	AbreTela("RecuperaSenha.fxml");
-    }
+	}
 
-    @FXML
-    void RedefinirSenha(ActionEvent event) {
+	@FXML
+	void Voltar(ActionEvent event) {
+		AbreTela("RecuperaSenha.fxml");
+	}
 
-    }
-    
-    public void AbreTela(String tela) {
+	@FXML
+	void RedefinirSenha(ActionEvent event) {
+
+	}
+
+	public void AbreTela(String tela) {
 		FXMLLoader loader = new FXMLLoader();
-		loader.setLocation(getClass().getResource(Main.PATH_VIEW + tela));
+		loader.setLocation(getClass().getResource("/telas/" + tela));
 		try {
 			AnchorPane telaView = (AnchorPane) loader.load();
 			panelPrincipal.setCenter(telaView);
