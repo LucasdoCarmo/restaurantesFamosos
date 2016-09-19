@@ -1,8 +1,6 @@
 package controller;
 
 import java.io.IOException;
-
-import application.Main;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -104,7 +102,7 @@ public class BuscarController {
     
     public void AbreTela(String tela) {
 		FXMLLoader loader = new FXMLLoader();
-		loader.setLocation(getClass().getResource(Main.PATH_VIEW + tela));
+		loader.setLocation(getClass().getResource("/telas/" +tela));
 		try {
 			AnchorPane telaView = (AnchorPane) loader.load();
 			panelSecundario.setTop(telaView);
