@@ -19,7 +19,7 @@ public class EstadoJDBC implements EstadoDAO {
 	}
 
 	public void inserir(Estado objeto) {
-		String insert = "insert into Estado (nome) values(?)";
+		String insert = "insert into Estado (Nome) values(?)";
 		try {
 			PreparedStatement ps = conexao.get().prepareStatement(insert, Statement.RETURN_GENERATED_KEYS);
 			ps.setString(1, objeto.getNome());
@@ -36,7 +36,7 @@ public class EstadoJDBC implements EstadoDAO {
 	}
 
 	public void alterar(Estado objeto) {
-		String update = "update Estado set nome=?" + "where idEstado = ?";
+		String update = "update Estado set Nome=?" + "where idEstado = ?";
 		try {
 			PreparedStatement ps = conexao.get().prepareStatement(update);
 			ps.setString(1, objeto.getNome());
@@ -105,7 +105,7 @@ public class EstadoJDBC implements EstadoDAO {
 	}
 
 	private Estado getEstado(ResultSet rs) throws SQLException {
-		Estado estado = new Estado(rs.getLong("idEstado"), rs.getString("nome"));
+		Estado estado = new Estado(rs.getLong("idEstado"), rs.getString("Nome"));
 		return estado;
 	}
 
