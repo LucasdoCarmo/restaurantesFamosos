@@ -7,8 +7,10 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+
 import conexao.Conexao;
 import model.Estado;
+import model.Pais;
 
 public class EstadoJDBC implements EstadoDAO {
 
@@ -19,10 +21,11 @@ public class EstadoJDBC implements EstadoDAO {
 	}
 
 	public void inserir(Estado objeto) {
-		String insert = "insert into Estado (nome) values(?)";
+		String insert = "insert into Estado (nome,idPais) values(?,?)";
 		try {
 			PreparedStatement ps = conexao.get().prepareStatement(insert, Statement.RETURN_GENERATED_KEYS);
 			ps.setString(1, objeto.getNome());
+			ps.setLong(2, objeto.getPais().getCodigo());
 
 			ps.executeUpdate();
 			ResultSet rs = ps.getGeneratedKeys();
@@ -36,7 +39,7 @@ public class EstadoJDBC implements EstadoDAO {
 	}
 
 	public void alterar(Estado objeto) {
-		String update = "update Estado set nome=?" + "where idEstado = ?";
+		String update = "update Estado set nome=?, idPais=?" + "where idEstado = ?";
 		try {
 			PreparedStatement ps = conexao.get().prepareStatement(update);
 			ps.setString(1, objeto.getNome());
@@ -105,7 +108,7 @@ public class EstadoJDBC implements EstadoDAO {
 	}
 
 	private Estado getEstado(ResultSet rs) throws SQLException {
-		Estado estado = new Estado(rs.getLong("idEstado"), rs.getString("nome"));
+		Estado estado = new Estado(rs.getLong("idEstado"), rs.getString("nome"), new Pais(rs.getLong("idPais")));
 		return estado;
 	}
 

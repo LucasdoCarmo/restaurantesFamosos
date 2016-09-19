@@ -7,8 +7,13 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-public class CEP {
+public class CEP implements Entidade {
 
 	private Long codigo;
 	private String cep;
+	private Cidade cidade;
+
+	public CEP(Long codigo) {
+		this.codigo = codigo;
+	}
 }

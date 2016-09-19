@@ -10,6 +10,7 @@ import java.util.List;
 
 import conexao.Conexao;
 import model.Cidade;
+import model.Estado;
 
 public class CidadeJDBC implements CidadeDAO {
 
@@ -20,11 +21,11 @@ public class CidadeJDBC implements CidadeDAO {
 	}
 
 	public void inserir(Cidade objeto) {
-		String insert = "insert into Cidade (nome) values(?)";
+		String insert = "insert into Cidade (nome,idEstado) values(?,?)";
 		try {
 			PreparedStatement ps = conexao.get().prepareStatement(insert, Statement.RETURN_GENERATED_KEYS);
 			ps.setString(1, objeto.getNome());
-
+			ps.setLong(2, objeto.getEstado().getCodigo());
 			ps.executeUpdate();
 			ResultSet rs = ps.getGeneratedKeys();
 			rs.next();
@@ -37,11 +38,12 @@ public class CidadeJDBC implements CidadeDAO {
 	}
 
 	public void alterar(Cidade objeto) {
-		String update = "update Cidade set nome=?" + "where idCidade= ?";
+		String update = "update Cidade set nome=?, idEstado=?" + "where idCidade= ?";
 		try {
 			PreparedStatement ps = conexao.get().prepareStatement(update);
 			ps.setString(1, objeto.getNome());
-			ps.setLong(2, objeto.getCodigo());
+			ps.setLong(2, objeto.getEstado().getCodigo());
+			ps.setLong(3, objeto.getCodigo());
 			ps.executeUpdate();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -106,7 +108,7 @@ public class CidadeJDBC implements CidadeDAO {
 	}
 
 	private Cidade getCidade(ResultSet rs) throws SQLException {
-		Cidade cidade = new Cidade(rs.getLong("idCidade"), rs.getString("nome"));
+		Cidade cidade = new Cidade(rs.getLong("idCidade"), rs.getString("nome"), new Estado(rs.getLong("idEstado")));
 		return cidade;
 	}
 }
