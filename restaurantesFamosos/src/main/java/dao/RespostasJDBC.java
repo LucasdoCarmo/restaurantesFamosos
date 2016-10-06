@@ -9,23 +9,23 @@ import java.util.Collection;
 import java.util.List;
 
 import conexao.Conexao;
-import model.Estado;
-import model.Pais;
+import model.Perguntas;
+import model.Respostas;
 
-public class EstadoJDBC implements EstadoDAO {
+public class RespostasJDBC implements RespostasDAO {
 
 	private Conexao conexao;
 
-	public EstadoJDBC(Conexao conexao) {
+	public RespostasJDBC(Conexao conexao) {
 		this.conexao = conexao;
 	}
 
-	public void inserir(Estado objeto) {
-		String insert = "insert into Estado (nome,Pais_idPais) values(?,?)";
+	public void inserir(Respostas objeto) {
+		String insert = "insert into Respostas (idRespostas,idPerguntas) values(?,?)";
 		try {
 			PreparedStatement ps = conexao.get().prepareStatement(insert, Statement.RETURN_GENERATED_KEYS);
-			ps.setString(1, objeto.getNome());
-			ps.setLong(2, objeto.getPais().getCodigo());
+			ps.setLong(1, objeto.getCodigo());
+			ps.setLong(2, objeto.getPerguntas().getCodigo());
 
 			ps.executeUpdate();
 			ResultSet rs = ps.getGeneratedKeys();
@@ -38,12 +38,13 @@ public class EstadoJDBC implements EstadoDAO {
 		}
 	}
 
-	public void alterar(Estado objeto) {
-		String update = "update Estado set nome=?, idPais=?" + "where idEstado = ?";
+	public void alterar(Respostas objeto) {
+		String update = "update Respostas set idRespostas=?,idPergunas=?" + "where idRespostas = ?";
 		try {
 			PreparedStatement ps = conexao.get().prepareStatement(update);
-			ps.setString(1, objeto.getNome());
-			ps.setLong(2, objeto.getCodigo());
+			ps.setLong(1, objeto.getCodigo());
+			ps.setLong(2, objeto.getPerguntas().getCodigo());
+			ps.setLong(3, objeto.getCodigo());
 			ps.executeUpdate();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -53,7 +54,7 @@ public class EstadoJDBC implements EstadoDAO {
 	}
 
 	public void excluir(Long codigo) {
-		String del = "delete from Estado" + "where idEstado = ?";
+		String del = "delete from Respostas" + "where idResposta = ?";
 		try {
 			PreparedStatement ps = conexao.get().prepareStatement(del);
 			ps.setLong(1, codigo);
@@ -66,50 +67,49 @@ public class EstadoJDBC implements EstadoDAO {
 
 	}
 
-	public Collection<Estado> todos() {
-		String sql = "select *from Estado";
-		List<Estado> Estados = new ArrayList<>();
+	public Collection<Respostas> todos() {
+		String sql = "select *from Respostas";
+		List<Respostas> respostas = new ArrayList<>();
 		try {
 			PreparedStatement ps = conexao.get().prepareStatement(sql);
 			ResultSet rs = ps.executeQuery();
-			Estados = getLista(rs);
+			respostas = getLista(rs);
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
 			conexao.close();
 		}
-		return Estados;
+		return respostas;
 	}
 
-	public Estado get(Long codigo) {
-		String sql = "select *from Estado where idEstado =?";
-		Estado estado = null;
+	public Respostas get(Long codigo) {
+		String sql = "select *from CEP where idCEP =?";
+		Respostas respostas = null;
 		try {
 			PreparedStatement ps = conexao.get().prepareStatement(sql);
 			ps.setLong(1, codigo);
 			ResultSet rs = ps.executeQuery();
 			while (rs.next()) {
-				estado = getEstado(rs);
+				respostas = getRespostas(rs);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
 			conexao.close();
 		}
-		return estado;
+		return respostas;
 	}
 
-	private List<Estado> getLista(ResultSet rs) throws SQLException {
-		List<Estado> estados = new ArrayList<>();
+	private List<Respostas> getLista(ResultSet rs) throws SQLException {
+		List<Respostas> respostas = new ArrayList<>();
 		while (rs.next()) {
-			estados.add(getEstado(rs));
+			respostas.add(getRespostas(rs));
 		}
-		return estados;
+		return respostas;
 	}
 
-	private Estado getEstado(ResultSet rs) throws SQLException {
-		Estado estado = new Estado(rs.getLong("idEstado"), rs.getString("nome"), new Pais(rs.getLong("idPais")));
-		return estado;
+	private Respostas getRespostas(ResultSet rs) throws SQLException {
+		Respostas respostas = new Respostas(rs.getLong("idRespostas"), new Perguntas(rs.getLong("idPerguntas")));
+		return respostas;
 	}
-
 }

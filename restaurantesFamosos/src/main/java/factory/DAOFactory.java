@@ -1,10 +1,18 @@
 package factory;
 
 import conexao.ConexaoMysqlProducao;
+import dao.CepDAO;
+import dao.CepJDBC;
+import dao.CidadeDAO;
+import dao.CidadeJDBC;
+import dao.EstadoDAO;
+import dao.EstadoJDBC;
 import dao.PaisDAO;
 import dao.PaisJDBC;
 import dao.PerguntasDAO;
 import dao.PerguntasJDBC;
+import dao.RestauranteDAO;
+import dao.RestauranteJDBC;
 
 public class DAOFactory {
 
@@ -29,6 +37,22 @@ public class DAOFactory {
 
 	public PaisDAO paisDAO() {
 		return new PaisJDBC(new ConexaoMysqlProducao());
+	}
+
+	public EstadoDAO estadoDAO() {
+		return new EstadoJDBC(new ConexaoMysqlProducao());
+	}
+
+	public CidadeDAO cidadeDAO() {
+		return new CidadeJDBC(new ConexaoMysqlProducao());
+	}
+
+	public CepDAO cepDAO() {
+		return new CepJDBC(new ConexaoMysqlProducao());
+	}
+
+	public RestauranteDAO restauranteDAO() {
+		return new RestauranteJDBC(new ConexaoMysqlProducao());
 	}
 
 }
