@@ -11,7 +11,7 @@ import java.util.List;
 import conexao.Conexao;
 import model.Visita;
 
-public class VisitaJDBC {
+public class VisitaJDBC implements VisitaDAO{
 
 	private Conexao conexao;
 
