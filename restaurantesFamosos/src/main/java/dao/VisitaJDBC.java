@@ -9,9 +9,12 @@ import java.util.Collection;
 import java.util.List;
 
 import conexao.Conexao;
+import model.Avaliacao;
+import model.Restaurante;
+import model.Usuario;
 import model.Visita;
 
-public class VisitaJDBC implements VisitaDAO{
+public class VisitaJDBC implements VisitaDAO {
 
 	private Conexao conexao;
 
@@ -28,7 +31,7 @@ public class VisitaJDBC implements VisitaDAO{
 			ps.setLong(3, objeto.getRestaurante().getCodigo());
 			ps.setLong(4, objeto.getUsuario().getCodigo());
 			ps.setLong(5, objeto.getAvaliacao().getCodigo());
-			
+
 			ps.executeUpdate();
 			ResultSet rs = ps.getGeneratedKeys();
 			rs.next();
@@ -41,7 +44,8 @@ public class VisitaJDBC implements VisitaDAO{
 	}
 
 	public void alterar(Visita objeto) {
-		String update = "update Visita set Data=?, set Valor_Gasto=?, set Restaurante_idRestaurante=?, set Usuario_idUsuario=?, set Avaliacao_idAvaliacao=?" + "where idVisita = ?";
+		String update = "update Visita set Data=?, set Valor_Gasto=?, set Restaurante_idRestaurante=?, set Usuario_idUsuario=?, set Avaliacao_idAvaliacao=?"
+				+ "where idVisita = ?";
 		try {
 			PreparedStatement ps = conexao.get().prepareStatement(update);
 			ps.setString(1, objeto.getData());
@@ -113,9 +117,10 @@ public class VisitaJDBC implements VisitaDAO{
 	}
 
 	private Visita getVisita(ResultSet rs) throws SQLException {
-		Visita visita = new Visita(rs.getLong("idVisita"), rs.getString("Data"), rs.getDouble("Valor_Gasto"), rs.getLong("Restaurante_idRestaurante"), rs.getLong("Usuario_idUsuario"), rs.getLong("Avaliacao_idAvaliacao"));
+		Visita visita = new Visita(rs.getLong("idVisita"), rs.getString("Data"), rs.getDouble("Valor_Gasto"),
+				new Restaurante(rs.getLong("idRestaurante")), new Usuario(rs.getLong("idUsuario")),
+				new Avaliacao(rs.getLong("idAvaliacao")));
 		return visita;
 	}
 
-	
 }

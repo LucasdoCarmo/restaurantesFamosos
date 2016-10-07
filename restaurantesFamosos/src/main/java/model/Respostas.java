@@ -12,4 +12,7 @@ public class Respostas implements Entidade {
 	private Long codigo;
 	private Perguntas perguntas;
 
+	public Respostas(Long codigo) {
+		this.codigo = codigo;
+	}
 }
