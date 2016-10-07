@@ -9,7 +9,6 @@ import java.util.Collection;
 import java.util.List;
 
 import conexao.Conexao;
-import model.Respostas;
 import model.Usuario;
 
 public class UsuarioJDBC implements UsuarioDAO {
@@ -25,7 +24,7 @@ public class UsuarioJDBC implements UsuarioDAO {
 		try {
 			PreparedStatement ps = conexao.get().prepareStatement(insert, Statement.RETURN_GENERATED_KEYS);
 			ps.setString(1, objeto.getNome());
-			ps.setString(2, objeto.getRespostas());
+			ps.setLong(2, objeto.getResposta().getCodigo());
 			ps.setString(3, objeto.getEmail());
 			ps.setString(4, objeto.getSenha());
 
@@ -46,7 +45,7 @@ public class UsuarioJDBC implements UsuarioDAO {
 		try {
 			PreparedStatement ps = conexao.get().prepareStatement(update);
 			ps.setString(1, objeto.getNome());
-			ps.setString(2, objeto.getRespostas());
+			ps.setLong(2, objeto.getResposta().getCodigo());
 			ps.setString(3, objeto.getEmail());
 			ps.setString(4, objeto.getSenha());
 			ps.executeUpdate();
@@ -113,10 +112,7 @@ public class UsuarioJDBC implements UsuarioDAO {
 	}
 
 	private Usuario getUsuario(ResultSet rs) throws SQLException {
-		Usuario usuario = new Usuario(rs.getLong("idUsuario"), rs.getString("nome"),
-				new Respostas(rs.getLong("idRespostas"),
-						rs.getString("email"),
-						rs.getString("senha"));
+		Usuario usuario = new Usuario(rs.getLong("idUsuario"));
 		return usuario;
 
 	}

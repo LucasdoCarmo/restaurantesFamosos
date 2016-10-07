@@ -4,9 +4,9 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+@Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Data
 public class Usuario implements Entidade {
 
 	private String senha;
@@ -18,4 +18,5 @@ public class Usuario implements Entidade {
 	public Usuario(Long codigo) {
 		this.codigo = codigo;
 	}
+
 }
