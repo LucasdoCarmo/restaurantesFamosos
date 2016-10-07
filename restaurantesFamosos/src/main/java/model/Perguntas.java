@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Perguntas {
+public class Perguntas implements Entidade {
 
 	private Long codigo;
 	private String tempo_entrega;
@@ -22,4 +22,8 @@ public class Perguntas {
 	private String pagamento;
 	private String valor_total;
 
+	public Perguntas(Long codigo) {
+		this.codigo = codigo;
+	}
+	
 }
