@@ -84,12 +84,12 @@ public class UsuarioJDBC implements UsuarioDAO {
 		return usuarios;
 	}
 
-	public Usuario get(String nome) {
+	public Usuario get(Long codigo) {
 		String sql = "select *from Usuario where idUsuario =?";
 		Usuario usuario = null;
 		try {
 			PreparedStatement ps = conexao.get().prepareStatement(sql);
-			ps.setString(1, nome);
+			ps.setLong(1, codigo);
 			ResultSet rs = ps.executeQuery();
 			while (rs.next()) {
 				usuario = getUsuario(rs);
@@ -109,12 +109,6 @@ public class UsuarioJDBC implements UsuarioDAO {
 			usuarios.add(getUsuario(rs));
 		}
 		return usuarios;
-	}
-
-	private Usuario getUsuario(ResultSet rs) throws SQLException {
-		Usuario usuario = new Usuario(rs.getString("idUsuario"), rs.getString("nome"));
-		return usuario;
-
 	}
 
 }
