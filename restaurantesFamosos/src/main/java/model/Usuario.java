@@ -4,15 +4,15 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+@Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Data
 public class Usuario implements Entidade {
 
+	private Long codigo;
 	private String senha;
 	private String Nome;
 	private String email;
-	private long codigo;
 	private Respostas resposta;
 
 	public Usuario(Long codigo) {

@@ -24,7 +24,7 @@ public class UsuarioJDBC implements UsuarioDAO {
 		try {
 			PreparedStatement ps = conexao.get().prepareStatement(insert, Statement.RETURN_GENERATED_KEYS);
 			ps.setString(1, objeto.getNome());
-			ps.setString(2, objeto.getRespostas());
+			ps.setLong(2, objeto.getResposta().getCodigo());
 			ps.setString(3, objeto.getEmail());
 			ps.setString(4, objeto.getSenha());
 
@@ -41,11 +41,11 @@ public class UsuarioJDBC implements UsuarioDAO {
 	}
 
 	public void alterar(Usuario objeto) {
-		String update = "update Usuario set nome=?,Respostas=?,email=?,senha=?," + "where idUsuario=?";
+		String update = "update Usuario set nome=?,idRespostas=?,email=?,senha=?," + "where idUsuario=?";
 		try {
 			PreparedStatement ps = conexao.get().prepareStatement(update);
 			ps.setString(1, objeto.getNome());
-			ps.setString(2, objeto.getRespostas());
+			ps.setLong(2, objeto.getResposta().getCodigo());
 			ps.setString(3, objeto.getEmail());
 			ps.setString(4, objeto.getSenha());
 			ps.executeUpdate();

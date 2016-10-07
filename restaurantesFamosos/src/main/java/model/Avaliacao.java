@@ -7,8 +7,8 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Avaliacao {
-	
+public class Avaliacao implements Entidade {
+
 	private Long codigo;
 	private Integer notaAtendimento;
 	private Integer notaComida;
@@ -17,4 +17,7 @@ public class Avaliacao {
 	private String avaliacaoDescritiva;
 	private Integer notaGeral;
 
+	public Avaliacao(Long codigo) {
+		this.codigo = codigo;
+	}
 }
