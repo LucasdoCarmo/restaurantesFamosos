@@ -12,7 +12,7 @@ public class Usuario implements Entidade {
 	private String senha;
 	private String Nome;
 	private String email;
-	private long codigo;
+	private Long codigo;
 	private Respostas resposta;
 
 	public Usuario(Long codigo) {

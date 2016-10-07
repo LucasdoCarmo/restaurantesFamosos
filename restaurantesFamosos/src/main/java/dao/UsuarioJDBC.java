@@ -9,6 +9,7 @@ import java.util.Collection;
 import java.util.List;
 
 import conexao.Conexao;
+import model.Respostas;
 import model.Usuario;
 
 public class UsuarioJDBC implements UsuarioDAO {
@@ -84,12 +85,12 @@ public class UsuarioJDBC implements UsuarioDAO {
 		return usuarios;
 	}
 
-	public Usuario get(String nome) {
+	public Usuario get(Long codigo) {
 		String sql = "select *from Usuario where idUsuario =?";
 		Usuario usuario = null;
 		try {
 			PreparedStatement ps = conexao.get().prepareStatement(sql);
-			ps.setString(1, nome);
+			ps.setLong(1, codigo);
 			ResultSet rs = ps.executeQuery();
 			while (rs.next()) {
 				usuario = getUsuario(rs);
@@ -112,9 +113,14 @@ public class UsuarioJDBC implements UsuarioDAO {
 	}
 
 	private Usuario getUsuario(ResultSet rs) throws SQLException {
-		Usuario usuario = new Usuario(rs.getString("idUsuario"), rs.getString("nome"));
+		Usuario usuario = new Usuario(rs.getLong("idUsuario"), rs.getString("nome"),
+				new Respostas(rs.getLong("idRespostas"),
+						rs.getString("email"),
+						rs.getString("senha"));
 		return usuario;
 
 	}
+
+	
 
 }
