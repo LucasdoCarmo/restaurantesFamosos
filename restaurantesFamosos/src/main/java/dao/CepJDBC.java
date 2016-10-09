@@ -21,7 +21,7 @@ public class CepJDBC implements CepDAO {
 	}
 
 	public void inserir(CEP objeto) {
-		String insert = "insert into CEP (numero,idCidade) values(?,?)";
+		String insert = "insert into CEP (Numero,Cidade_idCidade) values(?,?)";
 		try {
 			PreparedStatement ps = conexao.get().prepareStatement(insert, Statement.RETURN_GENERATED_KEYS);
 			ps.setString(1, objeto.getCep());
@@ -39,7 +39,7 @@ public class CepJDBC implements CepDAO {
 	}
 
 	public void alterar(CEP objeto) {
-		String update = "update CEP set numero=?,idCidade=?" + "where idCEP = ?";
+		String update = "update CEP set Numero=?,Cidade_idCidade=? where idCEP = ?";
 		try {
 			PreparedStatement ps = conexao.get().prepareStatement(update);
 			ps.setString(1, objeto.getCep());
@@ -54,12 +54,12 @@ public class CepJDBC implements CepDAO {
 	}
 
 	public void excluir(Long codigo) {
-		String del = "delete from CEP" + "where idCEP = ?";
+		String delete = "delete from CEP where idCEP = ?";
 		try {
-			PreparedStatement ps = conexao.get().prepareStatement(del);
+			PreparedStatement ps = conexao.get().prepareStatement(delete);
 			ps.setLong(1, codigo);
 			ps.executeUpdate();
-		} catch (Exception e) {
+		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
 			conexao.close();
@@ -109,7 +109,7 @@ public class CepJDBC implements CepDAO {
 	}
 
 	private CEP getCep(ResultSet rs) throws SQLException {
-		CEP cep = new CEP(rs.getLong("idCEP"), rs.getString("numero"), new Cidade(rs.getLong("idCidade")));
+		CEP cep = new CEP(rs.getLong("idCEP"), rs.getString("numero"), new Cidade(rs.getLong("Cidade_idCidade")));
 		return cep;
 	}
 }

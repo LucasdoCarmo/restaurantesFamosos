@@ -9,13 +9,14 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class Usuario implements Entidade {
 
-	private Long codigo;
 	private String senha;
 	private String Nome;
 	private String email;
+	private Long codigo;
 	private Respostas resposta;
 
 	public Usuario(Long codigo) {
 		this.codigo = codigo;
 	}
+
 }

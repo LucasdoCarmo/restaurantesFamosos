@@ -21,12 +21,11 @@ public class RespostasJDBC implements RespostasDAO {
 	}
 
 	public void inserir(Respostas objeto) {
-		String insert = "insert into Respostas (idRespostas,idPerguntas) values(?,?)";
+		String insert = "insert into Respostas (Perguntas_idPerguntas) values(?)";
 		try {
 			PreparedStatement ps = conexao.get().prepareStatement(insert, Statement.RETURN_GENERATED_KEYS);
-			ps.setLong(1, objeto.getCodigo());
-			ps.setLong(2, objeto.getPerguntas().getCodigo());
-
+			ps.setLong(1, objeto.getPerguntas().getCodigo());
+			
 			ps.executeUpdate();
 			ResultSet rs = ps.getGeneratedKeys();
 			rs.next();
@@ -39,12 +38,11 @@ public class RespostasJDBC implements RespostasDAO {
 	}
 
 	public void alterar(Respostas objeto) {
-		String update = "update Respostas set idRespostas=?,idPergunas=?" + "where idRespostas = ?";
+		String update = "update Visita set Perguntas_idPerguntas=?" + "where idRespostas = ?";
 		try {
 			PreparedStatement ps = conexao.get().prepareStatement(update);
-			ps.setLong(1, objeto.getCodigo());
-			ps.setLong(2, objeto.getPerguntas().getCodigo());
-			ps.setLong(3, objeto.getCodigo());
+			ps.setLong(1, objeto.getPerguntas().getCodigo());
+
 			ps.executeUpdate();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -54,7 +52,7 @@ public class RespostasJDBC implements RespostasDAO {
 	}
 
 	public void excluir(Long codigo) {
-		String del = "delete from Respostas" + "where idResposta = ?";
+		String del = "delete from Respostas" + "where idRespostas = ?";
 		try {
 			PreparedStatement ps = conexao.get().prepareStatement(del);
 			ps.setLong(1, codigo);
@@ -69,21 +67,21 @@ public class RespostasJDBC implements RespostasDAO {
 
 	public Collection<Respostas> todos() {
 		String sql = "select *from Respostas";
-		List<Respostas> respostas = new ArrayList<>();
+		List<Respostas> respostass = new ArrayList<>();
 		try {
 			PreparedStatement ps = conexao.get().prepareStatement(sql);
 			ResultSet rs = ps.executeQuery();
-			respostas = getLista(rs);
+			respostass = getLista(rs);
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
 			conexao.close();
 		}
-		return respostas;
+		return respostass;
 	}
 
 	public Respostas get(Long codigo) {
-		String sql = "select *from CEP where idCEP =?";
+		String sql = "select *from Respostas where idRespostas =?";
 		Respostas respostas = null;
 		try {
 			PreparedStatement ps = conexao.get().prepareStatement(sql);
@@ -101,15 +99,17 @@ public class RespostasJDBC implements RespostasDAO {
 	}
 
 	private List<Respostas> getLista(ResultSet rs) throws SQLException {
-		List<Respostas> respostas = new ArrayList<>();
+		List<Respostas> respostass = new ArrayList<>();
 		while (rs.next()) {
-			respostas.add(getRespostas(rs));
+			respostass.add(getRespostas(rs));
 		}
-		return respostas;
+		return respostass;
 	}
 
 	private Respostas getRespostas(ResultSet rs) throws SQLException {
-		Respostas respostas = new Respostas(rs.getLong("idRespostas"), new Perguntas(rs.getLong("idPerguntas")));
+		Respostas respostas = new Respostas(rs.getLong("idRespostas"),
+					new Perguntas(rs.getLong("idPerguntas")));
 		return respostas;
 	}
+
 }

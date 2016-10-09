@@ -8,7 +8,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Avaliacao implements Entidade {
-
+	
 	private Long codigo;
 	private Integer notaAtendimento;
 	private Integer notaComida;

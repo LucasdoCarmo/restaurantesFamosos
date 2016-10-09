@@ -15,7 +15,7 @@ public class EstadoDAOtest {
 	@Test
 	public void deveInserirEstadoNova() {
 		Estado estado = new Estado();
-		estado.setNome("SC");
+		estado.setNome("Amazonas");
 		estado.setPais(new Pais(1L));
 		EstadoDAO EstadoDAO = DAOFactory.get().estadoDAO();
 		EstadoDAO.inserir(estado);
@@ -26,7 +26,7 @@ public class EstadoDAOtest {
 	@Test
 	public void deveAlterarEstado() {
 		Estado Estado = new Estado();
-		Estado.setNome("PR");
+		Estado.setNome("PR ");
 		Estado.setPais(new Pais(1L));
 		EstadoDAO EstadoDAO = DAOFactory.get().estadoDAO();
 		EstadoDAO.inserir(Estado);

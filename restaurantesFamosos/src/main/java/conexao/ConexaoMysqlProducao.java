@@ -18,6 +18,7 @@ public class ConexaoMysqlProducao implements Conexao {
 		String password = "pc";
 		try {
 			connection = DriverManager.getConnection(url, user, password);
+			System.out.println("conectado");
 		} catch (SQLException ex) {
 			ex.printStackTrace();
 			System.out.println("Erro de conexão com o banco de dados");

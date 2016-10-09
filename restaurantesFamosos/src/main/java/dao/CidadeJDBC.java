@@ -21,7 +21,7 @@ public class CidadeJDBC implements CidadeDAO {
 	}
 
 	public void inserir(Cidade objeto) {
-		String insert = "insert into Cidade (nome,idEstado) values(?,?)";
+		String insert = "insert into Cidade (nome,Estado_idEstado) values(?,?)";
 		try {
 			PreparedStatement ps = conexao.get().prepareStatement(insert, Statement.RETURN_GENERATED_KEYS);
 			ps.setString(1, objeto.getNome());
@@ -38,14 +38,14 @@ public class CidadeJDBC implements CidadeDAO {
 	}
 
 	public void alterar(Cidade objeto) {
-		String update = "update Cidade set nome=?, idEstado=?" + "where idCidade= ?";
+		String update = "update Cidade set Nome=?, Estado_idEstado = ?" + " where idCidade = ?";
 		try {
 			PreparedStatement ps = conexao.get().prepareStatement(update);
 			ps.setString(1, objeto.getNome());
 			ps.setLong(2, objeto.getEstado().getCodigo());
 			ps.setLong(3, objeto.getCodigo());
 			ps.executeUpdate();
-		} catch (Exception e) {
+		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
 			conexao.close();
@@ -53,17 +53,16 @@ public class CidadeJDBC implements CidadeDAO {
 	}
 
 	public void excluir(Long codigo) {
-		String del = "delete from Cidade" + "where idCidade = ?";
+		String delete = "delete from Cidade where idCidade = ?";
 		try {
-			PreparedStatement ps = conexao.get().prepareStatement(del);
+			PreparedStatement ps = conexao.get().prepareStatement(delete);
 			ps.setLong(1, codigo);
 			ps.executeUpdate();
-		} catch (Exception e) {
+		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
 			conexao.close();
 		}
-
 	}
 
 	public Collection<Cidade> todos() {
@@ -108,7 +107,8 @@ public class CidadeJDBC implements CidadeDAO {
 	}
 
 	private Cidade getCidade(ResultSet rs) throws SQLException {
-		Cidade cidade = new Cidade(rs.getLong("idCidade"), rs.getString("nome"), new Estado(rs.getLong("idEstado")));
+		Cidade cidade = new Cidade(rs.getLong("idCidade"), rs.getString("nome"),
+				new Estado(rs.getLong("Estado_idEstado")));
 		return cidade;
 	}
 }

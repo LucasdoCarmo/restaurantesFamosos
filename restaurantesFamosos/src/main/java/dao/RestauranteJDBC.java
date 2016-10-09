@@ -21,7 +21,7 @@ public class RestauranteJDBC implements RestauranteDAO {
 	}
 
 	public void inserir(Restaurante objeto) {
-		String insert = "insert into Restaurante (Nome,Telefone,Tipo_de_estabelecimento,Rua,Numero,Tema,idCEP) values(?,?,?,?,?,?,?)";
+		String insert = "insert into Restaurante (Nome,Telefone,Tipo_de_estabelicimento,Rua,Numero,Tema,CEP_idCEP) values(?,?,?,?,?,?,?)";
 		try {
 			PreparedStatement ps = conexao.get().prepareStatement(insert, Statement.RETURN_GENERATED_KEYS);
 			ps.setString(1, objeto.getNome());
@@ -43,8 +43,7 @@ public class RestauranteJDBC implements RestauranteDAO {
 	}
 
 	public void alterar(Restaurante objeto) {
-		String update = "update Restaurante set Nome=?, set Telefone=?, set Tipo_de_estabelecimento=?, set Rua =?, set Numero=?, set Tema=?"
-				+ "where idRestaurante = ?";
+		String update = "update Restaurante set Nome=?,Telefone=?,Tipo_de_estabelicimento=?,Rua =?,Numero=?,Tema=?,CEP_idCEP=? where idRestaurante = ?";
 		try {
 			PreparedStatement ps = conexao.get().prepareStatement(update);
 			ps.setString(1, objeto.getNome());
@@ -64,7 +63,7 @@ public class RestauranteJDBC implements RestauranteDAO {
 	}
 
 	public void excluir(Long codigo) {
-		String del = "delete from Restaurante" + "where idRestaurante = ?";
+		String del = "delete from Restaurante where idRestaurante = ?";
 		try {
 			PreparedStatement ps = conexao.get().prepareStatement(del);
 			ps.setLong(1, codigo);
@@ -120,8 +119,8 @@ public class RestauranteJDBC implements RestauranteDAO {
 
 	private Restaurante getRestaurante(ResultSet rs) throws SQLException {
 		Restaurante restaurante = new Restaurante(rs.getLong("idRestaurante"), rs.getString("Nome"),
-				rs.getString("Telefone"), rs.getString("Tipo_de_estabelecimento"), rs.getString("Rua"),
-				rs.getString("Numero"), rs.getString("Tema"), new CEP(rs.getLong("idCEP")));
+				rs.getString("Telefone"), rs.getString("Tipo_de_estabelicimento"), rs.getString("Rua"),
+				rs.getString("Numero"), rs.getString("Tema"), new CEP(rs.getLong("CEP_idCEP")));
 		return restaurante;
 	}
 

@@ -39,13 +39,15 @@ public class EstadoJDBC implements EstadoDAO {
 	}
 
 	public void alterar(Estado objeto) {
-		String update = "update Estado set nome=?, idPais=?" + "where idEstado = ?";
+		String update = "update Estado set Nome=?,Pais_idPais = ? where idEstado = ?";
 		try {
 			PreparedStatement ps = conexao.get().prepareStatement(update);
 			ps.setString(1, objeto.getNome());
-			ps.setLong(2, objeto.getCodigo());
+			ps.setLong(2, objeto.getPais().getCodigo());
+
+			ps.setLong(3, objeto.getCodigo());
 			ps.executeUpdate();
-		} catch (Exception e) {
+		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
 			conexao.close();
@@ -53,12 +55,12 @@ public class EstadoJDBC implements EstadoDAO {
 	}
 
 	public void excluir(Long codigo) {
-		String del = "delete from Estado" + "where idEstado = ?";
+		String delete = "delete from Estado " + "where idEstado = ?";
 		try {
-			PreparedStatement ps = conexao.get().prepareStatement(del);
+			PreparedStatement ps = conexao.get().prepareStatement(delete);
 			ps.setLong(1, codigo);
 			ps.executeUpdate();
-		} catch (Exception e) {
+		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
 			conexao.close();
@@ -82,16 +84,17 @@ public class EstadoJDBC implements EstadoDAO {
 	}
 
 	public Estado get(Long codigo) {
-		String sql = "select *from Estado where idEstado =?";
+		String sql = "select * from Estado where idEstado = ?";
 		Estado estado = null;
 		try {
 			PreparedStatement ps = conexao.get().prepareStatement(sql);
 			ps.setLong(1, codigo);
 			ResultSet rs = ps.executeQuery();
+			// Passa por todos os registros que vieram do banco.
 			while (rs.next()) {
 				estado = getEstado(rs);
 			}
-		} catch (Exception e) {
+		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
 			conexao.close();
@@ -108,7 +111,7 @@ public class EstadoJDBC implements EstadoDAO {
 	}
 
 	private Estado getEstado(ResultSet rs) throws SQLException {
-		Estado estado = new Estado(rs.getLong("idEstado"), rs.getString("nome"), new Pais(rs.getLong("idPais")));
+		Estado estado = new Estado(rs.getLong("idEstado"), rs.getString("nome"), new Pais(rs.getLong("Pais_idPais")));
 		return estado;
 	}
 

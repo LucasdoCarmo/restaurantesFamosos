@@ -25,5 +25,5 @@ public class Perguntas implements Entidade {
 	public Perguntas(Long codigo) {
 		this.codigo = codigo;
 	}
-
+	
 }
