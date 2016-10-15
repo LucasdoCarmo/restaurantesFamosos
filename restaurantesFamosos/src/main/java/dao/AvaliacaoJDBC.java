@@ -11,7 +11,6 @@ import java.util.List;
 import conexao.Conexao;
 import model.Avaliacao;
 
-
 public class AvaliacaoJDBC implements AvaliacaoDAO {
 
 	private Conexao conexao;
@@ -42,7 +41,7 @@ public class AvaliacaoJDBC implements AvaliacaoDAO {
 	}
 
 	public void alterar(Avaliacao objeto) {
-		String update = "update Avaliacao set Nota_Atendimento=?, set Nota_Comida=?, set Nota_aspecto=?, set Nota_pagamento=?, set Avaliacao_Descritiva=?, set Nota_Geral=?" + "where idAvaliacao = ?";
+		String update = "update Avaliacao set Nota_Atendimento=?,Nota_Comida=?,Nota_aspecto=?,Nota_pagamento=?,Avaliacao_Descritiva=?,Nota_Geral=? where idAvaliacao=?";
 		try {
 			PreparedStatement ps = conexao.get().prepareStatement(update);
 			ps.setInt(1, objeto.getNotaAtendimento());
@@ -50,7 +49,8 @@ public class AvaliacaoJDBC implements AvaliacaoDAO {
 			ps.setInt(3, objeto.getNotaAspecto());
 			ps.setInt(4, objeto.getNotaPagamento());
 			ps.setString(5, objeto.getAvaliacaoDescritiva());
-			ps.setInt(6,  objeto.getNotaGeral());
+			ps.setInt(6, objeto.getNotaGeral());
+			ps.setLong(7, objeto.getCodigo());
 			ps.executeUpdate();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -60,7 +60,7 @@ public class AvaliacaoJDBC implements AvaliacaoDAO {
 	}
 
 	public void excluir(Long codigo) {
-		String del = "delete from Avaliacao" + "where idAvaliacao = ?";
+		String del = "delete from Avaliacao where idAvaliacao = ?";
 		try {
 			PreparedStatement ps = conexao.get().prepareStatement(del);
 			ps.setLong(1, codigo);
@@ -115,7 +115,9 @@ public class AvaliacaoJDBC implements AvaliacaoDAO {
 	}
 
 	private Avaliacao getAvaliacao(ResultSet rs) throws SQLException {
-		Avaliacao avaliacao = new Avaliacao(rs.getLong("idAvaliacao"), rs.getInt("Nota_Atendimento"), rs.getInt("Nota_Comida"), rs.getInt("Nota_aspecto"), rs.getInt("Nota_pagamento"), rs.getString("Avaliacao_Descritiva"), rs.getInt("Nota_Geral"));
+		Avaliacao avaliacao = new Avaliacao(rs.getLong("idAvaliacao"), rs.getInt("Nota_Atendimento"),
+				rs.getInt("Nota_Comida"), rs.getInt("Nota_aspecto"), rs.getInt("Nota_pagamento"),
+				rs.getString("Avaliacao_Descritiva"), rs.getInt("Nota_Geral"));
 		return avaliacao;
 	}
 }
