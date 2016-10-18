@@ -22,6 +22,7 @@ public class Main extends Application {
 
 			primaryStage.setTitle("Restaurantes Famosos");
 			Scene scene = new Scene(rootLayout);
+			scene.getStylesheets().add("/css/style.css");
 			primaryStage.setScene(scene);
 			primaryStage.show();
 

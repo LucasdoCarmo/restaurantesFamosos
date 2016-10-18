@@ -1,12 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.text.*?>
-<?import javafx.scene.control.*?>
-<?import java.lang.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.CadastraRestauranteController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.CadastraRestauranteController">
    <children>
       <BorderPane fx:id="panelSecundario" prefHeight="600.0" prefWidth="1280.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <center>
@@ -84,8 +88,8 @@
                   <TextField fx:id="tfCep" layoutX="75.0" layoutY="170.0" prefHeight="41.0" prefWidth="268.0" />
                   <TextField fx:id="tfRua" layoutX="75.0" layoutY="263.0" prefHeight="41.0" prefWidth="268.0" />
                   <TextField fx:id="tfNumero" layoutX="75.0" layoutY="360.0" prefHeight="41.0" prefWidth="203.0" />
-                  <Button fx:id="btnVoltar" layoutX="879.0" layoutY="513.0" mnemonicParsing="false" onAction="#Voltar" prefHeight="41.0" prefWidth="112.0" text="&lt; Voltar" />
-                  <Button fx:id="btnAvaliacao" layoutX="1044.0" layoutY="513.0" mnemonicParsing="false" onAction="#Avaliacao" prefHeight="41.0" prefWidth="128.0" text="Ir Avaliação" />
+                  <Button fx:id="btnVoltar" layoutX="879.0" layoutY="513.0" mnemonicParsing="false" onAction="#Voltar" prefHeight="41.0" prefWidth="112.0" styleClass="excluir" text="&lt; Voltar" />
+                  <Button fx:id="btnAvaliacao" layoutX="1044.0" layoutY="513.0" mnemonicParsing="false" onAction="#Avaliacao" prefHeight="41.0" prefWidth="128.0" styleClass="salvar" text="Ir Avaliação" />
                </children>
             </Pane>
          </center>
