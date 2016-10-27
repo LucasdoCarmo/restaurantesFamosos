@@ -111,4 +111,10 @@ public class CidadeJDBC implements CidadeDAO {
 				new Estado(rs.getLong("Estado_idEstado")));
 		return cidade;
 	}
+
+	@Override
+	public List<Cidade> getPorNome(String nome) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }
