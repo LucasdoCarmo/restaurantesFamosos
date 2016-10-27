@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.RelatorioController">
+   <children>
+      <Pane prefHeight="596.0" prefWidth="1280.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <Text layoutX="112.0" layoutY="39.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ESCOLHA SUA OPÇÃO PARA GERAR UM RELATÓRIO">
+               <font>
+                  <Font size="27.0" />
+               </font>
+            </Text>
+            <Button layoutX="45.0" layoutY="65.0" mnemonicParsing="false" prefHeight="49.0" prefWidth="131.0" text="RANKING" />
+            <Button fx:id="btnTodos" layoutX="45.0" layoutY="308.0" mnemonicParsing="false" onAction="#Todos" prefHeight="49.0" prefWidth="131.0" text="Todos" />
+            <Button fx:id="btn20Melhores" layoutX="45.0" layoutY="259.0" mnemonicParsing="false" onAction="#VinteMelhores" prefHeight="49.0" prefWidth="131.0" text="20 melhores" />
+            <Button fx:id="btn5melhores" layoutX="45.0" layoutY="114.0" mnemonicParsing="false" onAction="#CincoMelhores" prefHeight="49.0" prefWidth="131.0" text="5 melhores" />
+            <Button fx:id="btn10Melhores" layoutX="45.0" layoutY="161.0" mnemonicParsing="false" onAction="#DezMelhores" prefHeight="49.0" prefWidth="131.0" text="10 melhores" />
+            <Button fx:id="btn15Melhores" layoutX="45.0" layoutY="210.0" mnemonicParsing="false" onAction="#QuinzeMelhores" prefHeight="49.0" prefWidth="131.0" text="15 melhores" />
+            <Button layoutX="289.0" layoutY="65.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="117.0" text="Lugar" />
+            <Button layoutX="547.0" layoutY="70.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="235.0" text="Tipo de estabelecimento" />
+            <Button layoutX="904.0" layoutY="73.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="117.0" text="Por preço" />
+            <Button fx:id="btnMaior" layoutX="904.0" layoutY="107.0" mnemonicParsing="false" onAction="#MaiorPreco" prefHeight="31.0" prefWidth="100.0" text="maior" />
+            <Button fx:id="btnMenor" layoutX="904.0" layoutY="138.0" mnemonicParsing="false" onAction="#MenorPreco" prefHeight="31.0" prefWidth="100.0" text="menor" />
+            <ComboBox fx:id="cbPais" layoutX="264.0" layoutY="102.0" onAction="#Pais" prefHeight="25.0" prefWidth="84.0" promptText="País" />
+            <ComboBox fx:id="cbEstado" layoutX="358.0" layoutY="102.0" onAction="#Estado" prefHeight="25.0" prefWidth="117.0" promptText="Estado" />
+            <ComboBox fx:id="cbCidade" layoutX="300.0" layoutY="160.0" onAction="#Cidade" prefHeight="25.0" prefWidth="140.0" promptText="Cidade" />
+            <ComboBox fx:id="cbTipo" layoutX="552.0" layoutY="134.0" onAction="#Tipo" prefHeight="25.0" prefWidth="185.0" promptText="Tipo" />
+            <Button fx:id="btnGeraRelatorio" layoutX="1045.0" layoutY="340.0" mnemonicParsing="false" onAction="#GerarRelatorio" prefHeight="25.0" prefWidth="131.0" text="Gerar Relatório" />
+            <TableView fx:id="tbResultado" layoutX="45.0" layoutY="389.0" prefHeight="146.0" prefWidth="1174.0" />
+            <Button fx:id="btnVoltar" layoutX="955.0" layoutY="550.0" mnemonicParsing="false" onAction="#Voltar" prefHeight="25.0" prefWidth="100.0" styleClass="excluir" text="&lt; Voltar" />
+            <Button fx:id="btnImprimir" layoutX="1102.0" layoutY="550.0" mnemonicParsing="false" onAction="#Imprimir" prefHeight="25.0" prefWidth="117.0" styleClass="salvar" text="Imprimir" />
+            <Text layoutX="547.0" layoutY="125.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Escolha o estabelecimento" />
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>

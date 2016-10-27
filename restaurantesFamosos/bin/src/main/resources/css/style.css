@@ -1,0 +1,50 @@
+
+
+.salvar{
+	-fx-background-color:
+        linear-gradient(#f0ff35, #a9ff00),
+        radial-gradient(center 50% -40%, radius 200%, #b8ee36 45%, #80c800 50%);
+    -fx-background-radius: 6, 5;
+    -fx-background-insets: 0, 1;
+    -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.4) , 5, 0.0 , 0 , 1 );
+    -fx-text-fill: #395306;
+	
+}
+.novo{ 
+	-fx-background-color: 
+        #c3c4c4,
+        linear-gradient(#d6d6d6 50%, white 100%),
+        radial-gradient(center 50% -40%, radius 200%, #e6e6e6 45%, rgba(230,230,230,0) 50%);
+    -fx-background-radius: 30;
+    -fx-background-insets: 0,1,1;
+    -fx-text-fill: black;
+    -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 3, 0.0 , 0 , 1 )
+
+	
+}
+.excluir{
+	-fx-background-color: linear-gradient(#ff5400, #be1d00);
+    -fx-background-radius: 30;
+    -fx-background-insets: 0;
+    -fx-text-fill: white;
+	
+}
+.salvar:hover,.novo:hover,.excluir:hover{
+	-fx-background-color:grey;
+}
+
+.telaLogin{
+ -fx-background-image: url("../imagens/restaurante4.jpg");
+   -fx-background-size: cover;
+   
+
+
+}
+.telaPrincipal{
+ -fx-background-image: url("../imagens/restaurante1.jpg");
+   -fx-background-size: cover;
+   
+
+
+}
+

@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.BuscaAvancadaController">
+   <children>
+      <Text layoutX="159.0" layoutY="50.0" strokeType="OUTSIDE" strokeWidth="0.0" text="COMPLETE OS DADOS DESEJADOS E CLIQUE EM BUSCAR">
+         <font>
+            <Font size="23.0" />
+         </font>
+      </Text>
+      <Label layoutX="48.0" layoutY="93.0" text="PAÍS">
+         <font>
+            <Font size="17.0" />
+         </font>
+      </Label>
+      <Label layoutX="226.0" layoutY="93.0" text="ESTADO">
+         <font>
+            <Font size="17.0" />
+         </font>
+      </Label>
+      <Label layoutX="443.0" layoutY="93.0" text="CIDADE">
+         <font>
+            <Font size="17.0" />
+         </font>
+      </Label>
+      <Label layoutX="651.0" layoutY="93.0" text="ENDEREÇO">
+         <font>
+            <Font size="17.0" />
+         </font>
+      </Label>
+      <Label layoutX="907.0" layoutY="93.0" text="TIPO DE ESTABELECIMENTO">
+         <font>
+            <Font size="17.0" />
+         </font>
+      </Label>
+      <ComboBox fx:id="cbPais" layoutX="48.0" layoutY="126.0" prefHeight="36.0" prefWidth="110.0" />
+      <ComboBox fx:id="cbEstado" layoutX="226.0" layoutY="126.0" prefHeight="36.0" prefWidth="156.0" />
+      <ComboBox fx:id="cbCidade" layoutX="443.0" layoutY="126.0" prefHeight="36.0" prefWidth="156.0" />
+      <TextField fx:id="tfEndereco" layoutX="651.0" layoutY="126.0" prefHeight="36.0" prefWidth="239.0" />
+      <ComboBox fx:id="cbTipoEstabelecimento" layoutX="907.0" layoutY="126.0" prefHeight="36.0" prefWidth="294.0" />
+      <Label layoutX="48.0" layoutY="195.0" text="POR PREÇO">
+         <font>
+            <Font size="17.0" />
+         </font>
+      </Label>
+      <Button layoutX="48.0" layoutY="227.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="110.0" text="PREÇO" />
+      <Button fx:id="btnPrecoMaior" layoutX="48.0" layoutY="263.0" mnemonicParsing="false" onAction="#MaiorPreco" prefHeight="36.0" prefWidth="96.0" text="maior" />
+      <Button fx:id="btnPrecoMenor" layoutX="48.0" layoutY="299.0" mnemonicParsing="false" onAction="#MenorPreco" prefHeight="36.0" prefWidth="96.0" text="menor" />
+      <TableView fx:id="tbResultado" layoutX="47.0" layoutY="340.0" prefHeight="202.0" prefWidth="1161.0" />
+      <Button fx:id="btnBuscar" layoutX="1054.0" layoutY="282.0" mnemonicParsing="false" onAction="#Buscar" prefHeight="36.0" prefWidth="116.0" text="BUSCAR" />
+      <Button fx:id="btnVoltar" layoutX="651.0" layoutY="550.0" mnemonicParsing="false" onAction="#Voltar" prefHeight="36.0" prefWidth="131.0" text="&lt; Voltar" />
+      <Button fx:id="btnAvaliar" layoutX="1080.0" layoutY="550.0" mnemonicParsing="false" onAction="#Avaliar" prefHeight="36.0" prefWidth="131.0" styleClass="salvar" text="Avaliar" />
+      <Button fx:id="btnEditar" layoutX="938.0" layoutY="550.0" mnemonicParsing="false" onAction="#Editar" prefHeight="36.0" prefWidth="131.0" styleClass="novo" text="Editar" />
+      <Button fx:id="btnExcluir" layoutX="796.0" layoutY="550.0" mnemonicParsing="false" onAction="#Excluir" prefHeight="36.0" prefWidth="131.0" styleClass="excluir" text="Excluir" />
+   </children>
+</AnchorPane>

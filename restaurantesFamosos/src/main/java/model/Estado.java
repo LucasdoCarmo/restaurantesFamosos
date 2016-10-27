@@ -1,5 +1,6 @@
 package model;
 
+import componente.RenderizaCombo;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -7,7 +8,7 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Estado implements Entidade {
+public class Estado implements Entidade, RenderizaCombo {
 
 	private Long codigo;
 	private String nome;
@@ -15,5 +16,11 @@ public class Estado implements Entidade {
 
 	public Estado(Long codigo) {
 		this.codigo = codigo;
+	}
+
+	@Override
+	public String getText() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }
