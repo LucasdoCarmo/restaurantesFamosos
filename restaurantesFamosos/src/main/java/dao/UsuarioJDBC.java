@@ -20,7 +20,7 @@ public class UsuarioJDBC implements UsuarioDAO {
 	}
 
 	public void inserir(Usuario objeto) {
-		String insert = "insert into Usuario (nome,idRespostas,email,senha) values(?,?,?,?)";
+		String insert = "insert into usuario (Nome,Respostas_idRespostas,email,senha) values(?,?,?,?)";
 		try {
 			PreparedStatement ps = conexao.get().prepareStatement(insert, Statement.RETURN_GENERATED_KEYS);
 			ps.setString(1, objeto.getNome());
@@ -41,7 +41,7 @@ public class UsuarioJDBC implements UsuarioDAO {
 	}
 
 	public void alterar(Usuario objeto) {
-		String update = "update Usuario set nome=?,Respostas=?,email=?,senha=?," + "where idUsuario=?";
+		String update = "update usuario set Nome=?,Respostas_idRespostas=?,email=?,senha=?," + "where idUsuario=?";
 		try {
 			PreparedStatement ps = conexao.get().prepareStatement(update);
 			ps.setString(1, objeto.getNome());
@@ -57,7 +57,7 @@ public class UsuarioJDBC implements UsuarioDAO {
 	}
 
 	public void excluir(Long codigo) {
-		String del = "delete from Usuario" + "where idUsuario = ?";
+		String del = "delete from usuario" + "where idUsuario = ?";
 		try {
 			PreparedStatement ps = conexao.get().prepareStatement(del);
 			ps.setLong(1, codigo);
@@ -70,7 +70,7 @@ public class UsuarioJDBC implements UsuarioDAO {
 	}
 
 	public Collection<Usuario> todos() {
-		String sql = "select *from Usuario";
+		String sql = "select *from usuario";
 		List<Usuario> usuarios = new ArrayList<>();
 		try {
 			PreparedStatement ps = conexao.get().prepareStatement(sql);
@@ -85,7 +85,7 @@ public class UsuarioJDBC implements UsuarioDAO {
 	}
 
 	public Usuario get(Long codigo) {
-		String sql = "select *from Usuario where idUsuario =?";
+		String sql = "select *from usuario where idUsuario =?";
 		Usuario usuario = null;
 		try {
 			PreparedStatement ps = conexao.get().prepareStatement(sql);

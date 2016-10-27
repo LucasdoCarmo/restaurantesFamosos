@@ -23,7 +23,7 @@ public class VisitaJDBC implements VisitaDAO {
 	}
 
 	public void inserir(Visita objeto) {
-		String insert = "insert into Visita (Data,Valor_Gasto,Restaurante_idRestaurante,Usuario_idUsuario,Avaliacao_idAvaliacao) values(?,?,?,?,?)";
+		String insert = "insert into visita (Data,Valor_Gasto,Restaurante_idRestaurante,Usuario_idUsuario,Avaliacao_idAvaliacao) values(?,?,?,?,?)";
 		try {
 			PreparedStatement ps = conexao.get().prepareStatement(insert, Statement.RETURN_GENERATED_KEYS);
 			ps.setString(1, objeto.getData());
@@ -44,7 +44,7 @@ public class VisitaJDBC implements VisitaDAO {
 	}
 
 	public void alterar(Visita objeto) {
-		String update = "update Visita set Data=?, set Valor_Gasto=?, set Restaurante_idRestaurante=?, set Usuario_idUsuario=?, set Avaliacao_idAvaliacao=?"
+		String update = "update visita set Data=?, set Valor_Gasto=?, set Restaurante_idRestaurante=?, set Usuario_idUsuario=?, set Avaliacao_idAvaliacao=?"
 				+ "where idVisita = ?";
 		try {
 			PreparedStatement ps = conexao.get().prepareStatement(update);
@@ -62,7 +62,7 @@ public class VisitaJDBC implements VisitaDAO {
 	}
 
 	public void excluir(Long codigo) {
-		String del = "delete from Visita" + "where idVisita = ?";
+		String del = "delete from visita" + "where idVisita = ?";
 		try {
 			PreparedStatement ps = conexao.get().prepareStatement(del);
 			ps.setLong(1, codigo);
@@ -76,7 +76,7 @@ public class VisitaJDBC implements VisitaDAO {
 	}
 
 	public Collection<Visita> todos() {
-		String sql = "select *from Visita";
+		String sql = "select *from visita";
 		List<Visita> visitas = new ArrayList<>();
 		try {
 			PreparedStatement ps = conexao.get().prepareStatement(sql);
@@ -91,7 +91,7 @@ public class VisitaJDBC implements VisitaDAO {
 	}
 
 	public Visita get(Long codigo) {
-		String sql = "select *from Visita where idVisita =?";
+		String sql = "select *from visita where idVisita =?";
 		Visita visita = null;
 		try {
 			PreparedStatement ps = conexao.get().prepareStatement(sql);

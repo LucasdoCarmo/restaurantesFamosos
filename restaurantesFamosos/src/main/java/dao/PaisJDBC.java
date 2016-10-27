@@ -25,13 +25,13 @@ public class PaisJDBC implements PaisDAO {
 	}
 
 	public void inserir(Pais objeto) {
-		String insert = "insert into Pais (Nome) values(?)";
+		String insert = "insert into pais (pais) values(?)";
 		try {
 			PreparedStatement ps = conexao.get().prepareStatement(insert, Statement.RETURN_GENERATED_KEYS);
 			ps.setString(1, objeto.getNome());
 
 			ps.executeUpdate();
-			// Popular o objeto com o código gerado.
+			// Popular o objeto com o codigo gerado.
 			ResultSet rs = ps.getGeneratedKeys();
 			rs.next();
 			objeto.setCodigo(rs.getLong(1));
@@ -43,7 +43,7 @@ public class PaisJDBC implements PaisDAO {
 	}
 
 	public void alterar(Pais objeto) {
-		String update = "update Pais set Nome=?" + "where idPais = ?";
+		String update = "update pais set pais=?" + "where id_pais = ?";
 		try {
 			PreparedStatement ps = conexao.get().prepareStatement(update);
 			ps.setString(1, objeto.getNome());
@@ -59,7 +59,7 @@ public class PaisJDBC implements PaisDAO {
 
 	@Override
 	public void excluir(Long codigo) {
-		String delete = "delete from Pais " + "where idPais = ?";
+		String delete = "delete from pais " + "where id_pais = ?";
 		try {
 			PreparedStatement ps = conexao.get().prepareStatement(delete);
 			ps.setLong(1, codigo);
@@ -73,7 +73,7 @@ public class PaisJDBC implements PaisDAO {
 
 	@Override
 	public Collection<Pais> todos() {
-		String sql = "select * from Pais";
+		String sql = "select * from pais";
 		List<Pais> Paiss = new ArrayList<>();
 		try {
 			PreparedStatement ps = conexao.get().prepareStatement(sql);
@@ -89,7 +89,7 @@ public class PaisJDBC implements PaisDAO {
 
 	@Override
 	public Pais get(Long codigo) {
-		String sql = "select * from Pais where idPais = ?";
+		String sql = "select * from pais where id_pais = ?";
 		Pais Pais = null;
 		try {
 			PreparedStatement ps = conexao.get().prepareStatement(sql);
@@ -116,7 +116,7 @@ public class PaisJDBC implements PaisDAO {
 	}
 
 	private Pais getPais(ResultSet rs) throws SQLException {
-		Pais pais = new Pais(rs.getLong("idPais"), rs.getString("Nome"));
+		Pais pais = new Pais(rs.getLong("id_pais"), rs.getString("pais"));
 		return pais;
 	}
 

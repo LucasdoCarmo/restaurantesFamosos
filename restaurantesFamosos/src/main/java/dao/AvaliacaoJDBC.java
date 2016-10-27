@@ -20,7 +20,7 @@ public class AvaliacaoJDBC implements AvaliacaoDAO {
 	}
 
 	public void inserir(Avaliacao objeto) {
-		String insert = "insert into Avaliacao (Nota_Atendimento,Nota_Comida,Nota_aspecto,Nota_pagamento,Avaliacao_Descritiva,Nota_Geral) values(?,?,?,?,?,?)";
+		String insert = "insert into avaliacao (Nota_Atendimento,Nota_Comida,Nota_aspecto,Nota_pagamento,Avaliacao_Descritiva,Nota_Geral) values(?,?,?,?,?,?)";
 		try {
 			PreparedStatement ps = conexao.get().prepareStatement(insert, Statement.RETURN_GENERATED_KEYS);
 			ps.setInt(1, objeto.getNotaAtendimento());
@@ -41,7 +41,7 @@ public class AvaliacaoJDBC implements AvaliacaoDAO {
 	}
 
 	public void alterar(Avaliacao objeto) {
-		String update = "update Avaliacao set Nota_Atendimento=?,Nota_Comida=?,Nota_aspecto=?,Nota_pagamento=?,Avaliacao_Descritiva=?,Nota_Geral=? where idAvaliacao=?";
+		String update = "update avaliacao set Nota_Atendimento=?,Nota_Comida=?,Nota_aspecto=?,Nota_pagamento=?,Avaliacao_Descritiva=?,Nota_Geral=? where idAvaliacao=?";
 		try {
 			PreparedStatement ps = conexao.get().prepareStatement(update);
 			ps.setInt(1, objeto.getNotaAtendimento());
@@ -60,7 +60,7 @@ public class AvaliacaoJDBC implements AvaliacaoDAO {
 	}
 
 	public void excluir(Long codigo) {
-		String del = "delete from Avaliacao where idAvaliacao = ?";
+		String del = "delete from avaliacao where idAvaliacao = ?";
 		try {
 			PreparedStatement ps = conexao.get().prepareStatement(del);
 			ps.setLong(1, codigo);
@@ -74,7 +74,7 @@ public class AvaliacaoJDBC implements AvaliacaoDAO {
 	}
 
 	public Collection<Avaliacao> todos() {
-		String sql = "select *from Avaliacao";
+		String sql = "select *from avaliacao";
 		List<Avaliacao> avaliacoes = new ArrayList<>();
 		try {
 			PreparedStatement ps = conexao.get().prepareStatement(sql);
@@ -89,7 +89,7 @@ public class AvaliacaoJDBC implements AvaliacaoDAO {
 	}
 
 	public Avaliacao get(Long codigo) {
-		String sql = "select *from Avaliacao where idAvaliacao =?";
+		String sql = "select *from avaliacao where idAvaliacao =?";
 		Avaliacao avaliacao = null;
 		try {
 			PreparedStatement ps = conexao.get().prepareStatement(sql);

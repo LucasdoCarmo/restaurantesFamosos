@@ -21,7 +21,7 @@ public class CidadeJDBC implements CidadeDAO {
 	}
 
 	public void inserir(Cidade objeto) {
-		String insert = "insert into Cidade (nome,Estado_idEstado) values(?,?)";
+		String insert = "insert into cidade (Cidade,idEstado) values(?,?)";
 		try {
 			PreparedStatement ps = conexao.get().prepareStatement(insert, Statement.RETURN_GENERATED_KEYS);
 			ps.setString(1, objeto.getNome());
@@ -38,7 +38,7 @@ public class CidadeJDBC implements CidadeDAO {
 	}
 
 	public void alterar(Cidade objeto) {
-		String update = "update Cidade set Nome=?, Estado_idEstado = ?" + " where idCidade = ?";
+		String update = "update cidade set Cidade=?, idEstado = ?" + " where idCidade = ?";
 		try {
 			PreparedStatement ps = conexao.get().prepareStatement(update);
 			ps.setString(1, objeto.getNome());
@@ -53,7 +53,7 @@ public class CidadeJDBC implements CidadeDAO {
 	}
 
 	public void excluir(Long codigo) {
-		String delete = "delete from Cidade where idCidade = ?";
+		String delete = "delete from cidade where idCidade = ?";
 		try {
 			PreparedStatement ps = conexao.get().prepareStatement(delete);
 			ps.setLong(1, codigo);
@@ -66,7 +66,7 @@ public class CidadeJDBC implements CidadeDAO {
 	}
 
 	public Collection<Cidade> todos() {
-		String sql = "select *from Cidade";
+		String sql = "select *from cidade";
 		List<Cidade> cidades = new ArrayList<>();
 		try {
 			PreparedStatement ps = conexao.get().prepareStatement(sql);
@@ -81,7 +81,7 @@ public class CidadeJDBC implements CidadeDAO {
 	}
 
 	public Cidade get(Long codigo) {
-		String sql = "select *from Cidade where idCidade =?";
+		String sql = "select *from cidade where idCidade =?";
 		Cidade cidade = null;
 		try {
 			PreparedStatement ps = conexao.get().prepareStatement(sql);
@@ -107,8 +107,8 @@ public class CidadeJDBC implements CidadeDAO {
 	}
 
 	private Cidade getCidade(ResultSet rs) throws SQLException {
-		Cidade cidade = new Cidade(rs.getLong("idCidade"), rs.getString("nome"),
-				new Estado(rs.getLong("Estado_idEstado")));
+		Cidade cidade = new Cidade(rs.getLong("idCidade"), rs.getString("Cidade"),
+				new Estado(rs.getLong("idEstado")));
 		return cidade;
 	}
 

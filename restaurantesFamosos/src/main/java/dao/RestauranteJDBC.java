@@ -21,7 +21,7 @@ public class RestauranteJDBC implements RestauranteDAO {
 	}
 
 	public void inserir(Restaurante objeto) {
-		String insert = "insert into Restaurante (Nome,Telefone,Tipo_de_estabelicimento,Rua,Numero,Tema,CEP_idCEP) values(?,?,?,?,?,?,?)";
+		String insert = "insert into restaurante (Nome,Telefone,Tipo_de_estabelicimento,Rua,Numero,Tema,CEP_idCEP) values(?,?,?,?,?,?,?)";
 		try {
 			PreparedStatement ps = conexao.get().prepareStatement(insert, Statement.RETURN_GENERATED_KEYS);
 			ps.setString(1, objeto.getNome());
@@ -43,7 +43,7 @@ public class RestauranteJDBC implements RestauranteDAO {
 	}
 
 	public void alterar(Restaurante objeto) {
-		String update = "update Restaurante set Nome=?,Telefone=?,Tipo_de_estabelicimento=?,Rua =?,Numero=?,Tema=?,CEP_idCEP=? where idRestaurante = ?";
+		String update = "update restaurante set Nome=?,Telefone=?,Tipo_de_estabelicimento=?,Rua =?,Numero=?,Tema=?,CEP_idCEP=? where idRestaurante = ?";
 		try {
 			PreparedStatement ps = conexao.get().prepareStatement(update);
 			ps.setString(1, objeto.getNome());
@@ -63,7 +63,7 @@ public class RestauranteJDBC implements RestauranteDAO {
 	}
 
 	public void excluir(Long codigo) {
-		String del = "delete from Restaurante where idRestaurante = ?";
+		String del = "delete from restaurante where idRestaurante = ?";
 		try {
 			PreparedStatement ps = conexao.get().prepareStatement(del);
 			ps.setLong(1, codigo);
@@ -77,7 +77,7 @@ public class RestauranteJDBC implements RestauranteDAO {
 	}
 
 	public Collection<Restaurante> todos() {
-		String sql = "select *from Restaurante";
+		String sql = "select *from restaurante";
 		List<Restaurante> restaurantes = new ArrayList<>();
 		try {
 			PreparedStatement ps = conexao.get().prepareStatement(sql);
@@ -92,7 +92,7 @@ public class RestauranteJDBC implements RestauranteDAO {
 	}
 
 	public Restaurante get(Long codigo) {
-		String sql = "select *from Restaurante where idRestaurante =?";
+		String sql = "select *from restaurante where idRestaurante =?";
 		Restaurante restaurante = null;
 		try {
 			PreparedStatement ps = conexao.get().prepareStatement(sql);
@@ -118,9 +118,7 @@ public class RestauranteJDBC implements RestauranteDAO {
 	}
 
 	private Restaurante getRestaurante(ResultSet rs) throws SQLException {
-		Restaurante restaurante = new Restaurante(rs.getLong("idRestaurante"), rs.getString("Nome"),
-				rs.getString("Telefone"), rs.getString("Tipo_de_estabelicimento"), rs.getString("Rua"),
-				rs.getString("Numero"), rs.getString("Tema"), new CEP(rs.getLong("CEP_idCEP")));
+		Restaurante restaurante = new Restaurante(rs.getLong("idRestaurante"), rs.getString("Nome"),rs.getString("Telefone"), rs.getString("Tipo_de_estabelicimento"), rs.getString("Rua"), rs.getString("Numero"), rs.getString("Tema"), new CEP(rs.getLong("CEP_idCEP")), null, null, null, null, null);
 		return restaurante;
 	}
 

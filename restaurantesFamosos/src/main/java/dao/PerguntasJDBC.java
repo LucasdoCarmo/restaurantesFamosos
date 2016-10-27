@@ -25,7 +25,7 @@ public class PerguntasJDBC implements PerguntasDAO {
 	}
 
 	public void inserir(Perguntas objeto) {
-		String insert = "insert into Perguntas (aparencia_externa,aparencia_interna,bebidas_alcoolicas,bebidas_sem_alcool ,"
+		String insert = "insert into perguntas (aparencia_externa,aparencia_interna,bebidas_alcoolicas,bebidas_sem_alcool ,"
 				+ "houve_espera_por_mesa,limpeza,pagamento,"
 				+ "qualidade_do_atendimento,tempo_de_entrega,qualidade_pelo_valor_pago ,variedade_cardapio) values(?,?,?,?,?,?,?,?,?,?,?)";
 		try {
@@ -55,7 +55,7 @@ public class PerguntasJDBC implements PerguntasDAO {
 	}
 
 	public void alterar(Perguntas objeto) {
-		String update = "update Perguntas set aparencia_externa=?,aparencia_interna=?,bebidas_alcoolicas=?,bebidas_sem_alcool=?"
+		String update = "update perguntas set aparencia_externa=?,aparencia_interna=?,bebidas_alcoolicas=?,bebidas_sem_alcool=?"
 				+ "houve_espera_por_mesa=?,limpeza=?,pagamento=?,qualidade_do_atendimento=?,tempo_de_entrega=?,qualidade_pelo_valor_pago=?"
 				+ "variedade_cardapio=?" + "where idPerguntas = ?";
 		try {
@@ -84,7 +84,7 @@ public class PerguntasJDBC implements PerguntasDAO {
 
 	@Override
 	public void excluir(Long codigo) {
-		String delete = "delete from Perguntas " + "where idPerguntas = ?";
+		String delete = "delete from perguntas " + "where idPerguntas = ?";
 		try {
 			PreparedStatement ps = conexao.get().prepareStatement(delete);
 			ps.setLong(1, codigo);
@@ -98,7 +98,7 @@ public class PerguntasJDBC implements PerguntasDAO {
 
 	@Override
 	public Collection<Perguntas> todos() {
-		String sql = "select * from Perguntas";
+		String sql = "select * from perguntas";
 		List<Perguntas> Perguntass = new ArrayList<>();
 		try {
 			PreparedStatement ps = conexao.get().prepareStatement(sql);
@@ -114,7 +114,7 @@ public class PerguntasJDBC implements PerguntasDAO {
 
 	@Override
 	public Perguntas get(Long codigo) {
-		String sql = "select * from Perguntas where idPerguntas = ?";
+		String sql = "select * from perguntas where idPerguntas = ?";
 		Perguntas perguntas = null;
 		try {
 			PreparedStatement ps = conexao.get().prepareStatement(sql);

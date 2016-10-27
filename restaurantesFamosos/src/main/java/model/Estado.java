@@ -12,6 +12,7 @@ public class Estado implements Entidade, RenderizaCombo {
 
 	private Long codigo;
 	private String nome;
+	private String uf;
 	private Pais pais;
 
 	public Estado(Long codigo) {

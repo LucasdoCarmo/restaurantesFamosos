@@ -115,7 +115,7 @@ public class CadastraRestauranteController {
 		}
 	}  
     
-    //Métodos não usados no fx
+    //Metodos nao usados no fx
     
     private void montaComboPais(){
 		cbPais.getItems().addAll(paisDAO.todos());

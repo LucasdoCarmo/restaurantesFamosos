@@ -21,7 +21,7 @@ public class EstadoJDBC implements EstadoDAO {
 	}
 
 	public void inserir(Estado objeto) {
-		String insert = "insert into Estado (nome,Pais_idPais) values(?,?)";
+		String insert = "insert into estado (Estado,UF,idPais) values(?,?)";
 		try {
 			PreparedStatement ps = conexao.get().prepareStatement(insert, Statement.RETURN_GENERATED_KEYS);
 			ps.setString(1, objeto.getNome());
@@ -39,7 +39,7 @@ public class EstadoJDBC implements EstadoDAO {
 	}
 
 	public void alterar(Estado objeto) {
-		String update = "update Estado set Nome=?,Pais_idPais = ? where idEstado = ?";
+		String update = "update estado set Estado=?, UF=?,idPais = ? where idEstado = ?";
 		try {
 			PreparedStatement ps = conexao.get().prepareStatement(update);
 			ps.setString(1, objeto.getNome());
@@ -55,7 +55,7 @@ public class EstadoJDBC implements EstadoDAO {
 	}
 
 	public void excluir(Long codigo) {
-		String delete = "delete from Estado " + "where idEstado = ?";
+		String delete = "delete from estado " + "where idEstado = ?";
 		try {
 			PreparedStatement ps = conexao.get().prepareStatement(delete);
 			ps.setLong(1, codigo);
@@ -69,7 +69,7 @@ public class EstadoJDBC implements EstadoDAO {
 	}
 
 	public Collection<Estado> todos() {
-		String sql = "select *from Estado";
+		String sql = "select *from estado";
 		List<Estado> Estados = new ArrayList<>();
 		try {
 			PreparedStatement ps = conexao.get().prepareStatement(sql);
@@ -84,7 +84,7 @@ public class EstadoJDBC implements EstadoDAO {
 	}
 
 	public Estado get(Long codigo) {
-		String sql = "select * from Estado where idEstado = ?";
+		String sql = "select * from estado where idEstado = ?";
 		Estado estado = null;
 		try {
 			PreparedStatement ps = conexao.get().prepareStatement(sql);
@@ -111,7 +111,7 @@ public class EstadoJDBC implements EstadoDAO {
 	}
 
 	private Estado getEstado(ResultSet rs) throws SQLException {
-		Estado estado = new Estado(rs.getLong("idEstado"), rs.getString("nome"), new Pais(rs.getLong("Pais_idPais")));
+		Estado estado = new Estado(rs.getLong("idEstado"), rs.getString("Estado") ,rs.getString("UF"), new Pais(rs.getLong("idPais")));
 		return estado;
 	}
 

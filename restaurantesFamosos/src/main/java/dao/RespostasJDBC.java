@@ -21,7 +21,7 @@ public class RespostasJDBC implements RespostasDAO {
 	}
 
 	public void inserir(Respostas objeto) {
-		String insert = "insert into Respostas (Perguntas_idPerguntas) values(?)";
+		String insert = "insert into respostas (Perguntas_idPerguntas) values(?)";
 		try {
 			PreparedStatement ps = conexao.get().prepareStatement(insert, Statement.RETURN_GENERATED_KEYS);
 			ps.setLong(1, objeto.getPerguntas().getCodigo());
@@ -38,7 +38,7 @@ public class RespostasJDBC implements RespostasDAO {
 	}
 
 	public void alterar(Respostas objeto) {
-		String update = "update Visita set Perguntas_idPerguntas=?" + "where idRespostas = ?";
+		String update = "update respostas set Perguntas_idPerguntas=?" + "where idRespostas = ?";
 		try {
 			PreparedStatement ps = conexao.get().prepareStatement(update);
 			ps.setLong(1, objeto.getPerguntas().getCodigo());
@@ -52,7 +52,7 @@ public class RespostasJDBC implements RespostasDAO {
 	}
 
 	public void excluir(Long codigo) {
-		String del = "delete from Respostas" + "where idRespostas = ?";
+		String del = "delete from respostas" + "where idRespostas = ?";
 		try {
 			PreparedStatement ps = conexao.get().prepareStatement(del);
 			ps.setLong(1, codigo);
@@ -66,7 +66,7 @@ public class RespostasJDBC implements RespostasDAO {
 	}
 
 	public Collection<Respostas> todos() {
-		String sql = "select *from Respostas";
+		String sql = "select *from respostas";
 		List<Respostas> respostass = new ArrayList<>();
 		try {
 			PreparedStatement ps = conexao.get().prepareStatement(sql);
@@ -81,7 +81,7 @@ public class RespostasJDBC implements RespostasDAO {
 	}
 
 	public Respostas get(Long codigo) {
-		String sql = "select *from Respostas where idRespostas =?";
+		String sql = "select *from respostas where idRespostas =?";
 		Respostas respostas = null;
 		try {
 			PreparedStatement ps = conexao.get().prepareStatement(sql);
