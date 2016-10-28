@@ -1,6 +1,12 @@
 package controller;
 
 import java.io.IOException;
+import java.util.Collection;
+import java.util.List;
+
+import br.edu.unoesc.jdbcOO.model.UF;
+import dao.RestauranteDAO;
+import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -10,6 +16,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
+import model.Restaurante;
 
 public class BuscarController {
 
@@ -47,17 +54,27 @@ public class BuscarController {
     private Button btnExcluir;
 
     @FXML
-    private TableView<?> tbResultado;
+    private TableView<Restaurante> tbResultado;
 
     @FXML
     private Button btnNome;
 
+    RestauranteDAO restauranteDAO;
+    
     @FXML
     private TextField tfNome;
 
     @FXML
     void Buscar(ActionEvent event) {
-
+    	String pesquisa = tfNome.getText() + event.getTarget();
+		if (pesquisa.length() > 2) {
+			List<Restaurante> restaurantes = restauranteDAO.getPorNome(pesquisa);
+			tbResultado.setItems(FXCollections.observableArrayList(restaurantes));
+		}
+		if (pesquisa.length() < 2) {
+			atualizaTabela();
+		}
+    	
     }
 
     @FXML
@@ -82,7 +99,14 @@ public class BuscarController {
 
     @FXML
     void BuscarNome(ActionEvent event) {
-
+    	String pesquisa = tfNome.getText() + event.getTarget();
+		if (pesquisa.length() > 2) {
+			List<Restaurante> restaurantes = restauranteDAO.getPorNome(pesquisa);
+			tbResultado.setItems(FXCollections.observableArrayList(restaurantes));
+		}
+		if (pesquisa.length() < 2) {
+			atualizaTabela();
+		}
     }
 
     @FXML
@@ -109,5 +133,9 @@ public class BuscarController {
 		} catch (IOException e1) {
 			e1.printStackTrace();
 		}
-	}    
+	}  
+    private void atualizaTabela() {
+		Collection<Restaurante> ufs = restauranteDAO.todos();
+		tbResultado.setItems(FXCollections.observableArrayList(ufs));
+	}
 }
