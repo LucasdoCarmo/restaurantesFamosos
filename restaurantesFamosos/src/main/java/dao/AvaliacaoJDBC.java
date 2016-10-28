@@ -120,4 +120,10 @@ public class AvaliacaoJDBC implements AvaliacaoDAO {
 				rs.getString("Avaliacao_Descritiva"), rs.getInt("Nota_Geral"));
 		return avaliacao;
 	}
+
+	@Override
+	public List<Avaliacao> todosAvaliacao() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }
