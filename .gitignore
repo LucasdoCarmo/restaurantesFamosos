@@ -21,4 +21,4 @@ target
 /UML_Restaurantes_Famosos.mwb
 /UML_Restaurantes_Famosos.mwb.bak
 /restaurantesFamosos/
-/ConexaoMysqlProducao.class
+/restaurantesFamosos/src/main/java/conexao/ConexaoMysqlProducao.class
