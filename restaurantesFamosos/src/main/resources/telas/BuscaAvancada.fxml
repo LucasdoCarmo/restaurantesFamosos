@@ -50,9 +50,9 @@
                   <ComboBox fx:id="cbPais" layoutX="909.0" layoutY="198.0" prefHeight="36.0" prefWidth="156.0" />
                   <ComboBox fx:id="cbEstado" layoutX="909.0" layoutY="139.0" prefHeight="36.0" prefWidth="156.0" />
                   <ComboBox fx:id="cbCidade" layoutX="909.0" layoutY="88.0" prefHeight="36.0" prefWidth="156.0" />
-                  <TextField fx:id="tfEndereco" layoutX="161.0" layoutY="101.0" prefHeight="36.0" prefWidth="239.0" />
+                  <TextField fx:id="tfNome" layoutX="161.0" layoutY="101.0" prefHeight="36.0" prefWidth="239.0" />
                   <ComboBox fx:id="cbTipoEstabelecimento" layoutX="454.0" layoutY="101.0" prefHeight="36.0" prefWidth="294.0" />
-                  <Label layoutX="161.0" layoutY="75.0" text="POR PREÇO">
+                  <Label layoutX="161.0" layoutY="75.0" text="POR NOME">
                      <font>
                         <Font size="17.0" />
                      </font>
@@ -62,10 +62,9 @@
                   <Button fx:id="btnPrecoMenor" layoutX="58.0" layoutY="254.0" mnemonicParsing="false" onAction="#MenorPreco" prefHeight="36.0" prefWidth="96.0" text="menor" />
                   <TableView fx:id="tbResultado" layoutX="55.0" layoutY="322.0" prefHeight="202.0" prefWidth="1161.0" />
                   <Button fx:id="btnBuscar" layoutX="1056.0" layoutY="272.0" mnemonicParsing="false" onAction="#Buscar" prefHeight="36.0" prefWidth="116.0" text="BUSCAR" />
-                  <Button fx:id="btnVoltar" layoutX="598.0" layoutY="540.0" mnemonicParsing="false" onAction="#Voltar" prefHeight="36.0" prefWidth="131.0" text="&lt; Voltar" />
+                  <Button fx:id="btnVoltar" layoutX="738.0" layoutY="540.0" mnemonicParsing="false" onAction="#Voltar" prefHeight="36.0" prefWidth="131.0" text="&lt; Voltar" />
                   <Button fx:id="btnAvaliar" layoutX="1050.0" layoutY="540.0" mnemonicParsing="false" onAction="#Avaliar" prefHeight="36.0" prefWidth="131.0" styleClass="salvar" text="Avaliar" />
-                  <Button fx:id="btnEditar" layoutX="748.0" layoutY="540.0" mnemonicParsing="false" onAction="#Editar" prefHeight="36.0" prefWidth="131.0" styleClass="novo" text="Editar" />
-                  <Button fx:id="btnExcluir" layoutX="898.0" layoutY="540.0" mnemonicParsing="false" onAction="#Excluir" prefHeight="36.0" prefWidth="131.0" styleClass="excluir" text="Excluir" />
+                  <Button fx:id="btnEditar" layoutX="888.0" layoutY="540.0" mnemonicParsing="false" onAction="#Editar" prefHeight="36.0" prefWidth="131.0" styleClass="novo" text="Editar" />
                </children>
             </Pane>
          </center>
