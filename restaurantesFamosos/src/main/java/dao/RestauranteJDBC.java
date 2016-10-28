@@ -7,9 +7,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
-
 import conexao.Conexao;
-import model.CEP;
 import model.Restaurante;
 
 public class RestauranteJDBC implements RestauranteDAO {
@@ -118,7 +116,7 @@ public class RestauranteJDBC implements RestauranteDAO {
 	}
 
 	private Restaurante getRestaurante(ResultSet rs) throws SQLException {
-		Restaurante restaurante = new Restaurante(rs.getLong("idRestaurante"), rs.getString("Nome"),rs.getString("Telefone"), rs.getString("Tipo_de_estabelicimento"), rs.getString("Rua"), rs.getString("Numero"), rs.getString("Tema"), new CEP(rs.getLong("CEP_idCEP")), null, null, null, null, null);
+		Restaurante restaurante = new Restaurante(rs.getLong("idRestaurante"), rs.getString("Nome"),rs.getString("Telefone"), rs.getString("Tipo_de_estabelicimento"), rs.getString("Rua"), rs.getString("Numero"), rs.getString("Tema"), null, null, null, null);
 		return restaurante;
 	}
 

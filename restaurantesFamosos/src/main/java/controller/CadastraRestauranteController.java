@@ -16,7 +16,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
-import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import model.Cidade;
@@ -137,17 +136,16 @@ public class CadastraRestauranteController {
 	private Restaurante criaRestaurante() {
 		Restaurante restaurante = new Restaurante();
 		restaurante.setNome(tfNome.getText());
-		restaurante.setCep(Integer.valueOf(tfCep.getText()));
 		restaurante.setRua(tfRua.getText());
 		restaurante.setNumero(tfNumero.getText());
 		restaurante.setPais(cbPais.getValue());
 		restaurante.setEstado(cbEstado.getValue());
 		restaurante.setCidade(cbCidade.getValue());
-		restaurante.setTema(cbTema.getValue());
-		restaurante.setTipo(cbTipoEstabelecimento.getValue());
-		restaurante.setVisita(dpVisita.getText());
+		restaurante.setTema(cbTema.getValue().toString());
+		restaurante.setTipo(cbTipoEstabelecimento.getValue().toString());
+		restaurante.setData(dpVisita.getValue().toString());
 		restaurante.setTelefone(tfTelefone.getText());
-		restaurante.setVisita2(tfValor.getText());
+		restaurante.setValorGasto(Double.valueOf(tfValor.getText()));
 		return restaurante;
 	}
 
