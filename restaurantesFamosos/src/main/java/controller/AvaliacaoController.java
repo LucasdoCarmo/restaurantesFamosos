@@ -1,10 +1,18 @@
 package controller;
 
+
+import java.util.Collection;
+
+
+import dao.AvaliacaoDAO;
+import factory.DAOFactory;
+import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.ToggleGroup;
+import model.Avaliacao;
 
 public class AvaliacaoController {
 
@@ -71,5 +79,26 @@ public class AvaliacaoController {
     void Salvar(ActionEvent event) {
 
     }
+  
+    
+    public AvaliacaoController() {
+		AvaliacaoDAO = DAOFactory.get().avaliacaoDAO();
+		AvaliacaoDAO = DAOFactory.get().avaliacaoDAO();
+    
+    }
+	void onSalvar(ActionEvent event) {
+		Avaliacao avaliacao = criaAvaliacao();
+		AvaliacaoDAO.salvar(avaliacao);
+		taDescricao.setText(avaliacao.getCodigo().toString());
+	}
 
+	private Avaliacao criaAvaliacao() {
+		String string  = taDescricao.getText();
+		Avaliacao avaliacao = new Avaliacao();
+		avaliacao.setAvaliacaoDescritiva(taDescricao.getText());
+		return avaliacao;
+     
+	}
+
+    
 }
