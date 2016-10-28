@@ -98,7 +98,7 @@
          </toggleGroup>
       </RadioButton>
       <Label layoutX="55.0" layoutY="241.0" text="Qualidade de atendimento" />
-      <RadioButton fx:id="rbBomeSimples" layoutX="55.0" layoutY="285.0" mnemonicParsing="false" text="Bom e simples" toggleGroup="$QualidadeAtendimento">
+      <RadioButton fx:id="rbBomESimples" layoutX="55.0" layoutY="285.0" mnemonicParsing="false" text="Bom e simples" toggleGroup="$QualidadeAtendimento">
          <font>
             <Font size="12.0" />
          </font>
@@ -305,7 +305,7 @@
          </font>
       </RadioButton>
       <Separator layoutX="481.0" layoutY="223.0" prefHeight="3.0" prefWidth="156.0" />
-      <RadioButton fx:id="rbSucosRefrigerantesETC" layoutX="483.0" layoutY="398.0" mnemonicParsing="false" text="Sucos, refrigerantes, etc." toggleGroup="$BebidasSemAlcool">
+      <RadioButton fx:id="rbSucosRefrigerantesETC" layoutX="481.0" layoutY="398.0" mnemonicParsing="false" text="Sucos, refrigerantes, etc." toggleGroup="$BebidasSemAlcool">
          <font>
             <Font size="12.0" />
          </font>
@@ -401,7 +401,7 @@
          </font>
       </RadioButton>
       <Separator layoutX="677.0" layoutY="314.0" prefHeight="3.0" prefWidth="156.0" />
-      <Label layoutX="907.0" layoutY="223.0" text="Descrição geral">
+      <Label layoutX="907.0" layoutY="223.0" text="Descrição_geral">
          <font>
             <Font size="16.0" />
          </font></Label>
