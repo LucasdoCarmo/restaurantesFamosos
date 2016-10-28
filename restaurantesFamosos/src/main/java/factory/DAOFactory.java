@@ -3,8 +3,6 @@ package factory;
 import conexao.ConexaoMysqlProducao;
 import dao.AvaliacaoDAO;
 import dao.AvaliacaoJDBC;
-import dao.CepDAO;
-import dao.CepJDBC;
 import dao.CidadeDAO;
 import dao.CidadeJDBC;
 import dao.EstadoDAO;
@@ -47,10 +45,6 @@ public class DAOFactory {
 
 	public CidadeDAO cidadeDAO() {
 		return new CidadeJDBC(new ConexaoMysqlProducao());
-	}
-
-	public CepDAO cepDAO() {
-		return new CepJDBC(new ConexaoMysqlProducao());
 	}
 
 	public RestauranteDAO restauranteDAO() {

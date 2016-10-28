@@ -3,12 +3,14 @@ package model;
 import componente.RenderizaCombo;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Restaurante implements Entidade ,RenderizaCombo {
+@EqualsAndHashCode(callSuper =false)
+public class Restaurante extends Visita implements Entidade ,RenderizaCombo {
 
 	private Long codigo;
 	private String nome;
@@ -21,8 +23,6 @@ public class Restaurante implements Entidade ,RenderizaCombo {
 	private Pais pais;
 	private Estado estado;
 	private Cidade cidade;
-	private Visita visita;
-	private Visita visita2;
 	
 	public Restaurante(Long codigo) {
 		this.codigo = codigo;
