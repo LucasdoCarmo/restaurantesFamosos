@@ -15,7 +15,7 @@ public class ConexaoMysqlProducao implements Conexao {
 	private static void createConnection() {
 		String url = "jdbc:mysql://localhost:3306/restaurantes2";
 		String user = "root";
-		String password = "123456";
+		String password = "Eagle15";
 		try {
 			connection = DriverManager.getConnection(url, user, password);
 			System.out.println("conectado");
