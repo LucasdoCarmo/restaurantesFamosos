@@ -268,7 +268,7 @@
             <Font size="12.0" />
          </font>
       </RadioButton>
-      <RadioButton layoutX="481.0" layoutY="307.0" mnemonicParsing="false" text="Poucas">
+      <RadioButton fx:id="rbPoucas" layoutX="481.0" layoutY="307.0" mnemonicParsing="false" text="Poucas">
          <toggleGroup>
             <ToggleGroup fx:id="BebidasAlcoolicas" />
          </toggleGroup>
@@ -285,7 +285,7 @@
             <ToggleGroup fx:id="NotaCardapio" />
          </toggleGroup>
       </RadioButton>
-      <RadioButton layoutX="486.0" layoutY="203.0" mnemonicParsing="false" text="1, 2, específica">
+      <RadioButton fx:id="rbEspecifica" layoutX="486.0" layoutY="203.0" mnemonicParsing="false" text="1, 2, específica">
          <toggleGroup>
             <ToggleGroup fx:id="Variedade" />
          </toggleGroup>
@@ -305,14 +305,14 @@
          </font>
       </RadioButton>
       <Separator layoutX="481.0" layoutY="223.0" prefHeight="3.0" prefWidth="156.0" />
-      <RadioButton fx:id="rbSucosRefrigerantesETC" layoutX="480.0" layoutY="392.0" mnemonicParsing="false" text="Sucos, refrigerantes, etc." toggleGroup="$BebidasSemAlcool">
+      <RadioButton fx:id="rbSucosRefrigerantesETC" layoutX="483.0" layoutY="398.0" mnemonicParsing="false" text="Sucos, refrigerantes, etc." toggleGroup="$BebidasSemAlcool">
          <font>
             <Font size="12.0" />
          </font>
       </RadioButton>
       <Separator layoutX="480.0" layoutY="353.0" prefHeight="3.0" prefWidth="156.0" />
       <Label layoutX="481.0" layoutY="509.0" text="Sabor da comida" />
-      <RadioButton layoutX="481.0" layoutY="262.0" mnemonicParsing="false" text="Variedade de bebidas" toggleGroup="$BebidasAlcoolicas">
+      <RadioButton fx:id="rbVariedadesDeBebidas" layoutX="481.0" layoutY="262.0" mnemonicParsing="false" text="Variedade de bebidas" toggleGroup="$BebidasAlcoolicas">
          <font>
             <Font size="12.0" />
          </font>
@@ -339,7 +339,7 @@
          </font>
       </RadioButton>
       <Label layoutX="480.0" layoutY="371.0" text="Bebidas sem álcool" />
-      <RadioButton layoutX="481.0" layoutY="285.0" mnemonicParsing="false" text="Algumas aprimoradas" toggleGroup="$BebidasAlcoolicas">
+      <RadioButton fx:id="rbAlgumasAprimoradas" layoutX="481.0" layoutY="285.0" mnemonicParsing="false" text="Algumas aprimoradas" toggleGroup="$BebidasAlcoolicas">
          <font>
             <Font size="12.0" />
          </font>
