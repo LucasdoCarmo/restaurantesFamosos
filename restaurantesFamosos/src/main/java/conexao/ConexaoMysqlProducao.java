@@ -13,15 +13,15 @@ public class ConexaoMysqlProducao implements Conexao {
 	}
 
 	private static void createConnection() {
-		String url = "jdbc:mysql://localhost:3306/RestaurantesFamosos";
+		String url = "jdbc:mysql://localhost:3306/restaurantes2";
 		String user = "root";
-		String password = "pc";
+		String password = "123456";
 		try {
 			connection = DriverManager.getConnection(url, user, password);
 			System.out.println("conectado");
 		} catch (SQLException ex) {
 			ex.printStackTrace();
-			System.out.println("Erro de conex√£o com o banco de dados");
+			System.out.println("Erro de conex„o com o banco de dados");
 		}
 	}
 

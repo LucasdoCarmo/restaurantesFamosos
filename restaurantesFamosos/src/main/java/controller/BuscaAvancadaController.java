@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.util.Collection;
 
 import dao.RestauranteDAO;
-import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
