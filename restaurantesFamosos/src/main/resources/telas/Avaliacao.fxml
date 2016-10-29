@@ -8,447 +8,458 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.AvaliacaoController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.AvaliacaoController">
    <children>
-      <Label layoutX="55.0" layoutY="86.0" text="Atendimento">
-         <font>
-            <Font name="System Bold" size="15.0" />
-         </font>
-      </Label>
-      <TextField fx:id="tfNomeRestaurante" layoutX="141.0" layoutY="45.0" />
-      <Label layoutX="141.0" layoutY="23.0" text="Nome restaurante:" />
-      <Label layoutX="264.0" layoutY="86.0" text="Aspectos">
-         <font>
-            <Font name="System Bold" size="15.0" />
-         </font>
-      </Label>
-      <Label layoutX="480.0" layoutY="86.0" text="Cardapio">
-         <font>
-            <Font name="System Bold" size="15.0" />
-         </font>
-      </Label>
-      <Label layoutX="677.0" layoutY="86.0" text="Pagamento">
-         <font>
-            <Font name="System Bold" size="15.0" />
-         </font>
-      </Label>
-      <RadioButton fx:id="rbDentroDoEsperado" layoutX="55.0" layoutY="132.0" mnemonicParsing="false" text="Dentro do esperado">
-         <toggleGroup>
-            <ToggleGroup fx:id="TempoEntrega" />
-         </toggleGroup>
-         <font>
-            <Font size="12.0" />
-         </font>
-      </RadioButton>
-      <RadioButton fx:id="rbSatisfatorio" layoutX="55.0" layoutY="155.0" mnemonicParsing="false" text="Satisfatório" toggleGroup="$TempoEntrega">
-         <font>
-            <Font size="12.0" />
-         </font>
-      </RadioButton>
-      <RadioButton fx:id="rbOtimo" layoutX="55.0" layoutY="177.0" mnemonicParsing="false" text="Ótimo" toggleGroup="$TempoEntrega">
-         <font>
-            <Font size="12.0" />
-         </font>
-      </RadioButton>
-      <RadioButton fx:id="rbMuitoDemorado" layoutX="55.0" layoutY="199.0" mnemonicParsing="false" text="Muito demorado" toggleGroup="$TempoEntrega">
-         <font>
-            <Font size="12.0" />
-         </font>
-      </RadioButton>
-      <RadioButton fx:id="rbNota2" layoutX="88.0" layoutY="539.0" mnemonicParsing="false" text="2">
-         <toggleGroup>
-            <ToggleGroup fx:id="NotaAtendimento" />
-         </toggleGroup>
-         <font>
-            <Font size="11.0" />
-         </font>
-      </RadioButton>
-      <RadioButton fx:id="rbNota3" layoutX="120.0" layoutY="539.0" mnemonicParsing="false" text="3" toggleGroup="$NotaAtendimento">
-         <font>
-            <Font size="11.0" />
-         </font>
-      </RadioButton>
-      <RadioButton fx:id="rbNota4" layoutX="153.0" layoutY="539.0" mnemonicParsing="false" text="4" toggleGroup="$NotaAtendimento">
-         <font>
-            <Font size="11.0" />
-         </font>
-      </RadioButton>
-      <RadioButton fx:id="rbNota5" layoutX="184.0" layoutY="539.0" mnemonicParsing="false" text="5" toggleGroup="$NotaAtendimento">
-         <font>
-            <Font size="11.0" />
-         </font>
-      </RadioButton>
-      <RadioButton fx:id="rbNota1" layoutX="56.0" layoutY="539.0" mnemonicParsing="false" text="1" toggleGroup="$NotaAtendimento">
-         <font>
-            <Font size="11.0" />
-         </font>
-      </RadioButton>
-      <Label layoutX="55.0" layoutY="111.0" text="Tempo de entrega" />
-      <Separator layoutX="55.0" layoutY="223.0" prefHeight="3.0" prefWidth="156.0" />
-      <Separator layoutX="239.0" layoutY="86.0" orientation="VERTICAL" prefHeight="503.0" prefWidth="0.0" />
-      <RadioButton fx:id="rbRuimIrritante" layoutX="55.0" layoutY="329.0" mnemonicParsing="false" text="Ruim irritante">
-         <font>
-            <Font size="12.0" />
-         </font>
-         <toggleGroup>
-            <ToggleGroup fx:id="QualidadeAtendimento" />
-         </toggleGroup>
-      </RadioButton>
-      <Label layoutX="55.0" layoutY="241.0" text="Qualidade de atendimento" />
-      <RadioButton fx:id="rbBomESimples" layoutX="55.0" layoutY="285.0" mnemonicParsing="false" text="Bom e simples" toggleGroup="$QualidadeAtendimento">
-         <font>
-            <Font size="12.0" />
-         </font>
-      </RadioButton>
-      <RadioButton fx:id="rbOtimoEducado" layoutX="55.0" layoutY="262.0" mnemonicParsing="false" text="Ótimo, educado" toggleGroup="$QualidadeAtendimento">
-         <font>
-            <Font size="12.0" />
-         </font>
-      </RadioButton>
-      <RadioButton fx:id="rbRegular" layoutX="55.0" layoutY="307.0" mnemonicParsing="false" text="Regular" toggleGroup="$QualidadeAtendimento">
-         <font>
-            <Font size="12.0" />
-         </font>
-      </RadioButton>
-      <RadioButton fx:id="rbComEsperaComReserva" layoutX="54.0" layoutY="459.0" mnemonicParsing="false" text="Com espera, com reserva">
-         <toggleGroup>
-            <ToggleGroup fx:id="Espera" />
-         </toggleGroup>
-         <font>
-            <Font size="12.0" />
-         </font>
-      </RadioButton>
-      <RadioButton fx:id="rbComEsperaComReserva" layoutX="54.0" layoutY="437.0" mnemonicParsing="false" text="Com espera, sem reserva" toggleGroup="$Espera">
-         <font>
-            <Font size="12.0" />
-         </font>
-      </RadioButton>
-      <Separator layoutX="54.0" layoutY="353.0" prefHeight="3.0" prefWidth="156.0" />
-      <Label layoutX="54.0" layoutY="371.0" text="Houve espera por mesa" />
-      <RadioButton fx:id="rbSemEsperaComReserva" layoutX="54.0" layoutY="415.0" mnemonicParsing="false" text="Sem espera, com reserva" toggleGroup="$Espera">
-         <font>
-            <Font size="12.0" />
-         </font>
-      </RadioButton>
-      <RadioButton fx:id="rbSemEsperaSemReserva" layoutX="54.0" layoutY="392.0" mnemonicParsing="false" text="Sem espera, sem reserva" toggleGroup="$Espera">
-         <font>
-            <Font size="12.0" />
-         </font>
-      </RadioButton>
-      <Label layoutX="55.0" layoutY="509.0" text="Atendimento geral" />
-      <Separator layoutX="55.0" layoutY="491.0" prefHeight="3.0" prefWidth="156.0" />
-      <RadioButton fx:id="rbLimpo" layoutX="262.0" layoutY="437.0" mnemonicParsing="false" text="Limpo" toggleGroup="$Espera">
-         <font>
-            <Font size="12.0" />
-         </font>
-      </RadioButton>
-      <RadioButton fx:id="rbTematica" layoutX="265.0" layoutY="312.0" mnemonicParsing="false" text="Tematica">
-         <toggleGroup>
-            <ToggleGroup fx:id="AparenciaInterna" />
-         </toggleGroup>
-         <font>
-            <Font size="12.0" />
-         </font>
-      </RadioButton>
-      <Label layoutX="265.0" layoutY="111.0" text="Aparência externa" />
-      <RadioButton fx:id="rbNota1" layoutX="264.0" layoutY="561.0" mnemonicParsing="false" text="1">
-         <font>
-            <Font size="11.0" />
-         </font>
-         <toggleGroup>
-            <ToggleGroup fx:id="NotaAspectos" />
-         </toggleGroup>
-      </RadioButton>
-      <RadioButton fx:id="rbPremium" layoutX="265.0" layoutY="199.0" mnemonicParsing="false" text="Premium">
-         <font>
-            <Font size="12.0" />
-         </font>
-         <toggleGroup>
-            <ToggleGroup fx:id="AparenciaExterna" />
-         </toggleGroup>
-      </RadioButton>
-      <RadioButton fx:id="rbNota3" layoutX="328.0" layoutY="561.0" mnemonicParsing="false" text="3" toggleGroup="$NotaAspectos">
-         <font>
-            <Font size="11.0" />
-         </font>
-      </RadioButton>
-      <Label layoutX="265.0" layoutY="246.0" text="Aparência externa" />
-      <RadioButton fx:id="rbOrganizadoeRustico" layoutX="262.0" layoutY="481.0" mnemonicParsing="false" text="Organizado e rústico">
-         <toggleGroup>
-            <ToggleGroup fx:id="Limpeza" />
-         </toggleGroup>
-         <font>
-            <Font size="12.0" />
-         </font>
-      </RadioButton>
-      <Separator layoutX="264.0" layoutY="237.0" prefHeight="3.0" prefWidth="156.0" />
-      <RadioButton fx:id="rbLimpoBrilhando" layoutX="262.0" layoutY="414.0" mnemonicParsing="false" text="Limpo brilhando" toggleGroup="$Limpeza">
-         <font>
-            <Font size="12.0" />
-         </font>
-      </RadioButton>
-      <Separator layoutX="262.0" layoutY="375.0" prefHeight="3.0" prefWidth="156.0" />
-      <Label layoutX="263.0" layoutY="531.0" text="Aspectos" />
-      <RadioButton fx:id="rbBoa" layoutX="265.0" layoutY="267.0" mnemonicParsing="false" text="Boa" toggleGroup="$AparenciaInterna">
-         <font>
-            <Font size="12.0" />
-         </font>
-      </RadioButton>
-      <RadioButton fx:id="rbBoa" layoutX="265.0" layoutY="132.0" mnemonicParsing="false" text="Boa" toggleGroup="$AparenciaExterna">
-         <font>
-            <Font size="12.0" />
-         </font>
-      </RadioButton>
-      <RadioButton fx:id="rbTematica" layoutX="265.0" layoutY="177.0" mnemonicParsing="false" text="Tematica" toggleGroup="$AparenciaExterna">
-         <font>
-            <Font size="12.0" />
-         </font>
-      </RadioButton>
-      <RadioButton fx:id="rbDiscreta" layoutX="265.0" layoutY="155.0" mnemonicParsing="false" text="Discreta" toggleGroup="$AparenciaExterna">
-         <font>
-            <Font size="12.0" />
-         </font>
-      </RadioButton>
-      <Separator layoutX="449.0" layoutY="86.0" orientation="VERTICAL" prefHeight="503.0" prefWidth="0.0" />
-      <RadioButton fx:id="rbNota4" layoutX="361.0" layoutY="561.0" mnemonicParsing="false" text="4" toggleGroup="$NotaAspectos">
-         <font>
-            <Font size="11.0" />
-         </font>
-      </RadioButton>
-      <Label layoutX="262.0" layoutY="393.0" text="Limpeza" />
-      <RadioButton fx:id="rbDiscreta" layoutX="265.0" layoutY="290.0" mnemonicParsing="false" text="Discreta" toggleGroup="$AparenciaInterna">
-         <font>
-            <Font size="12.0" />
-         </font>
-      </RadioButton>
-      <RadioButton fx:id="rbNota5" layoutX="392.0" layoutY="561.0" mnemonicParsing="false" text="5" toggleGroup="$NotaAspectos">
-         <font>
-            <Font size="11.0" />
-         </font>
-      </RadioButton>
-      <RadioButton fx:id="rbDentroDoEsperado" layoutX="262.0" layoutY="459.0" mnemonicParsing="false" text="Dentro do esperado" toggleGroup="$Limpeza">
-         <font>
-            <Font size="12.0" />
-         </font>
-      </RadioButton>
-      <RadioButton fx:id="rbPremium" layoutX="265.0" layoutY="334.0" mnemonicParsing="false" text="Premium" toggleGroup="$AparenciaInterna">
-         <font>
-            <Font size="12.0" />
-         </font>
-      </RadioButton>
-      <RadioButton fx:id="rbNota2" layoutX="296.0" layoutY="561.0" mnemonicParsing="false" text="2" toggleGroup="$NotaAspectos">
-         <font>
-            <Font size="11.0" />
-         </font>
-      </RadioButton>
-      <Separator layoutX="264.0" layoutY="523.0" prefHeight="3.0" prefWidth="156.0" />
-      <RadioButton fx:id="rbRuim" layoutX="265.0" layoutY="355.0" mnemonicParsing="false" text="Ruim" toggleGroup="$AparenciaInterna">
-         <font>
-            <Font size="12.0" />
-         </font>
-      </RadioButton>
-      <RadioButton fx:id="rbRuim" layoutX="265.0" layoutY="217.0" mnemonicParsing="false" text="Ruim" toggleGroup="$AparenciaExterna">
-         <font>
-            <Font size="12.0" />
-         </font>
-      </RadioButton>
-      <RadioButton fx:id="rbInadequado" layoutX="262.0" layoutY="501.0" mnemonicParsing="false" text="Inadequado" toggleGroup="$Limpeza">
-         <font>
-            <Font size="12.0" />
-         </font>
-      </RadioButton>
-      <RadioButton fx:id="rbSucos" layoutX="480.0" layoutY="415.0" mnemonicParsing="false" text="Sucos">
-         <toggleGroup>
-            <ToggleGroup fx:id="BebidasSemAlcool" />
-         </toggleGroup>
-         <font>
-            <Font size="12.0" />
-         </font>
-      </RadioButton>
-      <RadioButton fx:id="rbPoucas" layoutX="481.0" layoutY="307.0" mnemonicParsing="false" text="Poucas">
-         <toggleGroup>
-            <ToggleGroup fx:id="BebidasAlcoolicas" />
-         </toggleGroup>
-         <font>
-            <Font size="12.0" />
-         </font>
-      </RadioButton>
-      <Label layoutX="481.0" layoutY="104.0" text="Variedade específica" />
-      <RadioButton fx:id="rbNota1" layoutX="482.0" layoutY="539.0" mnemonicParsing="false" text="1">
-         <font>
-            <Font size="11.0" />
-         </font>
-         <toggleGroup>
-            <ToggleGroup fx:id="NotaCardapio" />
-         </toggleGroup>
-      </RadioButton>
-      <RadioButton fx:id="rbEspecifica" layoutX="486.0" layoutY="203.0" mnemonicParsing="false" text="1, 2, específica">
-         <toggleGroup>
-            <ToggleGroup fx:id="Variedade" />
-         </toggleGroup>
-         <font>
-            <Font size="12.0" />
-         </font>
-      </RadioButton>
-      <RadioButton fx:id="rbNota3" layoutX="546.0" layoutY="539.0" mnemonicParsing="false" text="3" toggleGroup="$NotaCardapio">
-         <font>
-            <Font size="11.0" />
-         </font>
-      </RadioButton>
-      <Label layoutX="481.0" layoutY="241.0" text="Bebidas alcoólicas" />
-      <RadioButton fx:id="rbNenhuma" layoutX="480.0" layoutY="459.0" mnemonicParsing="false" text="Nenhuma" toggleGroup="$BebidasSemAlcool">
-         <font>
-            <Font size="12.0" />
-         </font>
-      </RadioButton>
-      <Separator layoutX="481.0" layoutY="223.0" prefHeight="3.0" prefWidth="156.0" />
-      <RadioButton fx:id="rbSucosRefrigerantesETC" layoutX="481.0" layoutY="398.0" mnemonicParsing="false" text="Sucos, refrigerantes, etc." toggleGroup="$BebidasSemAlcool">
-         <font>
-            <Font size="12.0" />
-         </font>
-      </RadioButton>
-      <Separator layoutX="480.0" layoutY="353.0" prefHeight="3.0" prefWidth="156.0" />
-      <Label layoutX="481.0" layoutY="509.0" text="Sabor da comida" />
-      <RadioButton fx:id="rbVariedadesDeBebidas" layoutX="481.0" layoutY="262.0" mnemonicParsing="false" text="Variedade de bebidas" toggleGroup="$BebidasAlcoolicas">
-         <font>
-            <Font size="12.0" />
-         </font>
-      </RadioButton>
-      <RadioButton fx:id="rbGrandeVariedade" layoutX="486.0" layoutY="136.0" mnemonicParsing="false" text="Grande Variedade" toggleGroup="$Variedade">
-         <font>
-            <Font size="12.0" />
-         </font>
-      </RadioButton>
-      <RadioButton fx:id="rbPoucas" layoutX="486.0" layoutY="181.0" mnemonicParsing="false" text="Poucas" toggleGroup="$Variedade">
-         <font>
-            <Font size="12.0" />
-         </font>
-      </RadioButton>
-      <RadioButton fx:id="rbDentroDoEsperado" layoutX="486.0" layoutY="159.0" mnemonicParsing="false" text="Dentro do esperado" toggleGroup="$Variedade">
-         <font>
-            <Font size="12.0" />
-         </font>
-      </RadioButton>
-      <Separator layoutX="665.0" layoutY="86.0" orientation="VERTICAL" prefHeight="503.0" prefWidth="0.0" />
-      <RadioButton fx:id="rbNota4" layoutX="579.0" layoutY="539.0" mnemonicParsing="false" text="4" toggleGroup="$NotaCardapio">
-         <font>
-            <Font size="11.0" />
-         </font>
-      </RadioButton>
-      <Label layoutX="480.0" layoutY="371.0" text="Bebidas sem álcool" />
-      <RadioButton fx:id="rbAlgumasAprimoradas" layoutX="481.0" layoutY="285.0" mnemonicParsing="false" text="Algumas aprimoradas" toggleGroup="$BebidasAlcoolicas">
-         <font>
-            <Font size="12.0" />
-         </font>
-      </RadioButton>
-      <RadioButton fx:id="rbNota5" layoutX="610.0" layoutY="539.0" mnemonicParsing="false" text="5" toggleGroup="$NotaCardapio">
-         <font>
-            <Font size="11.0" />
-         </font>
-      </RadioButton>
-      <RadioButton fx:id="rbRefrigerantes" layoutX="480.0" layoutY="437.0" mnemonicParsing="false" text="Refrigerantes" toggleGroup="$BebidasSemAlcool">
-         <font>
-            <Font size="12.0" />
-         </font>
-      </RadioButton>
-      <RadioButton fx:id="rbNenhuma" layoutX="481.0" layoutY="329.0" mnemonicParsing="false" text="Nenhuma" toggleGroup="$BebidasAlcoolicas">
-         <font>
-            <Font size="12.0" />
-         </font>
-      </RadioButton>
-      <RadioButton fx:id="rbNota2" layoutX="514.0" layoutY="539.0" mnemonicParsing="false" text="2" toggleGroup="$NotaCardapio">
-         <font>
-            <Font size="11.0" />
-         </font>
-      </RadioButton>
-      <Separator layoutX="481.0" layoutY="491.0" prefHeight="3.0" prefWidth="156.0" />
-      <Label layoutX="503.0" layoutY="119.0" text="(Bar, Restaurante)" />
-      <RadioButton fx:id="rbNota4" layoutX="677.0" layoutY="376.0" mnemonicParsing="false" text="4">
-         <toggleGroup>
-            <ToggleGroup fx:id="Pagamento" />
-         </toggleGroup>
-         <font>
-            <Font size="12.0" />
-         </font>
-      </RadioButton>
-      <RadioButton fx:id="rbRegular" layoutX="678.0" layoutY="268.0" mnemonicParsing="false" text="Regular">
-         <toggleGroup>
-            <ToggleGroup fx:id="QualidadeValorPago" />
-         </toggleGroup>
-         <font>
-            <Font size="12.0" />
-         </font>
-      </RadioButton>
-      <Label layoutX="679.0" layoutY="111.0" text="Opções" />
-      <RadioButton fx:id="rbNota1" layoutX="678.0" layoutY="443.0" mnemonicParsing="false" text="1" toggleGroup="$Pagamento">
-         <font>
-            <Font size="12.0" />
-         </font>
-      </RadioButton>
-      <Label layoutX="678.0" layoutY="202.0" text="Qualidade pelo valor pago" />
-      <RadioButton fx:id="rbNota2" layoutX="677.0" layoutY="420.0" mnemonicParsing="false" text="2" toggleGroup="$Pagamento">
-         <font>
-            <Font size="12.0" />
-         </font>
-      </RadioButton>
-      <Separator layoutX="678.0" layoutY="184.0" prefHeight="3.0" prefWidth="156.0" />
-      <RadioButton fx:id="rbNota5" layoutX="677.0" layoutY="353.0" mnemonicParsing="false" text="5" toggleGroup="$Pagamento">
-         <font>
-            <Font size="12.0" />
-         </font>
-      </RadioButton>
-      <Separator layoutX="677.0" layoutY="314.0" prefHeight="3.0" prefWidth="156.0" />
-      <Label layoutX="907.0" layoutY="223.0" text="Descrição_geral">
-         <font>
-            <Font size="16.0" />
-         </font></Label>
-      <RadioButton fx:id="rbCaro" layoutX="678.0" layoutY="223.0" mnemonicParsing="false" text="Caro" toggleGroup="$QualidadeValorPago">
-         <font>
-            <Font size="12.0" />
-         </font>
-      </RadioButton>
-      <RadioButton fx:id="rbCartaoDeDebito" layoutX="679.0" layoutY="132.0" mnemonicParsing="false" text="Cartão de débito">
-         <font>
-            <Font size="12.0" />
-         </font>
-         <toggleGroup>
-            <ToggleGroup fx:id="OpcoesPagamento" />
-         </toggleGroup>
-      </RadioButton>
-      <RadioButton fx:id="rbDinheiro" layoutX="835.0" layoutY="132.0" mnemonicParsing="false" text="Dinheiro" toggleGroup="$OpcoesPagamento">
-         <font>
-            <Font size="12.0" />
-         </font>
-      </RadioButton>
-      <RadioButton fx:id="rbCartaoDeCrediro" layoutX="679.0" layoutY="155.0" mnemonicParsing="false" text="Cartão de Crédito" toggleGroup="$OpcoesPagamento">
-         <font>
-            <Font size="12.0" />
-         </font>
-      </RadioButton>
-      <Label layoutX="677.0" layoutY="332.0" text="Pagamento" />
-      <RadioButton fx:id="rbBom" layoutX="678.0" layoutY="246.0" mnemonicParsing="false" text="Bom" toggleGroup="$QualidadeValorPago">
-         <font>
-            <Font size="12.0" />
-         </font>
-      </RadioButton>
-      <RadioButton fx:id="rbNota3" layoutX="677.0" layoutY="398.0" mnemonicParsing="false" text="3" toggleGroup="$Pagamento">
-         <font>
-            <Font size="12.0" />
-         </font>
-      </RadioButton>
-      <RadioButton fx:id="rbBarato" layoutX="678.0" layoutY="290.0" mnemonicParsing="false" text="Barato" toggleGroup="$QualidadeValorPago">
-         <font>
-            <Font size="12.0" />
-         </font>
-      </RadioButton>
-      <Separator layoutX="678.0" layoutY="474.0" prefHeight="3.0" prefWidth="156.0" />
-      <TextArea fx:id="taDescricao" layoutX="907.0" layoutY="270.0" prefHeight="141.0" prefWidth="343.0" />
-      <Text layoutX="907.0" layoutY="266.0" strokeType="OUTSIDE" strokeWidth="0.0" />
-      <Text layoutX="907.0" layoutY="267.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Faça uma descrição do local" />
-      <Button fx:id="btnVoltar" layoutX="939.0" layoutY="512.0" mnemonicParsing="false" onAction="#Voltar" prefHeight="39.0" prefWidth="103.0" styleClass="excluir" text="&lt; Voltar" />
-      <Button fx:id="btnSalvar" layoutX="1079.0" layoutY="512.0" mnemonicParsing="false" onAction="#Salvar" prefHeight="39.0" prefWidth="121.0" styleClass="salvar" text="Salvar" />
+      <BorderPane fx:id="panelSecundario" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <center>
+            <Pane prefHeight="301.0" prefWidth="295.0" BorderPane.alignment="CENTER">
+               <children>
+                  <Label layoutX="25.0" layoutY="83.0" text="Atendimento">
+                     <font>
+                        <Font name="System Bold" size="15.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="tfNomeRestaurante" layoutX="111.0" layoutY="42.0" />
+                  <Label layoutX="111.0" layoutY="20.0" text="Nome restaurante:" />
+                  <Label layoutX="234.0" layoutY="83.0" text="Aspectos">
+                     <font>
+                        <Font name="System Bold" size="15.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="450.0" layoutY="83.0" text="Cardapio">
+                     <font>
+                        <Font name="System Bold" size="15.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="647.0" layoutY="83.0" text="Pagamento">
+                     <font>
+                        <Font name="System Bold" size="15.0" />
+                     </font>
+                  </Label>
+                  <RadioButton fx:id="rbDentroDoEsperado" layoutX="25.0" layoutY="129.0" mnemonicParsing="false" text="Dentro do esperado">
+                     <toggleGroup>
+                        <ToggleGroup fx:id="TempoEntrega" />
+                     </toggleGroup>
+                     <font>
+                        <Font size="12.0" />
+                     </font>
+                  </RadioButton>
+                  <RadioButton fx:id="rbSatisfatorio" layoutX="25.0" layoutY="152.0" mnemonicParsing="false" text="Satisfatório" toggleGroup="$TempoEntrega">
+                     <font>
+                        <Font size="12.0" />
+                     </font>
+                  </RadioButton>
+                  <RadioButton fx:id="rbOtimo" layoutX="25.0" layoutY="174.0" mnemonicParsing="false" text="Ótimo" toggleGroup="$TempoEntrega">
+                     <font>
+                        <Font size="12.0" />
+                     </font>
+                  </RadioButton>
+                  <RadioButton fx:id="rbMuitoDemorado" layoutX="25.0" layoutY="196.0" mnemonicParsing="false" text="Muito demorado" toggleGroup="$TempoEntrega">
+                     <font>
+                        <Font size="12.0" />
+                     </font>
+                  </RadioButton>
+                  <RadioButton fx:id="rbNota2" layoutX="58.0" layoutY="536.0" mnemonicParsing="false" text="2">
+                     <toggleGroup>
+                        <ToggleGroup fx:id="NotaAtendimento" />
+                     </toggleGroup>
+                     <font>
+                        <Font size="11.0" />
+                     </font>
+                  </RadioButton>
+                  <RadioButton fx:id="rbNota3" layoutX="90.0" layoutY="536.0" mnemonicParsing="false" text="3" toggleGroup="$NotaAtendimento">
+                     <font>
+                        <Font size="11.0" />
+                     </font>
+                  </RadioButton>
+                  <RadioButton fx:id="rbNota4" layoutX="123.0" layoutY="536.0" mnemonicParsing="false" text="4" toggleGroup="$NotaAtendimento">
+                     <font>
+                        <Font size="11.0" />
+                     </font>
+                  </RadioButton>
+                  <RadioButton fx:id="rbNota5" layoutX="154.0" layoutY="536.0" mnemonicParsing="false" text="5" toggleGroup="$NotaAtendimento">
+                     <font>
+                        <Font size="11.0" />
+                     </font>
+                  </RadioButton>
+                  <RadioButton fx:id="rbNota1" layoutX="26.0" layoutY="536.0" mnemonicParsing="false" text="1" toggleGroup="$NotaAtendimento">
+                     <font>
+                        <Font size="11.0" />
+                     </font>
+                  </RadioButton>
+                  <Label layoutX="25.0" layoutY="108.0" text="Tempo de entrega" />
+                  <Separator layoutX="25.0" layoutY="220.0" prefHeight="3.0" prefWidth="156.0" />
+                  <Separator layoutX="209.0" layoutY="83.0" orientation="VERTICAL" prefHeight="503.0" prefWidth="0.0" />
+                  <RadioButton fx:id="rbRuimIrritante" layoutX="25.0" layoutY="326.0" mnemonicParsing="false" text="Ruim irritante">
+                     <font>
+                        <Font size="12.0" />
+                     </font>
+                     <toggleGroup>
+                        <ToggleGroup fx:id="QualidadeAtendimento" />
+                     </toggleGroup>
+                  </RadioButton>
+                  <Label layoutX="25.0" layoutY="238.0" text="Qualidade de atendimento" />
+                  <RadioButton fx:id="rbBomESimples" layoutX="25.0" layoutY="282.0" mnemonicParsing="false" text="Bom e simples" toggleGroup="$QualidadeAtendimento">
+                     <font>
+                        <Font size="12.0" />
+                     </font>
+                  </RadioButton>
+                  <RadioButton fx:id="rbOtimoEducado" layoutX="25.0" layoutY="259.0" mnemonicParsing="false" text="Ótimo, educado" toggleGroup="$QualidadeAtendimento">
+                     <font>
+                        <Font size="12.0" />
+                     </font>
+                  </RadioButton>
+                  <RadioButton fx:id="rbRegular" layoutX="25.0" layoutY="304.0" mnemonicParsing="false" text="Regular" toggleGroup="$QualidadeAtendimento">
+                     <font>
+                        <Font size="12.0" />
+                     </font>
+                  </RadioButton>
+                  <RadioButton fx:id="rbComEsperaComReserva" layoutX="24.0" layoutY="456.0" mnemonicParsing="false" text="Com espera, com reserva">
+                     <toggleGroup>
+                        <ToggleGroup fx:id="Espera" />
+                     </toggleGroup>
+                     <font>
+                        <Font size="12.0" />
+                     </font>
+                  </RadioButton>
+                  <RadioButton fx:id="rbComEsperaComReserva" layoutX="24.0" layoutY="434.0" mnemonicParsing="false" text="Com espera, sem reserva" toggleGroup="$Espera">
+                     <font>
+                        <Font size="12.0" />
+                     </font>
+                  </RadioButton>
+                  <Separator layoutX="24.0" layoutY="350.0" prefHeight="3.0" prefWidth="156.0" />
+                  <Label layoutX="24.0" layoutY="368.0" text="Houve espera por mesa" />
+                  <RadioButton fx:id="rbSemEsperaComReserva" layoutX="24.0" layoutY="412.0" mnemonicParsing="false" text="Sem espera, com reserva" toggleGroup="$Espera">
+                     <font>
+                        <Font size="12.0" />
+                     </font>
+                  </RadioButton>
+                  <RadioButton fx:id="rbSemEsperaSemReserva" layoutX="24.0" layoutY="389.0" mnemonicParsing="false" text="Sem espera, sem reserva" toggleGroup="$Espera">
+                     <font>
+                        <Font size="12.0" />
+                     </font>
+                  </RadioButton>
+                  <Label layoutX="25.0" layoutY="506.0" text="Atendimento geral" />
+                  <Separator layoutX="25.0" layoutY="488.0" prefHeight="3.0" prefWidth="156.0" />
+                  <RadioButton fx:id="rbLimpo" layoutX="232.0" layoutY="434.0" mnemonicParsing="false" text="Limpo" toggleGroup="$Espera">
+                     <font>
+                        <Font size="12.0" />
+                     </font>
+                  </RadioButton>
+                  <RadioButton fx:id="rbTematica" layoutX="235.0" layoutY="309.0" mnemonicParsing="false" text="Tematica">
+                     <toggleGroup>
+                        <ToggleGroup fx:id="AparenciaInterna" />
+                     </toggleGroup>
+                     <font>
+                        <Font size="12.0" />
+                     </font>
+                  </RadioButton>
+                  <Label layoutX="235.0" layoutY="108.0" text="Aparência externa" />
+                  <RadioButton fx:id="rbNota1" layoutX="234.0" layoutY="558.0" mnemonicParsing="false" text="1">
+                     <font>
+                        <Font size="11.0" />
+                     </font>
+                     <toggleGroup>
+                        <ToggleGroup fx:id="NotaAspectos" />
+                     </toggleGroup>
+                  </RadioButton>
+                  <RadioButton fx:id="rbPremium" layoutX="235.0" layoutY="196.0" mnemonicParsing="false" text="Premium">
+                     <font>
+                        <Font size="12.0" />
+                     </font>
+                     <toggleGroup>
+                        <ToggleGroup fx:id="AparenciaExterna" />
+                     </toggleGroup>
+                  </RadioButton>
+                  <RadioButton fx:id="rbNota3" layoutX="298.0" layoutY="558.0" mnemonicParsing="false" text="3" toggleGroup="$NotaAspectos">
+                     <font>
+                        <Font size="11.0" />
+                     </font>
+                  </RadioButton>
+                  <Label layoutX="235.0" layoutY="243.0" text="Aparência externa" />
+                  <RadioButton fx:id="rbOrganizadoeRustico" layoutX="232.0" layoutY="478.0" mnemonicParsing="false" text="Organizado e rústico">
+                     <toggleGroup>
+                        <ToggleGroup fx:id="Limpeza" />
+                     </toggleGroup>
+                     <font>
+                        <Font size="12.0" />
+                     </font>
+                  </RadioButton>
+                  <Separator layoutX="234.0" layoutY="234.0" prefHeight="3.0" prefWidth="156.0" />
+                  <RadioButton fx:id="rbLimpoBrilhando" layoutX="232.0" layoutY="411.0" mnemonicParsing="false" text="Limpo brilhando" toggleGroup="$Limpeza">
+                     <font>
+                        <Font size="12.0" />
+                     </font>
+                  </RadioButton>
+                  <Separator layoutX="232.0" layoutY="372.0" prefHeight="3.0" prefWidth="156.0" />
+                  <Label layoutX="233.0" layoutY="528.0" text="Aspectos" />
+                  <RadioButton fx:id="rbBoa" layoutX="235.0" layoutY="264.0" mnemonicParsing="false" text="Boa" toggleGroup="$AparenciaInterna">
+                     <font>
+                        <Font size="12.0" />
+                     </font>
+                  </RadioButton>
+                  <RadioButton fx:id="rbBoa" layoutX="235.0" layoutY="129.0" mnemonicParsing="false" text="Boa" toggleGroup="$AparenciaExterna">
+                     <font>
+                        <Font size="12.0" />
+                     </font>
+                  </RadioButton>
+                  <RadioButton fx:id="rbTematica" layoutX="235.0" layoutY="174.0" mnemonicParsing="false" text="Tematica" toggleGroup="$AparenciaExterna">
+                     <font>
+                        <Font size="12.0" />
+                     </font>
+                  </RadioButton>
+                  <RadioButton fx:id="rbDiscreta" layoutX="235.0" layoutY="152.0" mnemonicParsing="false" text="Discreta" toggleGroup="$AparenciaExterna">
+                     <font>
+                        <Font size="12.0" />
+                     </font>
+                  </RadioButton>
+                  <Separator layoutX="419.0" layoutY="83.0" orientation="VERTICAL" prefHeight="503.0" prefWidth="0.0" />
+                  <RadioButton fx:id="rbNota4" layoutX="331.0" layoutY="558.0" mnemonicParsing="false" text="4" toggleGroup="$NotaAspectos">
+                     <font>
+                        <Font size="11.0" />
+                     </font>
+                  </RadioButton>
+                  <Label layoutX="232.0" layoutY="390.0" text="Limpeza" />
+                  <RadioButton fx:id="rbDiscreta" layoutX="235.0" layoutY="287.0" mnemonicParsing="false" text="Discreta" toggleGroup="$AparenciaInterna">
+                     <font>
+                        <Font size="12.0" />
+                     </font>
+                  </RadioButton>
+                  <RadioButton fx:id="rbNota5" layoutX="362.0" layoutY="558.0" mnemonicParsing="false" text="5" toggleGroup="$NotaAspectos">
+                     <font>
+                        <Font size="11.0" />
+                     </font>
+                  </RadioButton>
+                  <RadioButton fx:id="rbDentroDoEsperado" layoutX="232.0" layoutY="456.0" mnemonicParsing="false" text="Dentro do esperado" toggleGroup="$Limpeza">
+                     <font>
+                        <Font size="12.0" />
+                     </font>
+                  </RadioButton>
+                  <RadioButton fx:id="rbPremium" layoutX="235.0" layoutY="331.0" mnemonicParsing="false" text="Premium" toggleGroup="$AparenciaInterna">
+                     <font>
+                        <Font size="12.0" />
+                     </font>
+                  </RadioButton>
+                  <RadioButton fx:id="rbNota2" layoutX="266.0" layoutY="558.0" mnemonicParsing="false" text="2" toggleGroup="$NotaAspectos">
+                     <font>
+                        <Font size="11.0" />
+                     </font>
+                  </RadioButton>
+                  <Separator layoutX="234.0" layoutY="520.0" prefHeight="3.0" prefWidth="156.0" />
+                  <RadioButton fx:id="rbRuim" layoutX="235.0" layoutY="352.0" mnemonicParsing="false" text="Ruim" toggleGroup="$AparenciaInterna">
+                     <font>
+                        <Font size="12.0" />
+                     </font>
+                  </RadioButton>
+                  <RadioButton fx:id="rbRuim" layoutX="235.0" layoutY="214.0" mnemonicParsing="false" text="Ruim" toggleGroup="$AparenciaExterna">
+                     <font>
+                        <Font size="12.0" />
+                     </font>
+                  </RadioButton>
+                  <RadioButton fx:id="rbInadequado" layoutX="232.0" layoutY="498.0" mnemonicParsing="false" text="Inadequado" toggleGroup="$Limpeza">
+                     <font>
+                        <Font size="12.0" />
+                     </font>
+                  </RadioButton>
+                  <RadioButton fx:id="rbSucos" layoutX="450.0" layoutY="412.0" mnemonicParsing="false" text="Sucos">
+                     <toggleGroup>
+                        <ToggleGroup fx:id="BebidasSemAlcool" />
+                     </toggleGroup>
+                     <font>
+                        <Font size="12.0" />
+                     </font>
+                  </RadioButton>
+                  <RadioButton fx:id="rbPoucas" layoutX="451.0" layoutY="304.0" mnemonicParsing="false" text="Poucas">
+                     <toggleGroup>
+                        <ToggleGroup fx:id="BebidasAlcoolicas" />
+                     </toggleGroup>
+                     <font>
+                        <Font size="12.0" />
+                     </font>
+                  </RadioButton>
+                  <Label layoutX="451.0" layoutY="101.0" text="Variedade específica" />
+                  <RadioButton fx:id="rbNota1" layoutX="452.0" layoutY="536.0" mnemonicParsing="false" text="1">
+                     <font>
+                        <Font size="11.0" />
+                     </font>
+                     <toggleGroup>
+                        <ToggleGroup fx:id="NotaCardapio" />
+                     </toggleGroup>
+                  </RadioButton>
+                  <RadioButton fx:id="rbEspecifica" layoutX="456.0" layoutY="200.0" mnemonicParsing="false" text="1, 2, específica">
+                     <toggleGroup>
+                        <ToggleGroup fx:id="Variedade" />
+                     </toggleGroup>
+                     <font>
+                        <Font size="12.0" />
+                     </font>
+                  </RadioButton>
+                  <RadioButton fx:id="rbNota3" layoutX="516.0" layoutY="536.0" mnemonicParsing="false" text="3" toggleGroup="$NotaCardapio">
+                     <font>
+                        <Font size="11.0" />
+                     </font>
+                  </RadioButton>
+                  <Label layoutX="451.0" layoutY="238.0" text="Bebidas alcoólicas" />
+                  <RadioButton fx:id="rbNenhuma" layoutX="450.0" layoutY="456.0" mnemonicParsing="false" text="Nenhuma" toggleGroup="$BebidasSemAlcool">
+                     <font>
+                        <Font size="12.0" />
+                     </font>
+                  </RadioButton>
+                  <Separator layoutX="451.0" layoutY="220.0" prefHeight="3.0" prefWidth="156.0" />
+                  <RadioButton fx:id="rbSucosRefrigerantesETC" layoutX="451.0" layoutY="395.0" mnemonicParsing="false" text="Sucos, refrigerantes, etc." toggleGroup="$BebidasSemAlcool">
+                     <font>
+                        <Font size="12.0" />
+                     </font>
+                  </RadioButton>
+                  <Separator layoutX="450.0" layoutY="350.0" prefHeight="3.0" prefWidth="156.0" />
+                  <Label layoutX="451.0" layoutY="506.0" text="Sabor da comida" />
+                  <RadioButton fx:id="rbVariedadesDeBebidas" layoutX="451.0" layoutY="259.0" mnemonicParsing="false" text="Variedade de bebidas" toggleGroup="$BebidasAlcoolicas">
+                     <font>
+                        <Font size="12.0" />
+                     </font>
+                  </RadioButton>
+                  <RadioButton fx:id="rbGrandeVariedade" layoutX="456.0" layoutY="133.0" mnemonicParsing="false" text="Grande Variedade" toggleGroup="$Variedade">
+                     <font>
+                        <Font size="12.0" />
+                     </font>
+                  </RadioButton>
+                  <RadioButton fx:id="rbPoucas" layoutX="456.0" layoutY="178.0" mnemonicParsing="false" text="Poucas" toggleGroup="$Variedade">
+                     <font>
+                        <Font size="12.0" />
+                     </font>
+                  </RadioButton>
+                  <RadioButton fx:id="rbDentroDoEsperado" layoutX="456.0" layoutY="156.0" mnemonicParsing="false" text="Dentro do esperado" toggleGroup="$Variedade">
+                     <font>
+                        <Font size="12.0" />
+                     </font>
+                  </RadioButton>
+                  <Separator layoutX="635.0" layoutY="83.0" orientation="VERTICAL" prefHeight="503.0" prefWidth="0.0" />
+                  <RadioButton fx:id="rbNota4" layoutX="549.0" layoutY="536.0" mnemonicParsing="false" text="4" toggleGroup="$NotaCardapio">
+                     <font>
+                        <Font size="11.0" />
+                     </font>
+                  </RadioButton>
+                  <Label layoutX="450.0" layoutY="368.0" text="Bebidas sem álcool" />
+                  <RadioButton fx:id="rbAlgumasAprimoradas" layoutX="451.0" layoutY="282.0" mnemonicParsing="false" text="Algumas aprimoradas" toggleGroup="$BebidasAlcoolicas">
+                     <font>
+                        <Font size="12.0" />
+                     </font>
+                  </RadioButton>
+                  <RadioButton fx:id="rbNota5" layoutX="580.0" layoutY="536.0" mnemonicParsing="false" text="5" toggleGroup="$NotaCardapio">
+                     <font>
+                        <Font size="11.0" />
+                     </font>
+                  </RadioButton>
+                  <RadioButton fx:id="rbRefrigerantes" layoutX="450.0" layoutY="434.0" mnemonicParsing="false" text="Refrigerantes" toggleGroup="$BebidasSemAlcool">
+                     <font>
+                        <Font size="12.0" />
+                     </font>
+                  </RadioButton>
+                  <RadioButton fx:id="rbNenhuma" layoutX="451.0" layoutY="326.0" mnemonicParsing="false" text="Nenhuma" toggleGroup="$BebidasAlcoolicas">
+                     <font>
+                        <Font size="12.0" />
+                     </font>
+                  </RadioButton>
+                  <RadioButton fx:id="rbNota2" layoutX="484.0" layoutY="536.0" mnemonicParsing="false" text="2" toggleGroup="$NotaCardapio">
+                     <font>
+                        <Font size="11.0" />
+                     </font>
+                  </RadioButton>
+                  <Separator layoutX="451.0" layoutY="488.0" prefHeight="3.0" prefWidth="156.0" />
+                  <Label layoutX="473.0" layoutY="116.0" text="(Bar, Restaurante)" />
+                  <RadioButton fx:id="rbNota4" layoutX="647.0" layoutY="373.0" mnemonicParsing="false" text="4">
+                     <toggleGroup>
+                        <ToggleGroup fx:id="Pagamento" />
+                     </toggleGroup>
+                     <font>
+                        <Font size="12.0" />
+                     </font>
+                  </RadioButton>
+                  <RadioButton fx:id="rbRegular" layoutX="648.0" layoutY="265.0" mnemonicParsing="false" text="Regular">
+                     <toggleGroup>
+                        <ToggleGroup fx:id="QualidadeValorPago" />
+                     </toggleGroup>
+                     <font>
+                        <Font size="12.0" />
+                     </font>
+                  </RadioButton>
+                  <Label layoutX="649.0" layoutY="108.0" text="Opções" />
+                  <RadioButton fx:id="rbNota1" layoutX="648.0" layoutY="440.0" mnemonicParsing="false" text="1" toggleGroup="$Pagamento">
+                     <font>
+                        <Font size="12.0" />
+                     </font>
+                  </RadioButton>
+                  <Label layoutX="648.0" layoutY="199.0" text="Qualidade pelo valor pago" />
+                  <RadioButton fx:id="rbNota2" layoutX="647.0" layoutY="417.0" mnemonicParsing="false" text="2" toggleGroup="$Pagamento">
+                     <font>
+                        <Font size="12.0" />
+                     </font>
+                  </RadioButton>
+                  <Separator layoutX="648.0" layoutY="181.0" prefHeight="3.0" prefWidth="156.0" />
+                  <RadioButton fx:id="rbNota5" layoutX="647.0" layoutY="350.0" mnemonicParsing="false" text="5" toggleGroup="$Pagamento">
+                     <font>
+                        <Font size="12.0" />
+                     </font>
+                  </RadioButton>
+                  <Separator layoutX="647.0" layoutY="311.0" prefHeight="3.0" prefWidth="156.0" />
+                  <Label layoutX="877.0" layoutY="220.0" text="Descrição_geral">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </Label>
+                  <RadioButton fx:id="rbCaro" layoutX="648.0" layoutY="220.0" mnemonicParsing="false" text="Caro" toggleGroup="$QualidadeValorPago">
+                     <font>
+                        <Font size="12.0" />
+                     </font>
+                  </RadioButton>
+                  <RadioButton fx:id="rbCartaoDeDebito" layoutX="649.0" layoutY="129.0" mnemonicParsing="false" text="Cartão de débito">
+                     <font>
+                        <Font size="12.0" />
+                     </font>
+                     <toggleGroup>
+                        <ToggleGroup fx:id="OpcoesPagamento" />
+                     </toggleGroup>
+                  </RadioButton>
+                  <RadioButton fx:id="rbDinheiro" layoutX="805.0" layoutY="129.0" mnemonicParsing="false" text="Dinheiro" toggleGroup="$OpcoesPagamento">
+                     <font>
+                        <Font size="12.0" />
+                     </font>
+                  </RadioButton>
+                  <RadioButton fx:id="rbCartaoDeCrediro" layoutX="649.0" layoutY="152.0" mnemonicParsing="false" text="Cartão de Crédito" toggleGroup="$OpcoesPagamento">
+                     <font>
+                        <Font size="12.0" />
+                     </font>
+                  </RadioButton>
+                  <Label layoutX="647.0" layoutY="329.0" text="Pagamento" />
+                  <RadioButton fx:id="rbBom" layoutX="648.0" layoutY="243.0" mnemonicParsing="false" text="Bom" toggleGroup="$QualidadeValorPago">
+                     <font>
+                        <Font size="12.0" />
+                     </font>
+                  </RadioButton>
+                  <RadioButton fx:id="rbNota3" layoutX="647.0" layoutY="395.0" mnemonicParsing="false" text="3" toggleGroup="$Pagamento">
+                     <font>
+                        <Font size="12.0" />
+                     </font>
+                  </RadioButton>
+                  <RadioButton fx:id="rbBarato" layoutX="648.0" layoutY="287.0" mnemonicParsing="false" text="Barato" toggleGroup="$QualidadeValorPago">
+                     <font>
+                        <Font size="12.0" />
+                     </font>
+                  </RadioButton>
+                  <Separator layoutX="648.0" layoutY="471.0" prefHeight="3.0" prefWidth="156.0" />
+                  <TextArea fx:id="taDescricao" layoutX="877.0" layoutY="267.0" prefHeight="141.0" prefWidth="343.0" />
+                  <Text layoutX="877.0" layoutY="263.0" strokeType="OUTSIDE" strokeWidth="0.0" />
+                  <Text layoutX="877.0" layoutY="264.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Faça uma descrição do local" />
+                  <Button fx:id="btnVoltar" layoutX="909.0" layoutY="509.0" mnemonicParsing="false" onAction="#Voltar" prefHeight="39.0" prefWidth="103.0" styleClass="excluir" text="&lt; Voltar" />
+                  <Button fx:id="btnSalvar" layoutX="1049.0" layoutY="509.0" mnemonicParsing="false" onAction="#Salvar" prefHeight="39.0" prefWidth="121.0" styleClass="salvar" text="Salvar" />
+               </children>
+            </Pane>
+         </center>
+      </BorderPane>
    </children>
 </AnchorPane>

@@ -1,17 +1,28 @@
 package controller;
 
+import java.io.IOException;
+
 import dao.AvaliacaoDAO;
 import factory.DAOFactory;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.BorderPane;
 import model.Avaliacao;
 
 public class AvaliacaoController {
+
+	@FXML
+	private BorderPane panelSecundario;
 
 	@FXML
 	private TextField tfNomeRestaurante;
@@ -193,13 +204,8 @@ public class AvaliacaoController {
 	private AvaliacaoDAO avaliacaoDAO;
 
 	@FXML
-	void Salvar(ActionEvent event) {
-
-	}
-
-	@FXML
 	void Voltar(ActionEvent event) {
-
+		AbreTela("TelaVazia.fxml");
 	}
 
 	public AvaliacaoController() {
@@ -208,11 +214,16 @@ public class AvaliacaoController {
 
 	}
 
-	void onSalvar(ActionEvent event) {
+	@FXML
+	void Salvar(ActionEvent event) {
 		Avaliacao avaliacao = criaAvaliacao();
+		avaliacao.setAvaliacaoDescritiva(taDescricao.getText());
 		avaliacaoDAO.salvar(avaliacao);
-		taDescricao.setText(avaliacao.getCodigo().toString());
+		Alert alert = new Alert(AlertType.CONFIRMATION, "Avaliação efetuada com sucesso!!", ButtonType.CLOSE);
+		alert.show();
+		AbreTela("TelaVazia.fxml");
 	}
+	/* _____________________________________________________________________________________________________________________________________ */
 
 	private Avaliacao criaAvaliacao() {
 		String string = taDescricao.getText();
@@ -220,6 +231,18 @@ public class AvaliacaoController {
 		avaliacao.setAvaliacaoDescritiva(string);
 		return avaliacao;
 
+	}
+
+	/* _____________________________________________________________________________________________________________________________________ */
+	public void AbreTela(String tela) {
+		FXMLLoader loader = new FXMLLoader();
+		loader.setLocation(getClass().getResource("/telas/" + tela));
+		try {
+			AnchorPane telaView = (AnchorPane) loader.load();
+			panelSecundario.setCenter(telaView);
+		} catch (IOException e1) {
+			e1.printStackTrace();
+		}
 	}
 
 }
