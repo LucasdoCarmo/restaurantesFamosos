@@ -19,11 +19,11 @@ public class EstadoJDBC implements EstadoDAO {
 	}
 
 	public void inserir(Estado objeto) {
-		String insert = "insert into estado (Estado,UF,idPais) values(?,?)";
+		String insert = "insert into estado (Estado,UF) values(?,?)";
 		try {
 			PreparedStatement ps = conexao.get().prepareStatement(insert, Statement.RETURN_GENERATED_KEYS);
 			ps.setString(1, objeto.getNome());
-
+			ps.setString(2, objeto.getUf());
 			ps.executeUpdate();
 			ResultSet rs = ps.getGeneratedKeys();
 			rs.next();
@@ -36,11 +36,11 @@ public class EstadoJDBC implements EstadoDAO {
 	}
 
 	public void alterar(Estado objeto) {
-		String update = "update estado set Estado=?, UF=?,idPais = ? where idEstado = ?";
+		String update = "update estado set Estado=?, UF=? where idEstado = ?";
 		try {
 			PreparedStatement ps = conexao.get().prepareStatement(update);
 			ps.setString(1, objeto.getNome());
-
+			ps.setString(2, objeto.getUf());
 			ps.setLong(3, objeto.getCodigo());
 			ps.executeUpdate();
 		} catch (SQLException e) {

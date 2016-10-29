@@ -55,9 +55,7 @@ public class PerguntasJDBC implements PerguntasDAO {
 	}
 
 	public void alterar(Perguntas objeto) {
-		String update = "update perguntas set aparencia_externa=?,aparencia_interna=?,bebidas_alcoolicas=?,bebidas_sem_alcool=?"
-				+ "houve_espera_por_mesa=?,limpeza=?,pagamento=?,qualidade_do_atendimento=?,tempo_de_entrega=?,qualidade_pelo_valor_pago=?"
-				+ "variedade_cardapio=?" + "where idPerguntas = ?";
+		String update = "update perguntas set aparencia_externa=?,aparencia_interna=?,bebidas_alcoolicas=?,bebidas_sem_alcool=?, houve_espera_por_mesa=?,limpeza=?,pagamento=?,qualidade_do_atendimento=?,tempo_de_entrega=?,qualidade_pelo_valor_pago=?,variedade_cardapio=? where idPerguntas = ?";
 		try {
 			PreparedStatement ps = conexao.get().prepareStatement(update);
 			ps.setString(1, objeto.getAparencia_externa());
