@@ -144,4 +144,10 @@ public class RestauranteJDBC implements RestauranteDAO {
 		return null;
 	}
 
+	@Override
+	public List<Restaurante> getPorTema(String tema) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

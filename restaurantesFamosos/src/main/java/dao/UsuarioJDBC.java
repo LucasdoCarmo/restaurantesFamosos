@@ -7,7 +7,6 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
-
 import conexao.Conexao;
 import model.Usuario;
 
@@ -31,7 +30,7 @@ public class UsuarioJDBC implements UsuarioDAO {
 			ResultSet rs = ps.getGeneratedKeys();
 
 			rs.next();
-			objeto.setSenha(rs.getString(1));
+			objeto.setCodigo(rs.getLong(1));
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
@@ -39,8 +38,8 @@ public class UsuarioJDBC implements UsuarioDAO {
 		}
 	}
 
-	public void alterar(Usuario objeto) {
-		String update = "update usuario set Nome=?, email=?, senha=? where idUsuario=?";
+	public void alterar(Usuario objeto){
+		String update = "update usuario set Nome=?, email=?, senha=? where idUsuario =?";
 		try {
 			PreparedStatement ps = conexao.get().prepareStatement(update);
 			ps.setString(1, objeto.getNome());
@@ -100,6 +99,7 @@ public class UsuarioJDBC implements UsuarioDAO {
 
 		}
 		return usuario;
+
 	}
 
 	private List<Usuario> getLista(ResultSet rs) throws SQLException {
@@ -111,11 +111,12 @@ public class UsuarioJDBC implements UsuarioDAO {
 	}
 
 	private Usuario getUsuario(ResultSet rs) throws SQLException {
-		Usuario usuario = new Usuario(rs.getLong("idUsuario"), rs.getString("Nome"), rs.getString("email"), rs.getString("senha"));
+		Usuario usuario = new Usuario(rs.getLong("idUsuario"), 
+				rs.getString("Nome"), 
+				rs.getString("email"),
+				rs.getString("senha"));
 		return usuario;
 
 	}
-
-	
 
 }
