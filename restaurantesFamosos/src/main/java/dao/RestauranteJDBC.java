@@ -21,7 +21,7 @@ public class RestauranteJDBC implements RestauranteDAO {
 	}
 
 	public void inserir(Restaurante objeto) {
-		String insert = "insert into restaurante (Nome,Telefone,Tipo_de_estabelicimento,Rua,Numero,Tema,CEP_idCEP) values(?,?,?,?,?,?,?)";
+		String insert = "insert into restaurante (Nome,Telefone,Tipo_de_estabelicimento,Rua,Numero,Tema) values(?,?,?,?,?,?)";
 		try {
 			PreparedStatement ps = conexao.get().prepareStatement(insert, Statement.RETURN_GENERATED_KEYS);
 			ps.setString(1, objeto.getNome());
@@ -30,7 +30,6 @@ public class RestauranteJDBC implements RestauranteDAO {
 			ps.setString(4, objeto.getRua());
 			ps.setString(5, objeto.getNumero());
 			ps.setString(6, objeto.getTema());
-			ps.setLong(7, objeto.getCep().getCodigo());
 			ps.executeUpdate();
 			ResultSet rs = ps.getGeneratedKeys();
 			rs.next();
@@ -43,7 +42,7 @@ public class RestauranteJDBC implements RestauranteDAO {
 	}
 
 	public void alterar(Restaurante objeto) {
-		String update = "update restaurante set Nome=?,Telefone=?,Tipo_de_estabelicimento=?,Rua =?,Numero=?,Tema=?,CEP_idCEP=? where idRestaurante = ?";
+		String update = "update restaurante set Nome=?,Telefone=?,Tipo_de_estabelicimento=?,Rua =?,Numero=?,Tema=? where idRestaurante = ?";
 		try {
 			PreparedStatement ps = conexao.get().prepareStatement(update);
 			ps.setString(1, objeto.getNome());
@@ -52,8 +51,7 @@ public class RestauranteJDBC implements RestauranteDAO {
 			ps.setString(4, objeto.getRua());
 			ps.setString(5, objeto.getNumero());
 			ps.setString(6, objeto.getTema());
-			ps.setLong(7, objeto.getCep().getCodigo());
-			ps.setLong(8, objeto.getCodigo());
+			ps.setLong(7, objeto.getCodigo());
 			ps.executeUpdate();
 		} catch (Exception e) {
 			e.printStackTrace();

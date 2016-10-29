@@ -23,17 +23,12 @@
                         <Font size="23.0" />
                      </font>
                   </Text>
-                  <Label layoutX="843.0" layoutY="203.0" text="PAÍS">
+                  <Label layoutX="836.0" layoutY="103.0" text="ESTADO">
                      <font>
                         <Font size="17.0" />
                      </font>
                   </Label>
-                  <Label layoutX="829.0" layoutY="144.0" text="ESTADO">
-                     <font>
-                        <Font size="17.0" />
-                     </font>
-                  </Label>
-                  <Label layoutX="831.0" layoutY="93.0" text="CIDADE">
+                  <Label layoutX="836.0" layoutY="146.0" text="CIDADE">
                      <font>
                         <Font size="17.0" />
                      </font>
@@ -48,11 +43,9 @@
                         <Font size="17.0" />
                      </font>
                   </Label>
-                  <ComboBox fx:id="cbPais" layoutX="909.0" layoutY="198.0" prefHeight="36.0" prefWidth="156.0" />
-                  <ComboBox fx:id="cbEstado" layoutX="909.0" layoutY="139.0" prefHeight="36.0" prefWidth="156.0" />
-                  <ComboBox fx:id="cbCidade" layoutX="909.0" layoutY="88.0" prefHeight="36.0" prefWidth="156.0" />
+                  <ComboBox fx:id="cbEstado" layoutX="916.0" layoutY="98.0" prefHeight="36.0" prefWidth="156.0" />
+                  <ComboBox fx:id="cbCidade" layoutX="916.0" layoutY="141.0" prefHeight="36.0" prefWidth="156.0" />
                   <TextField fx:id="tfNome" layoutX="161.0" layoutY="101.0" prefHeight="36.0" prefWidth="239.0" />
-                  <ComboBox fx:id="cbTipoEstabelecimento" layoutX="454.0" layoutY="101.0" prefHeight="36.0" prefWidth="294.0" />
                   <Label layoutX="161.0" layoutY="75.0" text="POR NOME">
                      <font>
                         <Font size="17.0" />
@@ -75,6 +68,7 @@
                   <Button fx:id="btnVoltar" layoutX="738.0" layoutY="540.0" mnemonicParsing="false" onAction="#Voltar" prefHeight="36.0" prefWidth="131.0" text="&lt; Voltar" />
                   <Button fx:id="btnAvaliar" layoutX="1050.0" layoutY="540.0" mnemonicParsing="false" onAction="#Avaliar" prefHeight="36.0" prefWidth="131.0" styleClass="salvar" text="Avaliar" />
                   <Button fx:id="btnEditar" layoutX="888.0" layoutY="540.0" mnemonicParsing="false" onAction="#Editar" prefHeight="36.0" prefWidth="131.0" styleClass="novo" text="Editar" />
+                  <TextField fx:id="tfTipoEstabelecimento" layoutX="453.0" layoutY="101.0" prefHeight="36.0" prefWidth="271.0" />
                </children>
             </Pane>
          </center>
