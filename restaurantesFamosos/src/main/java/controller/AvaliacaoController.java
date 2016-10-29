@@ -262,10 +262,10 @@ public class AvaliacaoController {
 	@FXML
 	void Salvar(ActionEvent event) {
 		Avaliacao avaliacao = criaAvaliacao();
-		avaliacao.setNotaAtendimento(radioAtendimento());
-		avaliacao.setNotaAspecto(radioAspecto());
-		avaliacao.setNotaComida(radioCardapio());
-		avaliacao.setNotaPagamento(radioPagamento());
+		avaliacao.setNotaAtendimento(Integer.valueOf(radioAtendimento()));
+		avaliacao.setNotaAspecto(Integer.valueOf(radioAspecto()));
+		avaliacao.setNotaComida(Integer.valueOf(radioCardapio()));
+		avaliacao.setNotaPagamento(Integer.valueOf(radioPagamento()));
 		avaliacao.setNotaGeral(notaGeral());
 		avaliacao.setAvaliacaoDescritiva(taDescricao.getText());
 		avaliacaoDAO.salvar(avaliacao);
