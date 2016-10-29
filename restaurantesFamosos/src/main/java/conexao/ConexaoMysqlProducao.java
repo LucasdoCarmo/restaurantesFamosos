@@ -13,7 +13,7 @@ public class ConexaoMysqlProducao implements Conexao {
 	}
 
 	private static void createConnection() {
-		String url = "jdbc:mysql://localhost:3306/restaurantes2";
+		String url = "jdbc:mysql://localhost:3306/restaurante2?autoReconnect=true&useSSL=false";
 		String user = "root";
 		String password = "Eagle15";
 		try {
