@@ -20,13 +20,12 @@ public class UsuarioJDBC implements UsuarioDAO {
 	}
 
 	public void inserir(Usuario objeto) {
-		String insert = "insert into usuario (Nome,Respostas_idRespostas,email,senha) values(?,?,?,?)";
+		String insert = "insert into usuario (Nome,email,senha) values(?,?,?)";
 		try {
 			PreparedStatement ps = conexao.get().prepareStatement(insert, Statement.RETURN_GENERATED_KEYS);
 			ps.setString(1, objeto.getNome());
-			ps.setLong(2, objeto.getResposta().getCodigo());
-			ps.setString(3, objeto.getEmail());
-			ps.setString(4, objeto.getSenha());
+			ps.setString(2, objeto.getEmail());
+			ps.setString(3, objeto.getSenha());
 
 			ps.executeUpdate();
 			ResultSet rs = ps.getGeneratedKeys();
@@ -41,13 +40,13 @@ public class UsuarioJDBC implements UsuarioDAO {
 	}
 
 	public void alterar(Usuario objeto) {
-		String update = "update usuario set Nome=?,Respostas_idRespostas=?,email=?,senha=?," + "where idUsuario=?";
+		String update = "update usuario set Nome=?, email=?, senha=? where idUsuario=?";
 		try {
 			PreparedStatement ps = conexao.get().prepareStatement(update);
 			ps.setString(1, objeto.getNome());
-			ps.setLong(2, objeto.getResposta().getCodigo());
-			ps.setString(3, objeto.getEmail());
-			ps.setString(4, objeto.getSenha());
+			ps.setString(2, objeto.getEmail());
+			ps.setString(3, objeto.getSenha());
+			ps.setLong(4, objeto.getCodigo());
 			ps.executeUpdate();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -57,7 +56,7 @@ public class UsuarioJDBC implements UsuarioDAO {
 	}
 
 	public void excluir(Long codigo) {
-		String del = "delete from usuario" + "where idUsuario = ?";
+		String del = "delete from usuario where idUsuario = ?";
 		try {
 			PreparedStatement ps = conexao.get().prepareStatement(del);
 			ps.setLong(1, codigo);
@@ -70,7 +69,7 @@ public class UsuarioJDBC implements UsuarioDAO {
 	}
 
 	public Collection<Usuario> todos() {
-		String sql = "select *from usuario";
+		String sql = "select * from usuario";
 		List<Usuario> usuarios = new ArrayList<>();
 		try {
 			PreparedStatement ps = conexao.get().prepareStatement(sql);
@@ -85,7 +84,7 @@ public class UsuarioJDBC implements UsuarioDAO {
 	}
 
 	public Usuario get(Long codigo) {
-		String sql = "select *from usuario where idUsuario =?";
+		String sql = "select * from usuario where idUsuario =?";
 		Usuario usuario = null;
 		try {
 			PreparedStatement ps = conexao.get().prepareStatement(sql);
@@ -112,7 +111,7 @@ public class UsuarioJDBC implements UsuarioDAO {
 	}
 
 	private Usuario getUsuario(ResultSet rs) throws SQLException {
-		Usuario usuario = new Usuario(rs.getLong("idUsuario"));
+		Usuario usuario = new Usuario(rs.getLong("idUsuario"), rs.getString("Nome"), rs.getString("email"), rs.getString("senha"));
 		return usuario;
 
 	}

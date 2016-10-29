@@ -23,10 +23,10 @@ public class AvaliacaoJDBC implements AvaliacaoDAO {
 		String insert = "insert into avaliacao (Nota_Atendimento,Nota_Comida,Nota_aspecto,Nota_pagamento,Avaliacao_Descritiva,Nota_Geral) values(?,?,?,?,?,?)";
 		try {
 			PreparedStatement ps = conexao.get().prepareStatement(insert, Statement.RETURN_GENERATED_KEYS);
-			ps.setInt(1, objeto.getNotaAtendimento());
-			ps.setInt(2, objeto.getNotaComida());
-			ps.setInt(3, objeto.getNotaAspecto());
-			ps.setInt(4, objeto.getNotaPagamento());
+			ps.setString(1, objeto.getNotaAtendimento());
+			ps.setString(2, objeto.getNotaComida());
+			ps.setString(3, objeto.getNotaAspecto());
+			ps.setString(4, objeto.getNotaPagamento());
 			ps.setString(5, objeto.getAvaliacaoDescritiva());
 			ps.setInt(6, objeto.getNotaGeral());
 			ps.executeUpdate();
@@ -44,10 +44,10 @@ public class AvaliacaoJDBC implements AvaliacaoDAO {
 		String update = "update avaliacao set Nota_Atendimento=?,Nota_Comida=?,Nota_aspecto=?,Nota_pagamento=?,Avaliacao_Descritiva=?,Nota_Geral=? where idAvaliacao=?";
 		try {
 			PreparedStatement ps = conexao.get().prepareStatement(update);
-			ps.setInt(1, objeto.getNotaAtendimento());
-			ps.setInt(2, objeto.getNotaComida());
-			ps.setInt(3, objeto.getNotaAspecto());
-			ps.setInt(4, objeto.getNotaPagamento());
+			ps.setString(1, objeto.getNotaAtendimento());
+			ps.setString(2, objeto.getNotaComida());
+			ps.setString(3, objeto.getNotaAspecto());
+			ps.setString(4, objeto.getNotaPagamento());
 			ps.setString(5, objeto.getAvaliacaoDescritiva());
 			ps.setInt(6, objeto.getNotaGeral());
 			ps.setLong(7, objeto.getCodigo());
@@ -115,8 +115,8 @@ public class AvaliacaoJDBC implements AvaliacaoDAO {
 	}
 
 	private Avaliacao getAvaliacao(ResultSet rs) throws SQLException {
-		Avaliacao avaliacao = new Avaliacao(rs.getLong("idAvaliacao"), rs.getInt("Nota_Atendimento"),
-				rs.getInt("Nota_Comida"), rs.getInt("Nota_aspecto"), rs.getInt("Nota_pagamento"),
+		Avaliacao avaliacao = new Avaliacao(rs.getLong("idAvaliacao"), rs.getString("Nota_Atendimento"),
+				rs.getString("Nota_Comida"), rs.getString("Nota_aspecto"), rs.getString("Nota_pagamento"),
 				rs.getString("Avaliacao_Descritiva"), rs.getInt("Nota_Geral"));
 		return avaliacao;
 	}

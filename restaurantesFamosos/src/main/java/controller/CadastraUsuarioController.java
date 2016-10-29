@@ -2,6 +2,7 @@ package controller;
 
 import java.io.IOException;
 
+import dao.UsuarioDAO;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -39,6 +40,8 @@ public class CadastraUsuarioController {
 
     @FXML
     private TextField tfNome;
+    
+    private UsuarioDAO usuarioDAO;
 
     @FXML
     void Voltar(ActionEvent event) {
@@ -55,19 +58,24 @@ public class CadastraUsuarioController {
 	private Usuario novoUsuario() {
 		Usuario usuario = new Usuario();
 		usuario.setNome(tfNome.getText());
-		if (tfConfirmaEmail.getText() == tfEmail.getText()) {
+		
+		String email =  tfEmail.getText();
+		String confirmaEmail = tfConfirmaEmail.getText();
+		if (email != confirmaEmail) {
 			usuario.setEmail(tfEmail.getText());
 		}else {
 			Alert alert = new Alert(AlertType.ERROR, "Atenção!! Verifique se o email está correto", ButtonType.CLOSE);
 			alert.show();
 		}
-		if(tfConfirmaSenha.getText() == tfSenha.getText()){
+		String senha = tfConfirmaSenha.getText();
+		String confirmaSenha = tfSenha.getText();
+		if(senha != confirmaSenha){
 			usuario.setSenha(tfSenha.getText());	
 		}else {
 			Alert alert = new Alert(AlertType.ERROR, "Atenção! As senhas não são iguais", ButtonType.CLOSE);
 			alert.show();
 		}
-		
+		usuarioDAO.salvar(usuario);
 		return usuario;
 	}
 	

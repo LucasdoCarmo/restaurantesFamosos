@@ -15,4 +15,9 @@ public class Respostas implements Entidade {
 	public Respostas(Long codigo) {
 		this.codigo = codigo;
 	}
+
+	public String getText() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

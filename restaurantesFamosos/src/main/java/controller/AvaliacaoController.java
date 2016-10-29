@@ -1,17 +1,28 @@
 package controller;
 
+import java.io.IOException;
+
 import dao.AvaliacaoDAO;
 import factory.DAOFactory;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.BorderPane;
 import model.Avaliacao;
 
 public class AvaliacaoController {
+
+	@FXML
+	private BorderPane panelSecundario;
 
 	@FXML
 	private TextField tfNomeRestaurante;
@@ -86,6 +97,9 @@ public class AvaliacaoController {
 	private ToggleGroup AparenciaInterna;
 
 	@FXML
+	private RadioButton rbNota1Aspectos;
+
+	@FXML
 	private ToggleGroup NotaAspectos;
 
 	@FXML
@@ -93,6 +107,9 @@ public class AvaliacaoController {
 
 	@FXML
 	private ToggleGroup AparenciaExterna;
+
+	@FXML
+	private RadioButton rbNota3Aspectos;
 
 	@FXML
 	private RadioButton rbOrganizadoeRustico;
@@ -108,6 +125,15 @@ public class AvaliacaoController {
 
 	@FXML
 	private RadioButton rbDiscreta;
+
+	@FXML
+	private RadioButton rbNota4Aspectos;
+
+	@FXML
+	private RadioButton rbNota5Aspectos;
+
+	@FXML
+	private RadioButton rbNota2Aspectos;
 
 	@FXML
 	private RadioButton rbRuim;
@@ -128,6 +154,9 @@ public class AvaliacaoController {
 	private ToggleGroup BebidasAlcoolicas;
 
 	@FXML
+	private RadioButton rbNota1Cardapio;
+
+	@FXML
 	private ToggleGroup NotaCardapio;
 
 	@FXML
@@ -135,6 +164,9 @@ public class AvaliacaoController {
 
 	@FXML
 	private ToggleGroup Variedade;
+
+	@FXML
+	private RadioButton rbNota3Cardapio;
 
 	@FXML
 	private RadioButton rbNenhuma;
@@ -149,16 +181,37 @@ public class AvaliacaoController {
 	private RadioButton rbGrandeVariedade;
 
 	@FXML
+	private RadioButton rbNota4Cardapio;
+
+	@FXML
 	private RadioButton rbAlgumasAprimoradas;
 
 	@FXML
+	private RadioButton rbNota5Cardapio;
+
+	@FXML
 	private RadioButton rbRefrigerantes;
+
+	@FXML
+	private RadioButton rbNota2Cardapio;
+
+	@FXML
+	private RadioButton rbNota4Pagamento;
 
 	@FXML
 	private ToggleGroup Pagamento;
 
 	@FXML
 	private ToggleGroup QualidadeValorPago;
+
+	@FXML
+	private RadioButton rbNota1Pagamento;
+
+	@FXML
+	private RadioButton rbNota2Pagamento;
+
+	@FXML
+	private RadioButton rbNota5Pagamento;
 
 	@FXML
 	private RadioButton rbCaro;
@@ -179,6 +232,9 @@ public class AvaliacaoController {
 	private RadioButton rbBom;
 
 	@FXML
+	private RadioButton rbNota3Pagamento;
+
+	@FXML
 	private RadioButton rbBarato;
 
 	@FXML
@@ -193,13 +249,8 @@ public class AvaliacaoController {
 	private AvaliacaoDAO avaliacaoDAO;
 
 	@FXML
-	void Salvar(ActionEvent event) {
-
-	}
-
-	@FXML
 	void Voltar(ActionEvent event) {
-
+		AbreTela("TelaVazia.fxml");
 	}
 
 	public AvaliacaoController() {
@@ -208,11 +259,20 @@ public class AvaliacaoController {
 
 	}
 
-	void onSalvar(ActionEvent event) {
+	@FXML
+	void Salvar(ActionEvent event) {
 		Avaliacao avaliacao = criaAvaliacao();
+		avaliacao.setNotaAtendimento(radioAtendimento());
+		avaliacao.setNotaAspecto(radioAspecto());
+		avaliacao.setNotaComida(radioCardapio());
+		avaliacao.setNotaPagamento(radioPagamento());
+		avaliacao.setNotaGeral(notaGeral());
+		avaliacao.setAvaliacaoDescritiva(taDescricao.getText());
 		avaliacaoDAO.salvar(avaliacao);
-		taDescricao.setText(avaliacao.getCodigo().toString());
+
+		AbreTela("CadastraVisita.fxml");
 	}
+	/* _____________________________________________________________________________________________________________________________________ */
 
 	private Avaliacao criaAvaliacao() {
 		String string = taDescricao.getText();
@@ -222,4 +282,109 @@ public class AvaliacaoController {
 
 	}
 
+	/* _____________________________________________________________________________________________________________________________________ */
+	public void AbreTela(String tela) {
+		FXMLLoader loader = new FXMLLoader();
+		loader.setLocation(getClass().getResource("/telas/" + tela));
+		try {
+			AnchorPane telaView = (AnchorPane) loader.load();
+			panelSecundario.setCenter(telaView);
+		} catch (IOException e1) {
+			e1.printStackTrace();
+		}
+	}
+
+	/* _____________________________________________________________________________________________________________________________________ */
+
+	public String radioAtendimento() {
+		String radio = null;
+		if (rbNota1.isSelected()) {
+			radio = rbNota1.getText();
+		} else if (rbNota2.isSelected()) {
+			radio = rbNota2.getText();
+		} else if (rbNota3.isSelected()) {
+			radio = rbNota3.getText();
+		} else if (rbNota4.isSelected()) {
+			radio = rbNota4.getText();
+		} else if (rbNota5.isSelected()) {
+			radio = rbNota5.getText();
+		} else {
+			Alert alert = new Alert(AlertType.WARNING, "Atenção! Você deve selecionar uma nota para o atendimento.",
+					ButtonType.CLOSE);
+			alert.show();
+		}
+		return radio;
+	}
+
+	/*-------------------------------------------------------------------------------------------------------------------------------------*/
+	public String radioAspecto() {
+		String radio = null;
+		if (rbNota1Aspectos.isSelected()) {
+			radio = rbNota1Aspectos.getText();
+		} else if (rbNota2Aspectos.isSelected()) {
+			radio = rbNota2Aspectos.getText();
+		} else if (rbNota3Aspectos.isSelected()) {
+			radio = rbNota3Aspectos.getText();
+		} else if (rbNota4Aspectos.isSelected()) {
+			radio = rbNota4Aspectos.getText();
+		} else if (rbNota5Aspectos.isSelected()) {
+			radio = rbNota5Aspectos.getText();
+		} else {
+			Alert alert = new Alert(AlertType.WARNING, "Atenção! Você deve selecionar uma nota para o aspecto.",
+					ButtonType.CLOSE);
+			alert.show();
+		}
+		return radio;
+	}
+
+	/*-------------------------------------------------------------------------------------------------------------------------------------*/
+	public String radioCardapio() {
+		String radio = null;
+		if (rbNota1Cardapio.isSelected()) {
+			radio = rbNota1Cardapio.getText();
+		} else if (rbNota2Cardapio.isSelected()) {
+			radio = rbNota2Cardapio.getText();
+		} else if (rbNota3Cardapio.isSelected()) {
+			radio = rbNota3Cardapio.getText();
+		} else if (rbNota4Cardapio.isSelected()) {
+			radio = rbNota4Cardapio.getText();
+		} else if (rbNota5Cardapio.isSelected()) {
+			radio = rbNota5Cardapio.getText();
+		} else {
+			Alert alert = new Alert(AlertType.WARNING, "Atenção! Você deve selecionar uma nota para o cardapio.",
+					ButtonType.CLOSE);
+			alert.show();
+		}
+		return radio;
+	}
+
+	/*-------------------------------------------------------------------------------------------------------------------------------------*/
+	public String radioPagamento() {
+		String radio = null;
+		if (rbNota1Pagamento.isSelected()) {
+			radio = rbNota1Pagamento.getText();
+		} else if (rbNota2Pagamento.isSelected()) {
+			radio = rbNota2Pagamento.getText();
+		} else if (rbNota3Pagamento.isSelected()) {
+			radio = rbNota3Pagamento.getText();
+		} else if (rbNota4Pagamento.isSelected()) {
+			radio = rbNota4Pagamento.getText();
+		} else if (rbNota5Pagamento.isSelected()) {
+			radio = rbNota5Pagamento.getText();
+		} else {
+			Alert alert = new Alert(AlertType.WARNING, "Atenção! Você deve selecionar uma nota para o pagamento.",
+					ButtonType.CLOSE);
+			alert.show();
+		}
+		return radio;
+	}
+
+	/*-------------------------------------------------------------------------------------------------------------------------------------*/
+	public Integer notaGeral(){
+		Integer nota =0;
+		Integer soma =0;
+		soma = Integer.valueOf(radioAspecto()) + Integer.valueOf(radioAtendimento()) + Integer.valueOf(radioCardapio()) + Integer.valueOf(radioPagamento());
+		nota = soma /4;
+		return nota;
+	}
 }

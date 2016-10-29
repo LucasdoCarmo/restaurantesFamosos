@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1280.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.60" fx:controller="controller.CadastraVisitaController">
+   <children>
+      <BorderPane fx:id="panelSecundario" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <center>
+            <Pane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+               <children>
+                  <Label layoutX="474.0" layoutY="447.0" text="Data de Visita">
+                     <font>
+                        <Font size="23.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="474.0" layoutY="544.0" text="Valor Gasto">
+                     <font>
+                        <Font size="23.0" />
+                     </font>
+                  </Label>
+                  <DatePicker fx:id="dpVisita" layoutX="474.0" layoutY="493.0" prefHeight="41.0" prefWidth="210.0" promptText="01/01/2016" />
+                  <TextField fx:id="tfValor" layoutX="474.0" layoutY="578.0" prefHeight="41.0" prefWidth="189.0" promptText="R$:" />
+                  <Label layoutX="474.0" layoutY="216.0" text="Nome restaurante">
+                     <font>
+                        <Font size="23.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="tfNomeRestaurante" layoutX="474.0" layoutY="264.0" prefHeight="41.0" prefWidth="268.0" />
+                  <Label layoutX="474.0" layoutY="339.0" text="Seu nome de usuário">
+                     <font>
+                        <Font size="23.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="tfUsuario" layoutX="474.0" layoutY="390.0" prefHeight="41.0" prefWidth="268.0" />
+                  <Button fx:id="btnFinalizar" layoutX="1013.0" layoutY="646.0" mnemonicParsing="false" onAction="#Salvar" prefHeight="64.0" prefWidth="137.0" text="Finalizar" />
+                  <Label layoutX="381.0" layoutY="114.0" prefHeight="64.0" prefWidth="486.0" text="Por fim confirme alguns dados para finalizar a avaliação">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </Label>
+               </children>
+            </Pane>
+         </center>
+      </BorderPane>
+   </children>
+</AnchorPane>
