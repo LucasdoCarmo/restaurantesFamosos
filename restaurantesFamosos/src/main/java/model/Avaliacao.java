@@ -10,12 +10,12 @@ import lombok.NoArgsConstructor;
 public class Avaliacao implements Entidade {
 	
 	private Long codigo;
-	private Integer notaAtendimento;
-	private Integer notaComida;
-	private Integer notaAspecto;
-	private Integer notaPagamento;
+	private String notaAtendimento;
+	private String notaComida;
+	private String notaAspecto;
+	private String notaPagamento;
 	private String avaliacaoDescritiva;
-	private Integer notaGeral;
+	private String notaGeral;
 
 	public Avaliacao(Long codigo) {
 		this.codigo = codigo;

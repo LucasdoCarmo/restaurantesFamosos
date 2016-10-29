@@ -97,6 +97,9 @@ public class AvaliacaoController {
 	private ToggleGroup AparenciaInterna;
 
 	@FXML
+	private RadioButton rbNota1Aspectos;
+
+	@FXML
 	private ToggleGroup NotaAspectos;
 
 	@FXML
@@ -104,6 +107,9 @@ public class AvaliacaoController {
 
 	@FXML
 	private ToggleGroup AparenciaExterna;
+
+	@FXML
+	private RadioButton rbNota3Aspectos;
 
 	@FXML
 	private RadioButton rbOrganizadoeRustico;
@@ -119,6 +125,15 @@ public class AvaliacaoController {
 
 	@FXML
 	private RadioButton rbDiscreta;
+
+	@FXML
+	private RadioButton rbNota4Aspectos;
+
+	@FXML
+	private RadioButton rbNota5Aspectos;
+
+	@FXML
+	private RadioButton rbNota2Aspectos;
 
 	@FXML
 	private RadioButton rbRuim;
@@ -139,6 +154,9 @@ public class AvaliacaoController {
 	private ToggleGroup BebidasAlcoolicas;
 
 	@FXML
+	private RadioButton rbNota1Cardapio;
+
+	@FXML
 	private ToggleGroup NotaCardapio;
 
 	@FXML
@@ -146,6 +164,9 @@ public class AvaliacaoController {
 
 	@FXML
 	private ToggleGroup Variedade;
+
+	@FXML
+	private RadioButton rbNota3Cardapio;
 
 	@FXML
 	private RadioButton rbNenhuma;
@@ -160,16 +181,37 @@ public class AvaliacaoController {
 	private RadioButton rbGrandeVariedade;
 
 	@FXML
+	private RadioButton rbNota4Cardapio;
+
+	@FXML
 	private RadioButton rbAlgumasAprimoradas;
 
 	@FXML
+	private RadioButton rbNota5Cardapio;
+
+	@FXML
 	private RadioButton rbRefrigerantes;
+
+	@FXML
+	private RadioButton rbNota2Cardapio;
+
+	@FXML
+	private RadioButton rbNota4Pagamento;
 
 	@FXML
 	private ToggleGroup Pagamento;
 
 	@FXML
 	private ToggleGroup QualidadeValorPago;
+
+	@FXML
+	private RadioButton rbNota1Pagamento;
+
+	@FXML
+	private RadioButton rbNota2Pagamento;
+
+	@FXML
+	private RadioButton rbNota5Pagamento;
 
 	@FXML
 	private RadioButton rbCaro;
@@ -188,6 +230,9 @@ public class AvaliacaoController {
 
 	@FXML
 	private RadioButton rbBom;
+
+	@FXML
+	private RadioButton rbNota3Pagamento;
 
 	@FXML
 	private RadioButton rbBarato;
@@ -217,11 +262,12 @@ public class AvaliacaoController {
 	@FXML
 	void Salvar(ActionEvent event) {
 		Avaliacao avaliacao = criaAvaliacao();
+		avaliacao.setNotaAtendimento(radioAtendimento());
+		avaliacao.setNotaAspecto(radioAspecto());
 		avaliacao.setAvaliacaoDescritiva(taDescricao.getText());
 		avaliacaoDAO.salvar(avaliacao);
-		Alert alert = new Alert(AlertType.CONFIRMATION, "Avaliação efetuada com sucesso!!", ButtonType.CLOSE);
-		alert.show();
-		AbreTela("TelaVazia.fxml");
+
+		AbreTela("CadastraVisita.fxml");
 	}
 	/* _____________________________________________________________________________________________________________________________________ */
 
@@ -245,4 +291,88 @@ public class AvaliacaoController {
 		}
 	}
 
+	/* _____________________________________________________________________________________________________________________________________ */
+
+	public String radioAtendimento() {
+		String radio = null;
+		if (rbNota1.isSelected()) {
+			radio = rbNota1.getText();
+		} else if (rbNota2.isSelected()) {
+			radio = rbNota2.getText();
+		} else if (rbNota3.isSelected()) {
+			radio = rbNota3.getText();
+		} else if (rbNota4.isSelected()) {
+			radio = rbNota4.getText();
+		} else if (rbNota5.isSelected()) {
+			radio = rbNota5.getText();
+		} else {
+			Alert alert = new Alert(AlertType.WARNING, "Atenção! Você deve selecionar uma nota para o atendimento.",
+					ButtonType.CLOSE);
+			alert.show();
+		}
+		return radio;
+	}
+
+	/*-------------------------------------------------------------------------------------------------------------------------------------*/
+	public String radioAspecto() {
+		String radio = null;
+		if (rbNota1Aspectos.isSelected()) {
+			radio = rbNota1Aspectos.getText();
+		} else if (rbNota2Aspectos.isSelected()) {
+			radio = rbNota2Aspectos.getText();
+		} else if (rbNota3Aspectos.isSelected()) {
+			radio = rbNota3Aspectos.getText();
+		} else if (rbNota4Aspectos.isSelected()) {
+			radio = rbNota4Aspectos.getText();
+		} else if (rbNota5Aspectos.isSelected()) {
+			radio = rbNota5Aspectos.getText();
+		} else {
+			Alert alert = new Alert(AlertType.WARNING, "Atenção! Você deve selecionar uma nota para o aspecto.",
+					ButtonType.CLOSE);
+			alert.show();
+		}
+		return radio;
+	}
+
+	/*-------------------------------------------------------------------------------------------------------------------------------------*/
+	public String radioCardapio() {
+		String radio = null;
+		if (rbNota1Cardapio.isSelected()) {
+			radio = rbNota1Cardapio.getText();
+		} else if (rbNota2Cardapio.isSelected()) {
+			radio = rbNota2Cardapio.getText();
+		} else if (rbNota3Cardapio.isSelected()) {
+			radio = rbNota3Cardapio.getText();
+		} else if (rbNota4Cardapio.isSelected()) {
+			radio = rbNota4Cardapio.getText();
+		} else if (rbNota5Cardapio.isSelected()) {
+			radio = rbNota5Cardapio.getText();
+		} else {
+			Alert alert = new Alert(AlertType.WARNING, "Atenção! Você deve selecionar uma nota para o cardapio.",
+					ButtonType.CLOSE);
+			alert.show();
+		}
+		return radio;
+	}
+
+	/*-------------------------------------------------------------------------------------------------------------------------------------*/
+	public String radioPagamento() {
+		String radio = null;
+		if (rbNota1Pagamento.isSelected()) {
+			radio = rbNota1Pagamento.getText();
+		} else if (rbNota2Pagamento.isSelected()) {
+			radio = rbNota2Pagamento.getText();
+		} else if (rbNota3Pagamento.isSelected()) {
+			radio = rbNota3Pagamento.getText();
+		} else if (rbNota4Pagamento.isSelected()) {
+			radio = rbNota4Pagamento.getText();
+		} else if (rbNota5Pagamento.isSelected()) {
+			radio = rbNota5Pagamento.getText();
+		} else {
+			Alert alert = new Alert(AlertType.WARNING, "Atenção! Você deve selecionar uma nota para o pagamento.",
+					ButtonType.CLOSE);
+			alert.show();
+		}
+		return radio;
+	}
 }

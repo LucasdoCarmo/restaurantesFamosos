@@ -19,4 +19,16 @@ public class Visita implements Entidade {
 	public Visita(Long codigo) {
 		this.codigo = codigo;
 	}
+
+	public void setUsuario(String nome) {
+		usuario.setNome(nome);
+	}
+
+	public void setRestaurante(String nome) {
+		restaurante.setNome(nome);
+	}
+
+	public void setAvaliacao(Long codigo) {
+		avaliacao.setCodigo(codigo);
+	}
 }
