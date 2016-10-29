@@ -11,5 +11,7 @@ public interface RestauranteDAO extends CrudDAO<Restaurante>{
 	List<Restaurante> getPorNome(String nome);
 	List<Restaurante> getPorCidade(Cidade cidade);
 	List<Restaurante> getPorTipo(String tipo);
+	List<Restaurante> getPorTema (String tema);
 	ObservableList<Restaurante> todosTabela();
+	
 }

@@ -114,7 +114,7 @@ public class BuscaAvancadaController {
 	void Buscar(ActionEvent event) {
 		// Filtra por qual busca o usuário vai escolher
 		if (!tfNome.getText().isEmpty()) {
-			if (tfNome.getText().length() > 3) {
+			if (tfNome.getText().length() > 0) {
 				List<Restaurante> restaurantes = restauranteDAO.getPorNome(tfNome.getText());
 				tbResultado.setItems(FXCollections.observableArrayList(restaurantes));
 			}
