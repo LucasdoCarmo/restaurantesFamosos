@@ -2,13 +2,10 @@ package TestDAO;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
-
 import org.junit.Test;
-
 import dao.EstadoDAO;
 import factory.DAOFactory;
 import model.Estado;
-import model.Pais;
 
 public class EstadoDAOtest {
 
@@ -16,7 +13,6 @@ public class EstadoDAOtest {
 	public void deveInserirEstadoNova() {
 		Estado estado = new Estado();
 		estado.setNome("Amazonas");
-		estado.setPais(new Pais(1L));
 		EstadoDAO EstadoDAO = DAOFactory.get().estadoDAO();
 		EstadoDAO.inserir(estado);
 		assertNotNull(estado.getCodigo());
@@ -27,7 +23,6 @@ public class EstadoDAOtest {
 	public void deveAlterarEstado() {
 		Estado Estado = new Estado();
 		Estado.setNome("PR ");
-		Estado.setPais(new Pais(1L));
 		EstadoDAO EstadoDAO = DAOFactory.get().estadoDAO();
 		EstadoDAO.inserir(Estado);
 		Estado.setNome("PR alterado");

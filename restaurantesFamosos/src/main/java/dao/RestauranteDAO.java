@@ -8,10 +8,8 @@ import model.Restaurante;
 
 public interface RestauranteDAO extends CrudDAO<Restaurante>{
 
-	List<Restaurante> getPorTipo(Restaurante restaurante);
-	List<Restaurante> getPorTema(String tema);
 	List<Restaurante> getPorNome(String nome);
 	List<Restaurante> getPorCidade(Cidade cidade);
+	List<Restaurante> getPorTipo(String tipo);
 	ObservableList<Restaurante> todosTabela();
-	
 }

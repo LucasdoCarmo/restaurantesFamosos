@@ -3,7 +3,6 @@ package controller;
 import java.io.IOException;
 import dao.CidadeDAO;
 import dao.EstadoDAO;
-import dao.PaisDAO;
 import dao.RestauranteDAO;
 import factory.DAOFactory;
 import javafx.event.ActionEvent;
@@ -19,13 +18,12 @@ import javafx.scene.layout.BorderPane;
 import javafx.util.StringConverter;
 import model.Cidade;
 import model.Estado;
-import model.Pais;
 import model.Restaurante;
 
 public class CadastraRestauranteController {
 
 	@FXML
-	private ComboBox<Pais> cbPais;
+	private BorderPane panelSecundario;
 
 	@FXML
 	private ComboBox<Cidade> cbCidade;
@@ -37,31 +35,28 @@ public class CadastraRestauranteController {
 	private Button btnAvaliacao;
 
 	@FXML
-	private TextField tfCep;
+	private Button btnVoltar;
 
 	@FXML
 	private DatePicker dpVisita;
 
 	@FXML
-	private TextField tfNumero;
+	private TextField tfCep;
 
 	@FXML
-	private BorderPane panelSecundario;
+	private TextField tfNumero;
 
 	@FXML
 	private TextField tfTelefone;
 
 	@FXML
-	private Button btnVoltar;
-
-	@FXML
-	private ComboBox<Restaurante> cbTema;
+	private TextField tfTema;
 
 	@FXML
 	private TextField tfValor;
 
 	@FXML
-	private ComboBox<Restaurante> cbTipoEstabelecimento;
+	private TextField tfTipoEstabelecimento;
 
 	@FXML
 	private TextField tfRua;
@@ -69,8 +64,6 @@ public class CadastraRestauranteController {
 	@FXML
 	private TextField tfNome;
 	/*****************************************************************************************************************************************/
-
-	private PaisDAO paisDAO;
 	private EstadoDAO estadoDAO;
 	private CidadeDAO cidadeDAO;
 	private RestauranteDAO restauranteDAO;
@@ -81,14 +74,12 @@ public class CadastraRestauranteController {
 		restauranteDAO = DAOFactory.get().restauranteDAO();
 		cidadeDAO = DAOFactory.get().cidadeDAO();
 		estadoDAO = DAOFactory.get().estadoDAO();
-		paisDAO = DAOFactory.get().paisDAO();
 	}
 
 	/*****************************************************************************************************************************************/
 
 	@FXML
 	public void initialize() {
-		montaComboPais();
 		montaComboEstado();
 		montaComboCidade();
 	}
@@ -108,7 +99,7 @@ public class CadastraRestauranteController {
 
 		AbreTela("Avaliacao.fxml");
 	}
-	/*_____________________________________________________________________________________________________________________________________*/
+	/* _____________________________________________________________________________________________________________________________________ */
 
 	public void AbreTela(String tela) {
 		FXMLLoader loader = new FXMLLoader();
@@ -133,40 +124,7 @@ public class CadastraRestauranteController {
 	// }
 
 	/*-------------------------------------------------------------------------------------------------------------------------------------*/
-	private void montaComboPais() {
-		cbPais.getItems().addAll(paisDAO.todos());
-
-		cbPais.setCellFactory((comboBox) -> {
-			return new ListCell<Pais>() {
-				@Override
-				protected void updateItem(Pais item, boolean empty) {
-					super.updateItem(item, empty);
-					if (item == null || empty) {
-						setText(null);
-					} else {
-						setText(item.getNome());
-					}
-				}
-			};
-		});
-		cbPais.setConverter(new StringConverter<Pais>() {
-			@Override
-			public String toString(Pais pais) {
-				if (pais == null) {
-					return null;
-				} else {
-					return pais.getCodigo() + " - " + pais.getNome();
-				}
-			}
-
-			@Override
-			public Pais fromString(String personString) {
-
-				return null;
-			}
-		});
-	}
-
+	
 	/*-------------------------------------------------------------------------------------------------------------------------------------*/
 	private void montaComboEstado() {
 		cbEstado.getItems().addAll(estadoDAO.todos());
@@ -236,18 +194,18 @@ public class CadastraRestauranteController {
 			}
 		});
 	}
-	/*_____________________________________________________________________________________________________________________________________*/
+
+	/* _____________________________________________________________________________________________________________________________________ */
 
 	private Restaurante criaRestaurante() {
 		Restaurante restaurante = new Restaurante();
 		restaurante.setNome(tfNome.getText());
 		restaurante.setRua(tfRua.getText());
 		restaurante.setNumero(tfNumero.getText());
-		restaurante.setPais(cbPais.getValue());
 		restaurante.setEstado(cbEstado.getValue());
 		restaurante.setCidade(cbCidade.getValue());
-		restaurante.setTema(cbTema.getValue().toString());
-		restaurante.setTipo(cbTipoEstabelecimento.getValue().toString());
+		restaurante.setTema(tfTema.getText());
+		restaurante.setTipo(tfTipoEstabelecimento.getText());
 		restaurante.setData(dpVisita.getValue().toString());
 		restaurante.setTelefone(tfTelefone.getText());
 		restaurante.setValorGasto(Double.valueOf(tfValor.getText()));

@@ -19,13 +19,10 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import model.Cidade;
 import model.Estado;
-import model.Pais;
 import model.Restaurante;
 
 public class BuscaAvancadaController {
 
-	@FXML
-	private ComboBox<Pais> cbPais;
 
 	@FXML
 	private ComboBox<Cidade> cbCidade;
@@ -55,7 +52,7 @@ public class BuscaAvancadaController {
 	private Button btnVoltar;
 
 	@FXML
-	private ComboBox<Restaurante> cbTipoEstabelecimento;
+	private TextField tfTipoEstabelecimento;
 
 	@FXML
 	private TableView<Restaurante> tbResultado;
@@ -63,36 +60,34 @@ public class BuscaAvancadaController {
 	@FXML
 	private Button btnBuscar;
 
-    @FXML
-    private TableColumn<Restaurante, String> tcNome;
+	@FXML
+	private TableColumn<Restaurante, String> tcNome;
 
-    @FXML
-    private TableColumn<Restaurante, String> tcTelefone;
+	@FXML
+	private TableColumn<Restaurante, String> tcTelefone;
 
-    @FXML
-    private TableColumn<Restaurante, String> tcTipo;
+	@FXML
+	private TableColumn<Restaurante, String> tcTipo;
 
-    @FXML
-    private TableColumn<Restaurante, String> tcRua;
+	@FXML
+	private TableColumn<Restaurante, String> tcRua;
 
-    @FXML
-    private TableColumn<Restaurante, String> tcNumero;
+	@FXML
+	private TableColumn<Restaurante, String> tcNumero;
 
-    @FXML
-    private TableColumn<Restaurante, String> tcTema;
+	@FXML
+	private TableColumn<Restaurante, String> tcTema;
 
-    @FXML
-    private TableColumn<Restaurante, String> tcCidade;
-	
-	
-	
+	@FXML
+	private TableColumn<Restaurante, String> tcCidade;
+
 	private RestauranteDAO restauranteDAO;
-	
+
 	private ObservableList<Restaurante> restauranteList = FXCollections.observableArrayList();
 
 	@FXML
 	private void initialize() {
-		//Monta a tabela
+		// Monta a tabela
 		tcNome.setCellValueFactory(new PropertyValueFactory<>("nome"));
 		tcNumero.setCellValueFactory(new PropertyValueFactory<>("nomeUF"));
 		tcRua.setCellValueFactory(new PropertyValueFactory<>("rua"));
@@ -101,11 +96,10 @@ public class BuscaAvancadaController {
 		tcTipo.setCellValueFactory(new PropertyValueFactory<>("tipo"));
 		tbResultado.setItems(restauranteList);
 	}
-	
-	
+
 	@FXML
 	void MaiorPreco(ActionEvent event) {
-		//implementar lógica para filtrar por menor e por maior preco
+		// implementar lógica para filtrar por menor e por maior preco
 		ObservableList<Restaurante> restaurantes = restauranteDAO.todosTabela();
 		tbResultado.setItems(FXCollections.observableArrayList(restaurantes));
 	}
@@ -118,7 +112,7 @@ public class BuscaAvancadaController {
 
 	@FXML
 	void Buscar(ActionEvent event) {
-		//Filtra por qual busca o usuário vai escolher
+		// Filtra por qual busca o usuário vai escolher
 		if (!tfNome.getText().isEmpty()) {
 			if (tfNome.getText().length() > 3) {
 				List<Restaurante> restaurantes = restauranteDAO.getPorNome(tfNome.getText());
@@ -127,18 +121,10 @@ public class BuscaAvancadaController {
 			if (tfNome.getText().isEmpty()) {
 				atualizaTabela();
 			}
-		} else if (!cbTipoEstabelecimento.getSelectionModel().isEmpty()) {
-			List<Restaurante> restaurantes = restauranteDAO.getPorTipo(cbTipoEstabelecimento.getValue());
+		} else if (!tfTipoEstabelecimento.getText().isEmpty()) {
+			List<Restaurante> restaurantes = restauranteDAO.getPorTipo(tfTipoEstabelecimento.getText());
 			tbResultado.setItems(FXCollections.observableArrayList(restaurantes));
 			atualizaTabela();
-		} else if (!cbCidade.getSelectionModel().isEmpty()) {
-			if (!cbPais.getSelectionModel().isEmpty()) {
-				if (!cbEstado.getSelectionModel().isEmpty()) {
-					List<Restaurante> restaurantes = restauranteDAO.getPorCidade(cbCidade.getValue());
-					tbResultado.setItems(FXCollections.observableArrayList(restaurantes));
-					atualizaTabela();
-				}
-			}
 		}
 
 	}
@@ -163,7 +149,7 @@ public class BuscaAvancadaController {
 		tbResultado.setItems(FXCollections.observableArrayList(restaurantes));
 	}
 
-	//metodo que abre próxima tela
+	// metodo que abre próxima tela
 	public void AbreTela(String tela) {
 		FXMLLoader loader = new FXMLLoader();
 		loader.setLocation(getClass().getResource("/telas/" + tela));

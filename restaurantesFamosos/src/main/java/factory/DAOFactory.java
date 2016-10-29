@@ -7,8 +7,6 @@ import dao.CidadeDAO;
 import dao.CidadeJDBC;
 import dao.EstadoDAO;
 import dao.EstadoJDBC;
-import dao.PaisDAO;
-import dao.PaisJDBC;
 import dao.PerguntasDAO;
 import dao.PerguntasJDBC;
 import dao.RestauranteDAO;
@@ -21,8 +19,8 @@ public class DAOFactory {
 	private static DAOFactory factory;
 
 	/**
-	 * Pega a fabrica de DAO, instância única para todo mundo. Padrão Singleton
-	 * simples.
+	 * Pega a fabrica de DAO, instância única para todo mundo. Padrão
+	 * Singleton simples.
 	 * 
 	 * @return
 	 */
@@ -35,10 +33,6 @@ public class DAOFactory {
 
 	public PerguntasDAO perguntasDAO() {
 		return new PerguntasJDBC(new ConexaoMysqlProducao());
-	}
-
-	public PaisDAO paisDAO() {
-		return new PaisJDBC(new ConexaoMysqlProducao());
 	}
 
 	public EstadoDAO estadoDAO() {

@@ -20,7 +20,6 @@ public class Restaurante extends Visita implements Entidade ,RenderizaCombo {
 	private String numero;
 	private String tema;
 	private CEP cep;
-	private Pais pais;
 	private Estado estado;
 	private Cidade cidade;
 	
