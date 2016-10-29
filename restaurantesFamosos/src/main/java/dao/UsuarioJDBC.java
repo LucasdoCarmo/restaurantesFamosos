@@ -24,7 +24,7 @@ public class UsuarioJDBC implements UsuarioDAO {
 		try {
 			PreparedStatement ps = conexao.get().prepareStatement(insert, Statement.RETURN_GENERATED_KEYS);
 			ps.setString(1, objeto.getNome());
-			ps.setLong(2, objeto.getResposta().getCodigo());
+			ps.setLong(2, objeto.getPerguntas().getCodigo());
 			ps.setString(3, objeto.getEmail());
 			ps.setString(4, objeto.getSenha());
 
@@ -45,7 +45,7 @@ public class UsuarioJDBC implements UsuarioDAO {
 		try {
 			PreparedStatement ps = conexao.get().prepareStatement(update);
 			ps.setString(1, objeto.getNome());
-			ps.setLong(2, objeto.getResposta().getCodigo());
+			ps.setLong(2, objeto.getPerguntas().getCodigo());
 			ps.setString(3, objeto.getEmail());
 			ps.setString(4, objeto.getSenha());
 			ps.executeUpdate();
@@ -85,7 +85,7 @@ public class UsuarioJDBC implements UsuarioDAO {
 	}
 
 	public Usuario get(Long codigo) {
-		String sql = "select *from usuario where idUsuario =?";
+		String sql = "select * from usuario where idUsuario =?";
 		Usuario usuario = null;
 		try {
 			PreparedStatement ps = conexao.get().prepareStatement(sql);
