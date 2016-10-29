@@ -15,7 +15,7 @@ public class Avaliacao implements Entidade {
 	private String notaAspecto;
 	private String notaPagamento;
 	private String avaliacaoDescritiva;
-	private String notaGeral;
+	private Integer notaGeral;
 
 	public Avaliacao(Long codigo) {
 		this.codigo = codigo;

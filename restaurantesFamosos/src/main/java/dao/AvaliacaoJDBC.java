@@ -28,7 +28,7 @@ public class AvaliacaoJDBC implements AvaliacaoDAO {
 			ps.setString(3, objeto.getNotaAspecto());
 			ps.setString(4, objeto.getNotaPagamento());
 			ps.setString(5, objeto.getAvaliacaoDescritiva());
-			ps.setString(6, objeto.getNotaGeral());
+			ps.setInt(6, objeto.getNotaGeral());
 			ps.executeUpdate();
 			ResultSet rs = ps.getGeneratedKeys();
 			rs.next();
@@ -49,7 +49,7 @@ public class AvaliacaoJDBC implements AvaliacaoDAO {
 			ps.setString(3, objeto.getNotaAspecto());
 			ps.setString(4, objeto.getNotaPagamento());
 			ps.setString(5, objeto.getAvaliacaoDescritiva());
-			ps.setString(6, objeto.getNotaGeral());
+			ps.setInt(6, objeto.getNotaGeral());
 			ps.setLong(7, objeto.getCodigo());
 			ps.executeUpdate();
 		} catch (Exception e) {
@@ -117,7 +117,7 @@ public class AvaliacaoJDBC implements AvaliacaoDAO {
 	private Avaliacao getAvaliacao(ResultSet rs) throws SQLException {
 		Avaliacao avaliacao = new Avaliacao(rs.getLong("idAvaliacao"), rs.getString("Nota_Atendimento"),
 				rs.getString("Nota_Comida"), rs.getString("Nota_aspecto"), rs.getString("Nota_pagamento"),
-				rs.getString("Avaliacao_Descritiva"), rs.getString("Nota_Geral"));
+				rs.getString("Avaliacao_Descritiva"), rs.getInt("Nota_Geral"));
 		return avaliacao;
 	}
 	
