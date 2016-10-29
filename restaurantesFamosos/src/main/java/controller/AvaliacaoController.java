@@ -266,7 +266,7 @@ public class AvaliacaoController {
 		avaliacao.setNotaAspecto(Integer.valueOf(radioAspecto()));
 		avaliacao.setNotaComida(Integer.valueOf(radioCardapio()));
 		avaliacao.setNotaPagamento(Integer.valueOf(radioPagamento()));
-		avaliacao.setNotaGeral(notaGeral());
+		//avaliacao.setNotaGeral(notaGeral());
 		avaliacao.setAvaliacaoDescritiva(taDescricao.getText());
 		avaliacaoDAO.salvar(avaliacao);
 
@@ -380,11 +380,11 @@ public class AvaliacaoController {
 	}
 
 	/*-------------------------------------------------------------------------------------------------------------------------------------*/
-	public Integer notaGeral(){
-		Integer nota =0;
-		Integer soma =0;
-		soma = Integer.valueOf(radioAspecto()) + Integer.valueOf(radioAtendimento()) + Integer.valueOf(radioCardapio()) + Integer.valueOf(radioPagamento());
-		nota = soma /4;
-		return nota;
-	}
+	//public Integer notaGeral(){
+	//	Integer nota =0;
+	//	Integer soma =0;
+	//	soma = Integer.valueOf(radioAspecto()) + Integer.valueOf(radioAtendimento()) + Integer.valueOf(radioCardapio()) + Integer.valueOf(radioPagamento());
+	//	nota = soma /4;
+	//	return nota;
+	//}
 }
