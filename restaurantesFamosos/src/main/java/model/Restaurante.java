@@ -17,7 +17,6 @@ public class Restaurante implements Entidade ,RenderizaCombo {
 	private String rua;
 	private String numero;
 	private String tema;
-	private CEP cep;
 	private Estado estado;
 	private Cidade cidade;
 	

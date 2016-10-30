@@ -18,6 +18,7 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
+import model.Cidade;
 import model.Restaurante;
 
 public class BuscarController {
@@ -67,6 +68,15 @@ public class BuscarController {
 	@FXML
 	private TableColumn<Restaurante, String> tcTema;
 
+    @FXML
+    private TableColumn<Restaurante, String> tcRua;
+
+    @FXML
+    private TableColumn<Restaurante, String> tcNumero;
+
+    @FXML
+    private TableColumn<Cidade, String> tcCidade;
+
 	private RestauranteDAO restauranteDAO;
 
 	/* _____________________________________________________________________________________________________________________________________ */
@@ -79,31 +89,32 @@ public class BuscarController {
 	public void initialize() {
 		tcNome.setCellValueFactory(new PropertyValueFactory<>("Nome"));
 		tcTelefone.setCellValueFactory(new PropertyValueFactory<>("Telefone"));
+		tcTipo.setCellValueFactory(new PropertyValueFactory<>("Tipo_de_estabelicimento"));
+		tcRua.setCellValueFactory(new PropertyValueFactory<>("Rua"));
+		tcNumero.setCellValueFactory(new PropertyValueFactory<>("Numero"));
 		tcTema.setCellValueFactory(new PropertyValueFactory<>("Tema"));
-		tcTipo.setCellValueFactory(new PropertyValueFactory<>("Tipo_de_estabelecimento"));
+		tcCidade.setCellValueFactory(new PropertyValueFactory<>("Cidade"));
 	}
 
 	@FXML
 	void Buscar(ActionEvent event) {
 		if (!tfNome.getText().isEmpty()) {
 			BuscarPorNome(tfNome.getText());
-			atualizaTabela();
 		} else if (!tfTema.getText().isEmpty()) {
 			BuscarPorTema(tfTema.getText());
-			atualizaTabela();
 		} else if (!tfTipo.getText().isEmpty()) {
 			BuscarPorTipo(tfTipo.getText());
-			atualizaTabela();
 		} else {
 			Alert alert = new Alert(AlertType.ERROR, "Atenção!! Os dados não foram encontrados", ButtonType.CLOSE);
 			alert.show();
+			atualizaTabelaTodos();
 		}
 	}
 
 	@FXML
 	void Excluir(ActionEvent event) {
 		// restauranteDAO.excluir(tbResultado.getSelectionModel().getSelectedIndex());
-		atualizaTabela();
+		atualizaTabelaTodos();
 	}
 
 	@FXML
@@ -128,7 +139,7 @@ public class BuscarController {
 	
 	/* _____________________________________________________________________________________________________________________________________ */
 
-	private void atualizaTabela() {
+	private void atualizaTabelaTodos() {
 		Collection<Restaurante> restaurantes = restauranteDAO.todos();
 		tbResultado.setItems(FXCollections.observableArrayList(restaurantes));
 	}
@@ -153,7 +164,9 @@ public class BuscarController {
 			Collection<Restaurante> restaurantes = restauranteDAO.getPorNome(texto);
 			tbResultado.setItems(FXCollections.observableArrayList(restaurantes));
 		} else {
-			atualizaTabela();
+			Alert alert = new Alert(AlertType.INFORMATION,"Restaurante não encontrado! carregando todos os restaurantes.",ButtonType.CLOSE);
+			alert.show();
+			atualizaTabelaTodos();
 		}
 	}
 
@@ -162,7 +175,9 @@ public class BuscarController {
 			Collection<Restaurante> restaurantes = restauranteDAO.getPorTema(texto);
 			tbResultado.setItems(FXCollections.observableArrayList(restaurantes));
 		} else {
-			atualizaTabela();
+			Alert alert = new Alert(AlertType.INFORMATION,"Tema não encontrado! carregando todos os restaurantes.",ButtonType.CLOSE);
+			alert.show();
+			atualizaTabelaTodos();
 		}
 	}
 
@@ -171,7 +186,9 @@ public class BuscarController {
 			Collection<Restaurante> restaurantes = restauranteDAO.getPorTipo(texto);
 			tbResultado.setItems(FXCollections.observableArrayList(restaurantes));
 		} else {
-			atualizaTabela();
+			Alert alert = new Alert(AlertType.INFORMATION,"Tipo não encontrado! carregando todos os restaurantes.",ButtonType.CLOSE);
+			alert.show();
+			atualizaTabelaTodos();
 		}
 	}
 	

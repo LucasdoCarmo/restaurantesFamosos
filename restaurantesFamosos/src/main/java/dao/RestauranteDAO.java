@@ -1,17 +1,19 @@
 package dao;
 
-import java.util.List;
-
+import java.util.Collection;
 import javafx.collections.ObservableList;
-import model.Cidade;
 import model.Restaurante;
 
-public interface RestauranteDAO extends CrudDAO<Restaurante>{
+public interface RestauranteDAO extends CrudDAO<Restaurante> {
 
-	List<Restaurante> getPorNome(String nome);
-	List<Restaurante> getPorCidade(Cidade cidade);
-	List<Restaurante> getPorTipo(String tipo);
-	List<Restaurante> getPorTema (String tema);
+	Collection<Restaurante> getPorNome(String nome);
+
+	Collection<Restaurante> getPorCidade(String cidade);
+
+	Collection<Restaurante> getPorTipo(String tipo);
+
+	Collection<Restaurante> getPorTema(String tema);
+
 	ObservableList<Restaurante> todosTabela();
-	
+
 }

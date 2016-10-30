@@ -2,18 +2,20 @@ package controller;
 
 import java.io.IOException;
 import java.util.Collection;
-import java.util.List;
 import dao.RestauranteDAO;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
@@ -22,7 +24,6 @@ import model.Estado;
 import model.Restaurante;
 
 public class BuscaAvancadaController {
-
 
 	@FXML
 	private ComboBox<Cidade> cbCidade;
@@ -113,20 +114,13 @@ public class BuscaAvancadaController {
 	@FXML
 	void Buscar(ActionEvent event) {
 		// Filtra por qual busca o usuário vai escolher
-		if (!tfNome.getText().isEmpty()) {
-			if (tfNome.getText().length() > 0) {
-				List<Restaurante> restaurantes = restauranteDAO.getPorNome(tfNome.getText());
-				tbResultado.setItems(FXCollections.observableArrayList(restaurantes));
-			}
-			if (tfNome.getText().isEmpty()) {
-				atualizaTabela();
-			}
-		} else if (!tfTipoEstabelecimento.getText().isEmpty()) {
-			List<Restaurante> restaurantes = restauranteDAO.getPorTipo(tfTipoEstabelecimento.getText());
-			tbResultado.setItems(FXCollections.observableArrayList(restaurantes));
-			atualizaTabela();
+		if(!tfNome.getText().isEmpty()){
+			BuscarPorNome(tfNome.getText());
+		}else if(!tfTipoEstabelecimento.getText().isEmpty()){
+			BuscarPorTipo(tfTipoEstabelecimento.getText());
+		}else if (!cbEstado.getSelectionModel().isEmpty()){
+			BuscarPorCidade(cbCidade.getValue().toString());
 		}
-
 	}
 
 	@FXML
@@ -148,6 +142,45 @@ public class BuscaAvancadaController {
 		Collection<Restaurante> restaurantes = restauranteDAO.todos();
 		tbResultado.setItems(FXCollections.observableArrayList(restaurantes));
 	}
+
+	/* _____________________________________________________________________________________________________________________________________ */
+
+	public void BuscarPorNome(String texto) {
+		if (texto != null) {
+			Collection<Restaurante> restaurantes = restauranteDAO.getPorNome(texto);
+			tbResultado.setItems(FXCollections.observableArrayList(restaurantes));
+		} else {
+			Alert alert = new Alert(AlertType.INFORMATION,
+					"Restaurante não encontrado! carregando todos os restaurantes.", ButtonType.CLOSE);
+			alert.show();
+			atualizaTabela();
+		}
+	}
+
+	/* _____________________________________________________________________________________________________________________________________ */
+
+	public void BuscarPorTipo(String texto) {
+		if (texto != null) {
+			Collection<Restaurante> restaurantes = restauranteDAO.getPorTipo(texto);
+			tbResultado.setItems(FXCollections.observableArrayList(restaurantes));
+		} else {
+			Alert alert = new Alert(AlertType.INFORMATION, "Tipo não encontrado! carregando todos os restaurantes.",
+					ButtonType.CLOSE);
+			alert.show();
+			atualizaTabela();
+		}
+	}
+	
+	/* _____________________________________________________________________________________________________________________________________ */
+
+	public void BuscarPorCidade(String texto) {
+		if (texto != null) {
+			Collection<Restaurante> restaurantes = restauranteDAO.getPorCidade(texto);
+			tbResultado.setItems(FXCollections.observableArrayList(restaurantes));
+		} 
+	}	
+
+	/* _____________________________________________________________________________________________________________________________________ */
 
 	// metodo que abre próxima tela
 	public void AbreTela(String tela) {

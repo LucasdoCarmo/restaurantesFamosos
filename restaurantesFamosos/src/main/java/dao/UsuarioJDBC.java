@@ -42,10 +42,10 @@ public class UsuarioJDBC implements UsuarioDAO {
 		String update = "update usuario set Nome=?, email=?, senha=? where idUsuario =?";
 		try {
 			PreparedStatement ps = conexao.get().prepareStatement(update);
-			ps.setLong(1, objeto.getCodigo());
-			ps.setString(2, objeto.getNome());
-			ps.setString(3, objeto.getEmail());
-			ps.setString(4, objeto.getSenha());
+			ps.setString(1, objeto.getNome());
+			ps.setString(2, objeto.getEmail());
+			ps.setString(3, objeto.getSenha());
+			ps.setLong(4, objeto.getCodigo());
 			ps.executeUpdate();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -118,5 +118,4 @@ public class UsuarioJDBC implements UsuarioDAO {
 		return usuario;
 
 	}
-
 }
