@@ -2,6 +2,7 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -12,16 +13,6 @@
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.BuscarController">
    <children>
       <BorderPane fx:id="panelSecundario" prefHeight="600.0" prefWidth="1280.0">
-         <top>
-            <Pane prefHeight="116.0" prefWidth="1280.0" BorderPane.alignment="CENTER">
-               <children>
-                  <Button fx:id="btnNome" layoutX="14.0" layoutY="13.0" mnemonicParsing="false" onAction="#BuscarNome" prefHeight="68.0" prefWidth="141.0" text="NOME" />
-                  <Button fx:id="btnTema" layoutX="170.0" layoutY="15.0" mnemonicParsing="false" onAction="#BuscarTema" prefHeight="65.0" prefWidth="155.0" text="TEMA" />
-                  <Button fx:id="btnTipo" layoutX="339.0" layoutY="15.0" mnemonicParsing="false" onAction="#BuscarTipo" prefHeight="65.0" prefWidth="254.0" text="TIPO DE ESTABELECIMENTO" />
-                  <Button fx:id="btnBuscaAvancada" layoutX="624.0" layoutY="15.0" mnemonicParsing="false" onAction="#BuscaAvancada" prefHeight="65.0" prefWidth="217.0" text="BUSCA AVANÇADA" />
-               </children>
-            </Pane>
-         </top>
          <center>
             <Pane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                <children>
@@ -41,14 +32,21 @@
                         <Font size="14.0" />
                      </font>
                   </Label>
-                  <TableView fx:id="tbResultado" layoutX="59.0" layoutY="199.0" prefHeight="200.0" prefWidth="1140.0" />
-                  <Button fx:id="btnBusca" layoutX="1025.0" layoutY="140.0" mnemonicParsing="false" onAction="#Buscar" prefHeight="36.0" prefWidth="131.0" text="BUSCAR" />
-                  <Button fx:id="btnExcluir" layoutX="818.0" layoutY="418.0" mnemonicParsing="false" onAction="#Excluir" prefHeight="36.0" prefWidth="131.0" styleClass="excluir" text="Excluir" />
-                  <Button fx:id="btnEditar" layoutX="960.0" layoutY="418.0" mnemonicParsing="false" onAction="#Editar" prefHeight="36.0" prefWidth="131.0" styleClass="novo" text="Editar" />
-                  <Button fx:id="btnAvaliar" layoutX="1102.0" layoutY="418.0" mnemonicParsing="false" onAction="#Avaliar" prefHeight="36.0" prefWidth="131.0" styleClass="salvar" text="Avaliar" />
-                  <Button fx:id="btnVoltar" layoutX="673.0" layoutY="418.0" mnemonicParsing="false" onAction="#Voltar" prefHeight="36.0" prefWidth="131.0" text="&lt; Voltar" />
+                  <TableView fx:id="tbResultado" layoutX="59.0" layoutY="145.0" prefHeight="348.0" prefWidth="1140.0">
+                     <columns>
+                        <TableColumn fx:id="tcNome" prefWidth="310.0" text="Nome" />
+                        <TableColumn fx:id="tcTelefone" prefWidth="141.0" text="Telefone" />
+                        <TableColumn fx:id="tcTipo" prefWidth="253.0" text="Tipo" />
+                        <TableColumn fx:id="tcTema" prefWidth="435.0" text="Tema" />
+                     </columns></TableView>
+                  <Button fx:id="btnBusca" layoutX="998.0" layoutY="64.0" mnemonicParsing="false" onAction="#Buscar" prefHeight="36.0" prefWidth="131.0" text="BUSCAR" />
+                  <Button fx:id="btnExcluir" layoutX="821.0" layoutY="527.0" mnemonicParsing="false" onAction="#Excluir" prefHeight="36.0" prefWidth="131.0" styleClass="excluir" text="Excluir" />
+                  <Button fx:id="btnEditar" layoutX="963.0" layoutY="527.0" mnemonicParsing="false" onAction="#Editar" prefHeight="36.0" prefWidth="131.0" styleClass="novo" text="Editar" />
+                  <Button fx:id="btnAvaliar" layoutX="1105.0" layoutY="527.0" mnemonicParsing="false" onAction="#Avaliar" prefHeight="36.0" prefWidth="131.0" styleClass="salvar" text="Avaliar" />
+                  <Button fx:id="btnVoltar" layoutX="676.0" layoutY="527.0" mnemonicParsing="false" onAction="#Voltar" prefHeight="36.0" prefWidth="131.0" text="&lt; Voltar" />
                   <TextField fx:id="tfTema" layoutX="300.0" layoutY="82.0" />
                   <TextField fx:id="tfTipo" layoutX="547.0" layoutY="82.0" />
+                  <Button fx:id="btnBuscaAvancada" layoutX="59.0" layoutY="527.0" mnemonicParsing="false" onAction="#BuscaAvancada" prefHeight="22.0" prefWidth="155.0" text="BUSCA AVANÇADA" />
                </children>
             </Pane>
          </center>

@@ -2,9 +2,8 @@ package controller;
 
 import java.io.IOException;
 import java.util.Collection;
-import java.util.List;
-
 import dao.RestauranteDAO;
+import factory.DAOFactory;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -12,9 +11,11 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
+import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import model.Restaurante;
@@ -28,13 +29,13 @@ public class BuscarController {
 	private Button btnAvaliar;
 
 	@FXML
-	private Button btnTema;
-
-	@FXML
 	private Button btnEditar;
 
 	@FXML
-	private TextField tfTipo;
+	private Button btnBuscaAvancada;
+
+	@FXML
+	private Button btnExcluir;
 
 	@FXML
 	private Button btnBusca;
@@ -44,84 +45,95 @@ public class BuscarController {
 
 	@FXML
 	private TextField tfTema;
-
+	
 	@FXML
-	private Button btnBuscaAvancada;
-
+	private TextField tfNome;
+	
 	@FXML
-	private Button btnTipo;
-
-	@FXML
-	private Button btnExcluir;
+	private TextField tfTipo;
 
 	@FXML
 	private TableView<Restaurante> tbResultado;
 
 	@FXML
-	private Button btnNome;
+	private TableColumn<Restaurante, String> tcNome;
+
+	@FXML
+	private TableColumn<Restaurante, String> tcTelefone;
+
+	@FXML
+	private TableColumn<Restaurante, String> tcTipo;
+
+	@FXML
+	private TableColumn<Restaurante, String> tcTema;
 
 	private RestauranteDAO restauranteDAO;
 
+	/* _____________________________________________________________________________________________________________________________________ */
+
+	public BuscarController() {
+		restauranteDAO = DAOFactory.get().restauranteDAO();
+	}
+
 	@FXML
-	private TextField tfNome;
+	public void initialize() {
+		tcNome.setCellValueFactory(new PropertyValueFactory<>("Nome"));
+		tcTelefone.setCellValueFactory(new PropertyValueFactory<>("Telefone"));
+		tcTema.setCellValueFactory(new PropertyValueFactory<>("Tema"));
+		tcTipo.setCellValueFactory(new PropertyValueFactory<>("Tipo_de_estabelecimento"));
+	}
 
 	@FXML
 	void Buscar(ActionEvent event) {
-		// String pesquisa = tfNome.getText() + event.getTarget();
-
-		tfNome.getText();
 		if (!tfNome.getText().isEmpty()) {
-			BuscarPorNome(event);
+			BuscarPorNome(tfNome.getText());
+			atualizaTabela();
 		} else if (!tfTema.getText().isEmpty()) {
-			BuscarPorTema(event);
+			BuscarPorTema(tfTema.getText());
+			atualizaTabela();
 		} else if (!tfTipo.getText().isEmpty()) {
-			BuscarPorTipo(event);
+			BuscarPorTipo(tfTipo.getText());
+			atualizaTabela();
 		} else {
-			Alert alert = new Alert(AlertType.ERROR, "AtenÃ§Ã£o!! Os dados não foram encontrados", ButtonType.CLOSE);
+			Alert alert = new Alert(AlertType.ERROR, "Atenção!! Os dados não foram encontrados", ButtonType.CLOSE);
 			alert.show();
 		}
-
 	}
 
 	@FXML
 	void Excluir(ActionEvent event) {
-
+		// restauranteDAO.excluir(tbResultado.getSelectionModel().getSelectedIndex());
+		atualizaTabela();
 	}
 
 	@FXML
 	void Editar(ActionEvent event) {
-
+		AbreTela("EditaRestaurante.fxml");
 	}
 
 	@FXML
 	void Avaliar(ActionEvent event) {
-
+		AbreTela("Avaliacao.fxml");
 	}
 
 	@FXML
 	void Voltar(ActionEvent event) {
-
-	}
-
-	@FXML
-	void BuscarNome(ActionEvent event) {
-		BuscarPorNome(event);
-	}
-
-	@FXML
-	void BuscarTema(ActionEvent event) {
-		BuscarPorTema(event);
-	}
-
-	@FXML
-	void BuscarTipo(ActionEvent event) {
-		BuscarPorTipo(event);
+		AbreTela("TelaVazia.fxml");
 	}
 
 	@FXML
 	void BuscaAvancada(ActionEvent event) {
 		AbreTela("BuscaAvancada.fxml");
 	}
+	
+	/* _____________________________________________________________________________________________________________________________________ */
+
+	private void atualizaTabela() {
+		Collection<Restaurante> restaurantes = restauranteDAO.todos();
+		tbResultado.setItems(FXCollections.observableArrayList(restaurantes));
+	}
+
+	/* _____________________________________________________________________________________________________________________________________ */
 
 	public void AbreTela(String tela) {
 		FXMLLoader loader = new FXMLLoader();
@@ -134,42 +146,36 @@ public class BuscarController {
 		}
 	}
 
-	private void atualizaTabela() {
-		Collection<Restaurante> ufs = restauranteDAO.todos();
-		tbResultado.setItems(FXCollections.observableArrayList(ufs));
-	}
-
-	public void BuscarPorNome(ActionEvent event) {
-		String pesquisa = tfNome.getText() + event.getTarget();
-		if (pesquisa.length() > 0) {
-			List<Restaurante> restaurantes = restauranteDAO.getPorNome(pesquisa);
+	/* _____________________________________________________________________________________________________________________________________ */
+	
+	public void BuscarPorNome(String texto) {
+		if (texto != null) {
+			Collection<Restaurante> restaurantes = restauranteDAO.getPorNome(texto);
 			tbResultado.setItems(FXCollections.observableArrayList(restaurantes));
-		}
-		if (pesquisa.length() < 0) {
+		} else {
 			atualizaTabela();
 		}
 	}
 
-	public void BuscarPorTema(ActionEvent event) {
-		String pesquisa = tfTema.getText() + event.getTarget();
-		if (pesquisa.length() > 0) {
-			List<Restaurante> restaurantes = restauranteDAO.getPorTema(pesquisa);
+	public void BuscarPorTema(String texto) {
+		if (texto != null) {
+			Collection<Restaurante> restaurantes = restauranteDAO.getPorTema(texto);
 			tbResultado.setItems(FXCollections.observableArrayList(restaurantes));
-		}
-		if (pesquisa.length() < 0) {
+		} else {
 			atualizaTabela();
 		}
 	}
 
-	public void BuscarPorTipo(ActionEvent event) {
-		String pesquisa = tfTipo.getText() + event.getTarget();
-		if (pesquisa.length() > 0) {
-			List<Restaurante> restaurantes = restauranteDAO.getPorTipo(pesquisa);
+	public void BuscarPorTipo(String texto) {
+		if (texto != null) {
+			Collection<Restaurante> restaurantes = restauranteDAO.getPorTipo(texto);
 			tbResultado.setItems(FXCollections.observableArrayList(restaurantes));
-		}
-		if (pesquisa.length() < 0) {
+		} else {
 			atualizaTabela();
 		}
-
 	}
+	
+	/* _____________________________________________________________________________________________________________________________________ */
+
+	
 }

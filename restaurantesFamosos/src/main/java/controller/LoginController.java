@@ -37,13 +37,14 @@ public class LoginController {
 	@FXML
 	private Button btnEntrar;
 
+
 	@FXML
 	void CriarConta(ActionEvent event) {
 		AbreTela("CadastraUsuario.fxml");
 	}
 
 	@FXML
-	void Entrar(ActionEvent event) {
+	void Entrar(ActionEvent event)  {
 		if ("admin".equals(tfSenha.getText()) && "admin".equals(tfLogin.getText())) {
 			Alert alert = new Alert(AlertType.INFORMATION, "Login efetuado com sucesso!", ButtonType.CLOSE);
 			alert.show();
@@ -57,17 +58,17 @@ public class LoginController {
 
 	@FXML
 	void LembrarSenha(ActionEvent event) {
-		
+
 	}
 
 	@FXML
 	void EsqueciSenha(ActionEvent event) {
 		AbreTela("RecuperaSenha.fxml");
 	}
-	
+
 	public void AbreTela(String tela) {
 		FXMLLoader loader = new FXMLLoader();
-		loader.setLocation(getClass().getResource("/telas/" +tela));
+		loader.setLocation(getClass().getResource("/telas/" + tela));
 		try {
 			AnchorPane telaView = (AnchorPane) loader.load();
 			panelPrincipal.setCenter(telaView);
