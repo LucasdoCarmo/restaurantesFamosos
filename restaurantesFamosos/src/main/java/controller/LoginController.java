@@ -78,3 +78,43 @@ public class LoginController {
 	}
 
 }
+	private Conexao log;
+
+	private UsuarioDAO usuarioDAO;
+
+	public LoginController() {
+		usuarioDAO = factory.DAOFactory.get().usuarioDAO();
+		log = new ConexaoMysqlProducao();
+
+	}
+
+		int compara = 1;
+		try {
+			Connection connection = log.get();
+			Statement stmt = connection.createStatement();
+			ResultSet rs = stmt.executeQuery("select Nome, senha from Usuario");
+			rs.first();
+			while (compara == 1) {
+				if (tfLogin.getText().equals("") || (tfSenha.getText().equals(""))) {
+					JOptionPane.showMessageDialog(null, "Campos não podem ser nulos.");
+					compara = 2;
+					break;
+				}
+				if (tfLogin.getText().equals(rs.getString("Nome"))
+						&& (tfSenha.getText().equals(rs.getString("Senha")))) {
+					JOptionPane.showMessageDialog(null, "Login correto! Aguarde o sistema abrir.");
+
+					AbreTela("Principal.fxml");
+					compara = 2;
+					break;
+
+				} else {
+					JOptionPane.showMessageDialog(null, "Usário ou senha incorretos!");
+					compara = 2;
+					break;
+				}
+
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+
