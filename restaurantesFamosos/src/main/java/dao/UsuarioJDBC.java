@@ -118,4 +118,17 @@ public class UsuarioJDBC implements UsuarioDAO {
 		return usuario;
 
 	}
+	
+	 public Usuario login(String login, String senha) throws SQLException {
+	        Usuario usuario = null;
+	        String sql = "SELECT * FROM usuario WHERE Nome=? AND senha=?";
+	        PreparedStatement ps = conexao.get().prepareStatement(sql);
+	        ps.setObject(1, login);
+	        ps.setObject(2, senha);
+	        ResultSet rs = ps.executeQuery();
+	        if (rs.next()) {
+	            usuario = new Usuario(null, rs.getString("Nome"), rs.getString("senha"), null);
+	        }
+	        return usuario;
+	    }
 }

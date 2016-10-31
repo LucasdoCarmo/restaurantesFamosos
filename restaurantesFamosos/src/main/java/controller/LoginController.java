@@ -1,6 +1,7 @@
 package controller;
 
 import java.io.IOException;
+import java.sql.SQLException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -37,14 +38,13 @@ public class LoginController {
 	@FXML
 	private Button btnEntrar;
 
-
 	@FXML
 	void CriarConta(ActionEvent event) {
 		AbreTela("CadastraUsuario.fxml");
 	}
 
 	@FXML
-	void Entrar(ActionEvent event)  {
+	void Entrar(ActionEvent event) throws SQLException {
 		if ("admin".equals(tfSenha.getText()) && "admin".equals(tfLogin.getText())) {
 			Alert alert = new Alert(AlertType.INFORMATION, "Login efetuado com sucesso!", ButtonType.CLOSE);
 			alert.show();

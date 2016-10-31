@@ -7,7 +7,6 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
-
 import conexao.Conexao;
 import model.Cidade;
 import model.Estado;
@@ -116,5 +115,26 @@ public class CidadeJDBC implements CidadeDAO {
 	public List<Cidade> getPorNome(String nome) {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	public List<Cidade> porEstado(Long estado) {
+		String sql = "select * from cidade c join estado e on "
+				+ "c.idEstado = e.idEstado where idEstado =?";
+		List<Cidade> cidades = new ArrayList<>();
+		try {
+			PreparedStatement ps = conexao.get().prepareStatement(sql);
+			ps.setLong(1, estado);
+			ResultSet rs = ps.executeQuery();
+			while (rs.next()) {
+				Cidade cidade = new Cidade();
+				cidades.add(cidade);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			conexao.close();
+		}
+		return cidades;
 	}
 }

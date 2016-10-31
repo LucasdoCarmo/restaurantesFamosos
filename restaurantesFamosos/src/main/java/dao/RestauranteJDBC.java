@@ -9,6 +9,7 @@ import java.util.Collection;
 import java.util.List;
 import conexao.Conexao;
 import javafx.collections.ObservableList;
+import model.Cidade;
 import model.Restaurante;
 
 public class RestauranteJDBC implements RestauranteDAO {
@@ -20,7 +21,7 @@ public class RestauranteJDBC implements RestauranteDAO {
 	}
 
 	public void inserir(Restaurante objeto) {
-		String insert = "insert into restaurante (Nome,Telefone,Tipo_de_estabelicimento,Rua,Numero,Tema) values(?,?,?,?,?,?)";
+		String insert = "insert into restaurante (Nome,Telefone,Tipo_de_estabelicimento,Rua,Numero,Tema, idCidade) values(?,?,?,?,?,?,?)";
 		try {
 			PreparedStatement ps = conexao.get().prepareStatement(insert, Statement.RETURN_GENERATED_KEYS);
 			ps.setString(1, objeto.getNome());
@@ -29,6 +30,7 @@ public class RestauranteJDBC implements RestauranteDAO {
 			ps.setString(4, objeto.getRua());
 			ps.setString(5, objeto.getNumero());
 			ps.setString(6, objeto.getTema());
+			ps.setLong(7, objeto.getCidade().getCodigo());
 			ps.executeUpdate();
 			ResultSet rs = ps.getGeneratedKeys();
 			rs.next();
@@ -41,7 +43,7 @@ public class RestauranteJDBC implements RestauranteDAO {
 	}
 
 	public void alterar(Restaurante objeto) {
-		String update = "update restaurante set Nome=?,Telefone=?,Tipo_de_estabelicimento=?,Rua =?,Numero=?,Tema=? where idRestaurante = ?";
+		String update = "update restaurante set Nome=?,Telefone=?,Tipo_de_estabelicimento=?,Rua =?,Numero=?,Tema=?, idCidade=? where idRestaurante = ?";
 		try {
 			PreparedStatement ps = conexao.get().prepareStatement(update);
 			ps.setString(1, objeto.getNome());
@@ -51,6 +53,7 @@ public class RestauranteJDBC implements RestauranteDAO {
 			ps.setString(5, objeto.getNumero());
 			ps.setString(6, objeto.getTema());
 			ps.setLong(7, objeto.getCodigo());
+			ps.setLong(8, objeto.getCidade().getCodigo());
 			ps.executeUpdate();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -104,7 +107,8 @@ public class RestauranteJDBC implements RestauranteDAO {
 	private Restaurante getRestaurante(ResultSet rs) throws SQLException {
 		Restaurante restaurante = new Restaurante(rs.getLong("idRestaurante"), rs.getString("Nome"),
 				rs.getString("Telefone"), rs.getString("Tipo_de_estabelicimento"), rs.getString("Rua"),
-				rs.getString("Numero"), rs.getString("Tema"),null, null);
+				rs.getString("Numero"), rs.getString("Tema"),
+				new Cidade(rs.getLong("idCidade")));
 		return restaurante;
 	}
 
@@ -127,7 +131,8 @@ public class RestauranteJDBC implements RestauranteDAO {
 						rs.getString("Tipo_de_estabelicimento"), 
 						rs.getString("Rua"), 
 						rs.getString("Numero"), 
-						rs.getString("Tema"), null, null);
+						rs.getString("Tema"), 
+						new Cidade(rs.getLong("idCidade")));
 				restaurantes.add(restaurante);
 			}
 		} catch (SQLException e) {
@@ -197,7 +202,8 @@ public class RestauranteJDBC implements RestauranteDAO {
 						rs.getString("Tipo_de_estabelicimento"), 
 						rs.getString("Rua"), 
 						rs.getString("Numero"), 
-						rs.getString("Tema"), null, null);
+						rs.getString("Tema"), 
+						new Cidade(rs.getLong("idCidade")));
 				restaurantes.add(restaurante);
 			}
 		} catch (SQLException e) {
@@ -224,7 +230,8 @@ public class RestauranteJDBC implements RestauranteDAO {
 						rs.getString("Tipo_de_estabelicimento"), 
 						rs.getString("Rua"), 
 						rs.getString("Numero"), 
-						rs.getString("Tema"), null, null);
+						rs.getString("Tema"), 
+						new Cidade(rs.getLong("idCidade")));
 				restaurantes.add(restaurante);
 			}
 		} catch (SQLException e) {
@@ -250,7 +257,8 @@ public class RestauranteJDBC implements RestauranteDAO {
 						rs.getString("Tipo_de_estabelicimento"), 
 						rs.getString("Rua"), 
 						rs.getString("Numero"), 
-						rs.getString("Tema"), null, null);
+						rs.getString("Tema"), 
+						new Cidade(rs.getLong("idCidade")));
 				restaurantes.add(restaurante);
 			}
 		} catch (SQLException e) {

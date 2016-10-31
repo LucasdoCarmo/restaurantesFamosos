@@ -202,7 +202,6 @@ public class CadastraRestauranteController {
 		restaurante.setNome(tfNome.getText());
 		restaurante.setRua(tfRua.getText());
 		restaurante.setNumero(tfNumero.getText());
-		restaurante.setEstado(cbEstado.getValue());
 		restaurante.setCidade(cbCidade.getValue());
 		restaurante.setTema(tfTema.getText());
 		restaurante.setTipo(tfTipoEstabelecimento.getText());

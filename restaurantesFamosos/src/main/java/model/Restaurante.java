@@ -17,7 +17,6 @@ public class Restaurante implements Entidade ,RenderizaCombo {
 	private String rua;
 	private String numero;
 	private String tema;
-	private Estado estado;
 	private Cidade cidade;
 	
 	public Restaurante(Long codigo) {
@@ -29,6 +28,7 @@ public class Restaurante implements Entidade ,RenderizaCombo {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
 
 	
 }
