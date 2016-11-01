@@ -279,7 +279,7 @@ public class RestauranteJDBC implements RestauranteDAO {
 	//Elaborar uma forma de filtrar os melhores
 	@Override
 	public Collection<Restaurante> get5Melhores() {
-		String sql = "select Nome, Telefone, Tipo_de_estabelicimento, Rua, Numero, Tema, Cidade" + " from Restaurante where Nome =? ";
+		String sql = "select Nome, Telefone, Tipo_de_estabelicimento, Rua, Numero, Tema, idCidade" + " from Restaurante having count(Nome) < 6 ";
 		List<Restaurante> restaurantes = new ArrayList<>();
 		try {
 			PreparedStatement ps = conexao.get().prepareStatement(sql);

@@ -7,7 +7,6 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
-
 import conexao.Conexao;
 import model.Avaliacao;
 import model.Restaurante;
@@ -26,7 +25,7 @@ public class VisitaJDBC implements VisitaDAO {
 		String insert = "insert into visita (Data,Valor_Gasto,Restaurante_idRestaurante,Usuario_idUsuario,Avaliacao_idAvaliacao) values(?,?,?,?,?)";
 		try {
 			PreparedStatement ps = conexao.get().prepareStatement(insert, Statement.RETURN_GENERATED_KEYS);
-			ps.setString(1, objeto.getData());
+			ps.setString(1, objeto.getData());		
 			ps.setDouble(2, objeto.getValorGasto());
 			ps.setLong(3, objeto.getRestaurante().getCodigo());
 			ps.setLong(4, objeto.getUsuario().getCodigo());

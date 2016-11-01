@@ -1,11 +1,10 @@
 package controller;
 
 import java.net.URL;
-
+import conexao.ConexaoMysqlProducao;
 import dao.CidadeDAO;
 import dao.EstadoDAO;
 import dao.PaisDAO;
-import dao.RestauranteDAO;
 import factory.DAOFactory;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -18,11 +17,10 @@ import model.Estado;
 import model.Pais;
 import model.Restaurante;
 import model.Cidade;
-import net.sf.jasperreports.engine.JRDataSource;
 import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperExportManager;
 import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
-import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 import net.sf.jasperreports.view.JasperViewer;
 
 public class RelatorioController {
@@ -32,19 +30,16 @@ public class RelatorioController {
 
 	@FXML
 	private ComboBox<Estado> cbEstado;
-	
+
 	@FXML
 	private ComboBox<Cidade> cbCidade;
 
 	@FXML
 	private ComboBox<Restaurante> cbTipo;
-	
+
 	@FXML
 	private Button btnSair;
 
-	@FXML
-	private Button btnVoltar;
-	
 	@FXML
 	private Button btnGeraRelatorio;
 
@@ -53,10 +48,10 @@ public class RelatorioController {
 
 	@FXML
 	private Button btn10Melhores;
-	
+
 	@FXML
 	private Button btn15Melhores;
-	
+
 	@FXML
 	private Button btn20Melhores;
 
@@ -72,28 +67,24 @@ public class RelatorioController {
 	@FXML
 	private Button btnTodos;
 
-	private RestauranteDAO restauranteDAO;
-
 	private PaisDAO paisDAO;
 	private EstadoDAO estadoDAO;
 	private CidadeDAO cidadeDAO;
-	
-	
+
 	public RelatorioController() {
 		paisDAO = DAOFactory.get().paisDAO();
 		cidadeDAO = DAOFactory.get().cidadeDAO();
 		estadoDAO = DAOFactory.get().estadoDAO();
 	}
-	
+
 	@FXML
 	void Todos(ActionEvent event) {
 		URL url = getClass().getResource("/relatorio/RelatorioTodos.jasper");
 		try {
-			JRDataSource dataSource = 
-					new JRBeanCollectionDataSource(restauranteDAO.todos());
-			JasperPrint jasperPrint = JasperFillManager
-					.fillReport(url.getPath(), null, dataSource);
+			JasperPrint jasperPrint = JasperFillManager.fillReport(url.getPath(), null,
+					new ConexaoMysqlProducao().get());
 			JasperViewer.viewReport(jasperPrint);
+			JasperExportManager.exportReportToPdfFile(jasperPrint, "relatorioTodos.pdf");
 		} catch (JRException e) {
 			e.printStackTrace();
 		}
@@ -101,13 +92,12 @@ public class RelatorioController {
 
 	@FXML
 	void VinteMelhores(ActionEvent event) {
-    	URL url = getClass().getResource("/relatorio/Relatorio20Melhores.jasper");
+		URL url = getClass().getResource("/relatorio/Relatorio20Melhores.jasper");
 		try {
-			JRDataSource dataSource = 
-					new JRBeanCollectionDataSource(restauranteDAO.get20Melhores());
-			JasperPrint jasperPrint = JasperFillManager
-					.fillReport(url.getPath(), null, dataSource);
+			JasperPrint jasperPrint = JasperFillManager.fillReport(url.getPath(), null,
+					new ConexaoMysqlProducao().get());
 			JasperViewer.viewReport(jasperPrint);
+			JasperExportManager.exportReportToPdfFile(jasperPrint, "relatorio20.pdf");
 		} catch (JRException e) {
 			e.printStackTrace();
 		}
@@ -117,9 +107,10 @@ public class RelatorioController {
 	void CincoMelhores(ActionEvent event) {
 		URL url = getClass().getResource("/relatorio/Relatorio5Melhores.jasper");
 		try {
-			JRDataSource dataSource = new JRBeanCollectionDataSource(restauranteDAO.get5Melhores());
-			JasperPrint jasperPrint = JasperFillManager.fillReport(url.getPath(), null, dataSource);
+			JasperPrint jasperPrint = JasperFillManager.fillReport(url.getPath(), null,
+					new ConexaoMysqlProducao().get());
 			JasperViewer.viewReport(jasperPrint);
+			JasperExportManager.exportReportToPdfFile(jasperPrint, "relatorio5.pdf");
 		} catch (JRException e) {
 			e.printStackTrace();
 		}
@@ -129,9 +120,10 @@ public class RelatorioController {
 	void DezMelhores(ActionEvent event) {
 		URL url = getClass().getResource("/relatorio/Relatorio10Melhores.jasper");
 		try {
-			JRDataSource dataSource = new JRBeanCollectionDataSource(restauranteDAO.get10Melhores());
-			JasperPrint jasperPrint = JasperFillManager.fillReport(url.getPath(), null, dataSource);
+			JasperPrint jasperPrint = JasperFillManager.fillReport(url.getPath(), null,
+					new ConexaoMysqlProducao().get());
 			JasperViewer.viewReport(jasperPrint);
+			JasperExportManager.exportReportToPdfFile(jasperPrint, "relatorio10.pdf");
 		} catch (JRException e) {
 			e.printStackTrace();
 		}
@@ -141,9 +133,10 @@ public class RelatorioController {
 	void QuinzeMelhores(ActionEvent event) {
 		URL url = getClass().getResource("/relatorio/Relatorio15Melhores.jasper");
 		try {
-			JRDataSource dataSource = new JRBeanCollectionDataSource(restauranteDAO.get15Melhores());
-			JasperPrint jasperPrint = JasperFillManager.fillReport(url.getPath(), null, dataSource);
+			JasperPrint jasperPrint = JasperFillManager.fillReport(url.getPath(), null,
+					new ConexaoMysqlProducao().get());
 			JasperViewer.viewReport(jasperPrint);
+			JasperExportManager.exportReportToPdfFile(jasperPrint, "relatorio15.pdf");
 		} catch (JRException e) {
 			e.printStackTrace();
 		}
@@ -153,9 +146,10 @@ public class RelatorioController {
 	void MaiorPreco(ActionEvent event) {
 		URL url = getClass().getResource("/relatorio/RelatorioMaiorPreco.jasper");
 		try {
-			JRDataSource dataSource = new JRBeanCollectionDataSource(restauranteDAO.getMaiorPreco());
-			JasperPrint jasperPrint = JasperFillManager.fillReport(url.getPath(), null, dataSource);
+			JasperPrint jasperPrint = JasperFillManager.fillReport(url.getPath(), null,
+					new ConexaoMysqlProducao().get());
 			JasperViewer.viewReport(jasperPrint);
+			JasperExportManager.exportReportToPdfFile(jasperPrint, "relatorioPrecoMaior.pdf");
 		} catch (JRException e) {
 			e.printStackTrace();
 		}
@@ -165,36 +159,45 @@ public class RelatorioController {
 	void MenorPreco(ActionEvent event) {
 		URL url = getClass().getResource("/relatorio/RelatorioMenorPreco.jasper");
 		try {
-			JRDataSource dataSource = new JRBeanCollectionDataSource(restauranteDAO.getMenorPreco());
-			JasperPrint jasperPrint = JasperFillManager.fillReport(url.getPath(), null, dataSource);
+			JasperPrint jasperPrint = JasperFillManager.fillReport(url.getPath(), null,
+					new ConexaoMysqlProducao().get());
 			JasperViewer.viewReport(jasperPrint);
+			JasperExportManager.exportReportToPdfFile(jasperPrint, "relatorioPrecoMenor.pdf");
 		} catch (JRException e) {
 			e.printStackTrace();
 		}
 	}
+	
+	/*-------------------------------------------------------------------------------------------------------------------------------------*/
 
 	public void Cidade() {
 		URL url = getClass().getResource("/relatorio/RelatorioEndereco.jasper");
 		try {
-			JRDataSource dataSource = new JRBeanCollectionDataSource(restauranteDAO.getEndereco());
-			JasperPrint jasperPrint = JasperFillManager.fillReport(url.getPath(), null, dataSource);
+			JasperPrint jasperPrint = JasperFillManager.fillReport(url.getPath(), null,
+					new ConexaoMysqlProducao().get());
 			JasperViewer.viewReport(jasperPrint);
+			JasperExportManager.exportReportToPdfFile(jasperPrint, "relatorioEndereco.pdf");
 		} catch (JRException e) {
 			e.printStackTrace();
 		}
 	}
+
+	/*-------------------------------------------------------------------------------------------------------------------------------------*/
 
 	public void Tipo() {
 		URL url = getClass().getResource("/relatorio/RelatorioTipo.jasper");
 		try {
-			JRDataSource dataSource = new JRBeanCollectionDataSource(restauranteDAO.getTipo()); 
-			JasperPrint jasperPrint = JasperFillManager.fillReport(url.getPath(), null, dataSource);
+			JasperPrint jasperPrint = JasperFillManager.fillReport(url.getPath(), null,
+					new ConexaoMysqlProducao().get());
 			JasperViewer.viewReport(jasperPrint);
+			JasperExportManager.exportReportToPdfFile(jasperPrint, "relatorioTipo.pdf");
 		} catch (JRException e) {
 			e.printStackTrace();
 		}
 	}
-
+	
+	/*-------------------------------------------------------------------------------------------------------------------------------------*/
+	
 	@FXML
 	void GerarRelatorio(ActionEvent event) {
 		if (!cbTipo.getSelectionModel().isEmpty()) {
@@ -205,15 +208,11 @@ public class RelatorioController {
 	}
 
 	@FXML
-	void Voltar(ActionEvent event) {
+	void Sair(ActionEvent event) {
 
 	}
-	
-	@FXML
-	void Sair(ActionEvent event){
-		
-	}
-	
+
+	/*-------------------------------------------------------------------------------------------------------------------------------------*/
 	
 	@FXML
 	public void initialize() {
@@ -221,6 +220,8 @@ public class RelatorioController {
 		montaComboEstado();
 		montaComboCidade();
 	}
+
+	/*-------------------------------------------------------------------------------------------------------------------------------------*/
 	
 	private void montaComboPais() {
 		cbPais.getItems().addAll(paisDAO.todos());
@@ -255,8 +256,8 @@ public class RelatorioController {
 			}
 		});
 	}
-	
-	
+
+	/*-------------------------------------------------------------------------------------------------------------------------------------*/
 	
 	private void montaComboEstado() {
 		cbEstado.getItems().addAll(estadoDAO.todos());
@@ -293,6 +294,7 @@ public class RelatorioController {
 	}
 
 	/*-------------------------------------------------------------------------------------------------------------------------------------*/
+	
 	private void montaComboCidade() {
 		cbCidade.getItems().addAll(cidadeDAO.todos());
 
@@ -326,6 +328,5 @@ public class RelatorioController {
 			}
 		});
 	}
-
 
 }
