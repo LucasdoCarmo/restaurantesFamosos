@@ -1,28 +1,130 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.3.1.final using JasperReports Library version 6.3.1  -->
-<!-- 2016-10-31T11:34:08 -->
-<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="RelatorioTipo" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="7fbcb47d-c79e-418a-adac-3136876838a3">
+<!-- 2016-10-31T11:45:26 -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Relatorio" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="76dc6204-e706-4382-a2bd-cd7b7b1a4cf9">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="New Data Adapter "/>
+	<property name="com.jaspersoft.studio.data.sql.tables" value="cmVzdGF1cmFudGUyLnBhaXMgQVMgLDEzMiwyMzksN2Y5YzExZGEtYjM4OC00NzJlLTliODQtYjI0&#xA;YTEzOWE1Y2EzO3Jlc3RhdXJhbnRlMi5yZXN0YXVyYW50ZSBBUyAsMjIzLDMsMmYzMDU0ODAtY2Rl&#xA;Mi00NWVmLTg4MjctYTQxYzQ3NDQyNzdhO3Jlc3RhdXJhbnRlMi5lc3RhZG8gQVMgLDIyLDIzOCw5&#xA;ZjM3NzA0MS02NmUxLTQ0ZTItYTZmZi0zYjczZTI2MmViYTY7cmVzdGF1cmFudGUyLmF2YWxpYWNh&#xA;byBBUyAsMjEsMTcsNDZiMTIwZmEtOGQ5MS00MTU3LWE5ZTQtNTJjZTc1NzI5YmIyOw=="/>
 	<queryString>
-		<![CDATA[]]>
+		<![CDATA[SELECT restaurante2.avaliacao.`idAvaliacao`,
+	restaurante2.avaliacao.`Nota_Geral`,
+	restaurante2.restaurante.`Nome`,
+	restaurante2.restaurante.`Tema`,
+	restaurante2.restaurante.`Tipo_de_estabelicimento`,
+	restaurante2.restaurante.`Cidade_idCidade`,
+	restaurante2.pais.pais,
+	restaurante2.estado.`UF`,
+	restaurante2.estado.`idEstado`,
+	restaurante2.pais.id_pais
+FROM restaurante2.avaliacao,
+	restaurante2.restaurante,
+	restaurante2.estado,
+	restaurante2.pais]]>
 	</queryString>
+	<field name="idAvaliacao" class="java.lang.Integer"/>
+	<field name="Nota_Geral" class="java.lang.Integer"/>
+	<field name="Nome" class="java.lang.String"/>
+	<field name="Tema" class="java.lang.String"/>
+	<field name="Tipo_de_estabelicimento" class="java.lang.String"/>
+	<field name="Cidade_idCidade" class="java.lang.Integer"/>
+	<field name="pais" class="java.lang.String"/>
+	<field name="UF" class="java.lang.String"/>
+	<field name="idEstado" class="java.lang.Integer"/>
+	<field name="id_pais" class="java.lang.Integer"/>
 	<background>
 		<band splitType="Stretch"/>
 	</background>
-	<title>
-		<band height="79" splitType="Stretch"/>
-	</title>
 	<pageHeader>
-		<band height="35" splitType="Stretch"/>
+		<band height="29" splitType="Stretch">
+			<staticText>
+				<reportElement x="194" y="0" width="166" height="14" uuid="cd956451-93c7-4d99-acf0-a47fe37ae6a4"/>
+				<text><![CDATA[Restaurantes Famosos Ranking]]></text>
+			</staticText>
+			<line>
+				<reportElement x="-10" y="28" width="569" height="1" uuid="5860306a-c083-4ecf-8710-bcbea64c552f">
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+				</reportElement>
+			</line>
+		</band>
 	</pageHeader>
 	<columnHeader>
-		<band height="61" splitType="Stretch"/>
+		<band height="37" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="6" width="70" height="30" uuid="e8cd463b-0ee5-48c1-8e10-82f0e1a1889e"/>
+				<text><![CDATA[Posição]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="140" y="6" width="70" height="30" uuid="febc6549-6ae5-44e6-8d95-0b21a00310df">
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+				</reportElement>
+				<text><![CDATA[Nome]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="210" y="6" width="70" height="30" uuid="a8743909-40ff-471e-b40d-d11ac438b13e">
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+				</reportElement>
+				<text><![CDATA[País]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="350" y="6" width="70" height="30" uuid="d83b0b7f-c6c9-4cf0-9e4b-29a731b2e0b2">
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+				</reportElement>
+				<text><![CDATA[Cidade]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="420" y="6" width="70" height="30" uuid="cd282414-a9d2-4f67-9384-eaf521e789e0">
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+				</reportElement>
+				<text><![CDATA[Tipo ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="490" y="6" width="60" height="30" uuid="26e624c5-b6ae-48a5-a193-ac11f79ebfb6">
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+				</reportElement>
+				<text><![CDATA[Tema]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="280" y="6" width="70" height="30" uuid="b4942d4e-26ff-4cae-ac37-7c98537a0a47">
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+				</reportElement>
+				<text><![CDATA[Estado]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="70" y="6" width="70" height="30" uuid="66f28e07-3cd8-41e2-97ba-0c2e72b0eeb7">
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+				</reportElement>
+				<text><![CDATA[Nota_Geral]]></text>
+			</staticText>
+		</band>
 	</columnHeader>
 	<detail>
-		<band height="125" splitType="Stretch"/>
+		<band height="48" splitType="Stretch">
+			<textField>
+				<reportElement x="70" y="9" width="70" height="30" uuid="32d30856-d38f-4bac-8496-1c56650f763d"/>
+				<textFieldExpression><![CDATA[$F{Nota_Geral}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="140" y="0" width="70" height="30" uuid="f53b6913-be35-49df-837c-d684886f9f2c"/>
+				<textFieldExpression><![CDATA[$F{Nome}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="210" y="9" width="70" height="30" uuid="d600624a-8795-4237-a0f6-ec441f060392"/>
+				<textFieldExpression><![CDATA[$F{pais}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="280" y="9" width="70" height="30" uuid="48314af2-a03f-41ba-b3c0-ba3c8c6bbdfc"/>
+				<textFieldExpression><![CDATA[$F{UF}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="420" y="9" width="70" height="30" uuid="17039ef6-2a63-4697-9b80-b128c13bf25f"/>
+				<textFieldExpression><![CDATA[$F{Tipo_de_estabelicimento}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="490" y="9" width="60" height="30" uuid="2baf7ed2-f779-4ae9-bb49-2b73a416fdb6"/>
+				<textFieldExpression><![CDATA[$F{Tema}]]></textFieldExpression>
+			</textField>
+		</band>
 	</detail>
-	<columnFooter>
-		<band height="45" splitType="Stretch"/>
-	</columnFooter>
 	<pageFooter>
 		<band height="54" splitType="Stretch"/>
 	</pageFooter>
