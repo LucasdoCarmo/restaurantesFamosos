@@ -16,4 +16,19 @@ public interface RestauranteDAO extends CrudDAO<Restaurante> {
 
 	ObservableList<Restaurante> todosTabela();
 
+	Collection<Restaurante> get5Melhores();
+
+	Collection<Restaurante> get10Melhores();
+
+	Collection<Restaurante> get15Melhores();
+
+	Collection<Restaurante> get20Melhores();
+
+	Collection<Restaurante> getMaiorPreco();
+	
+	Collection<Restaurante> getMenorPreco();
+
+	Collection<Restaurante> getEndereco();
+
+	Collection<Restaurante> getTipo();
 }

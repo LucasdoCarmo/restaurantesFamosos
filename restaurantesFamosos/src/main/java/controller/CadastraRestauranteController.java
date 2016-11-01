@@ -3,6 +3,7 @@ package controller;
 import java.io.IOException;
 import dao.CidadeDAO;
 import dao.EstadoDAO;
+import dao.PaisDAO;
 import dao.RestauranteDAO;
 import factory.DAOFactory;
 import javafx.event.ActionEvent;
@@ -18,6 +19,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.util.StringConverter;
 import model.Cidade;
 import model.Estado;
+import model.Pais;
 import model.Restaurante;
 
 public class CadastraRestauranteController {
@@ -30,6 +32,9 @@ public class CadastraRestauranteController {
 
 	@FXML
 	private ComboBox<Estado> cbEstado;
+	
+	@FXML
+	private ComboBox<Pais> cbPais;
 
 	@FXML
 	private Button btnAvaliacao;
@@ -64,6 +69,7 @@ public class CadastraRestauranteController {
 	@FXML
 	private TextField tfNome;
 	/*****************************************************************************************************************************************/
+	private PaisDAO paisDAO;
 	private EstadoDAO estadoDAO;
 	private CidadeDAO cidadeDAO;
 	private RestauranteDAO restauranteDAO;
@@ -72,6 +78,7 @@ public class CadastraRestauranteController {
 
 	public CadastraRestauranteController() {
 		restauranteDAO = DAOFactory.get().restauranteDAO();
+		paisDAO = DAOFactory.get().paisDAO();
 		cidadeDAO = DAOFactory.get().cidadeDAO();
 		estadoDAO = DAOFactory.get().estadoDAO();
 	}
@@ -80,6 +87,7 @@ public class CadastraRestauranteController {
 
 	@FXML
 	public void initialize() {
+		montaComboPais();
 		montaComboEstado();
 		montaComboCidade();
 	}
@@ -124,6 +132,41 @@ public class CadastraRestauranteController {
 	// }
 
 	/*-------------------------------------------------------------------------------------------------------------------------------------*/
+	
+	/*-------------------------------------------------------------------------------------------------------------------------------------*/
+	private void montaComboPais() {
+		cbPais.getItems().addAll(paisDAO.todos());
+
+		cbPais.setCellFactory((comboBox) -> {
+			return new ListCell<Pais>() {
+				@Override
+				protected void updateItem(Pais item, boolean empty) {
+					super.updateItem(item, empty);
+					if (item == null || empty) {
+						setText(null);
+					} else {
+						setText(item.getNome());
+					}
+				}
+			};
+		});
+		cbPais.setConverter(new StringConverter<Pais>() {
+			@Override
+			public String toString(Pais pais) {
+				if (pais == null) {
+					return null;
+				} else {
+					return pais.getCodigo() + " - " + pais.getNome();
+				}
+			}
+
+			@Override
+			public Pais fromString(String personString) {
+
+				return null;
+			}
+		});
+	}	
 	
 	/*-------------------------------------------------------------------------------------------------------------------------------------*/
 	private void montaComboEstado() {

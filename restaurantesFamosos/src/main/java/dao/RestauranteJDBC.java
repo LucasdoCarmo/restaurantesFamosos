@@ -275,4 +275,73 @@ public class RestauranteJDBC implements RestauranteDAO {
 		return null;
 	}
 
+	
+	//Elaborar uma forma de filtrar os melhores
+	@Override
+	public Collection<Restaurante> get5Melhores() {
+		String sql = "select Nome, Telefone, Tipo_de_estabelicimento, Rua, Numero, Tema, Cidade" + " from Restaurante where Nome =? ";
+		List<Restaurante> restaurantes = new ArrayList<>();
+		try {
+			PreparedStatement ps = conexao.get().prepareStatement(sql);
+			ResultSet rs = ps.executeQuery();
+			while (rs.next()) {
+				Restaurante restaurante = new Restaurante(null, rs.getString("Nome"), 
+						rs.getString("Telefone"), 
+						rs.getString("Tipo_de_estabelicimento"), 
+						rs.getString("Rua"), 
+						rs.getString("Numero"), 
+						rs.getString("Tema"), 
+						new Cidade(rs.getLong("idCidade")));
+				restaurantes.add(restaurante);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			conexao.close();
+		}
+		return restaurantes;
+	}
+
+	@Override
+	public Collection<Restaurante> get10Melhores() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Collection<Restaurante> get15Melhores() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Collection<Restaurante> get20Melhores() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Collection<Restaurante> getMaiorPreco() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Collection<Restaurante> getMenorPreco() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Collection<Restaurante> getEndereco() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Collection<Restaurante> getTipo() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

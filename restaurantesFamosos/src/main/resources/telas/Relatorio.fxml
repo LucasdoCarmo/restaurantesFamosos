@@ -28,9 +28,9 @@
             <Button layoutX="904.0" layoutY="73.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="117.0" text="Por preço" />
             <Button fx:id="btnMaior" layoutX="904.0" layoutY="107.0" mnemonicParsing="false" onAction="#MaiorPreco" prefHeight="31.0" prefWidth="100.0" text="maior" />
             <Button fx:id="btnMenor" layoutX="904.0" layoutY="138.0" mnemonicParsing="false" onAction="#MenorPreco" prefHeight="31.0" prefWidth="100.0" text="menor" />
-            <ComboBox fx:id="cbPais" layoutX="264.0" layoutY="102.0" onAction="#Pais" prefHeight="25.0" prefWidth="84.0" promptText="País" />
-            <ComboBox fx:id="cbEstado" layoutX="358.0" layoutY="102.0" onAction="#Estado" prefHeight="25.0" prefWidth="117.0" promptText="Estado" />
-            <ComboBox fx:id="cbCidade" layoutX="300.0" layoutY="160.0" onAction="#Cidade" prefHeight="25.0" prefWidth="140.0" promptText="Cidade" />
+            <ComboBox fx:id="cbPais" layoutX="264.0" layoutY="102.0"  prefHeight="25.0" prefWidth="84.0" promptText="País" />
+            <ComboBox fx:id="cbEstado" layoutX="358.0" layoutY="102.0"  prefHeight="25.0" prefWidth="117.0" promptText="Estado" />
+            <ComboBox fx:id="cbCidade" layoutX="300.0" layoutY="160.0"  prefHeight="25.0" prefWidth="140.0" promptText="Cidade" />
             <ComboBox fx:id="cbTipo" layoutX="552.0" layoutY="134.0" onAction="#Tipo" prefHeight="25.0" prefWidth="185.0" promptText="Tipo" />
             <Button fx:id="btnGeraRelatorio" layoutX="1045.0" layoutY="340.0" mnemonicParsing="false" onAction="#GerarRelatorio" prefHeight="25.0" prefWidth="131.0" text="Gerar Relatório" />
             <TableView fx:id="tbResultado" layoutX="45.0" layoutY="389.0" prefHeight="146.0" prefWidth="1174.0" />

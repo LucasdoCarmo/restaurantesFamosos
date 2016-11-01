@@ -1,9 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.3.1.final using JasperReports Library version 6.3.1  -->
-<!-- 2016-10-31T23:39:08 -->
+<!-- 2016-11-01T00:22:02 -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Blank_A4" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="03879ec4-5aa2-49db-83ef-e150cbbb7509">
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="Banco Restaurante"/>
 	<property name="com.jaspersoft.studio.data.sql.tables" value="cmVzdGF1cmFudGUyLmVzdGFkbyBBUyAsNDU3LDE5NSwxMzY5ZTA5Yi00NzlmLTRkNjAtODkwNi00&#xA;Y2NiYTVhYmFiY2I7cmVzdGF1cmFudGUyLnBhaXMgQVMgLDU2NywyNSxiNTgxMWJkOC1mMWQzLTQ5&#xA;ODMtYWI3NS01MTkzMWI1YjQ2MWI7cmVzdGF1cmFudGUyLmNpZGFkZSBBUyAsNDA2LDE1LDY2ZmE4&#xA;OGRlLWQ5OTgtNDMyNS1iMzU0LTMxYThhZDJmYTk0NjtyZXN0YXVyYW50ZTIuYXZhbGlhY2FvIEFT&#xA;ICwxNiwxMSw5NDYzNDBiOS0zNmMxLTRiZWQtOWMwNy1lODU5MDE4NjhmZTY7cmVzdGF1cmFudGUy&#xA;LnJlc3RhdXJhbnRlIEFTICwxOTIsMjYsYzMxMmE5MzItYjE1NS00OTYzLTg5M2EtZDJiYTUwODli&#xA;NTQ4Ow=="/>
+	<subDataset name="Dataset1" uuid="2fab79d6-d5df-4579-8996-190f94dd9ffe">
+		<property name="com.jaspersoft.studio.data.defaultdataadapter" value="Banco Restaurante"/>
+		<queryString>
+			<![CDATA[]]>
+		</queryString>
+	</subDataset>
 	<queryString>
 		<![CDATA[SELECT restaurante2.pais.pais,
 	restaurante2.estado.`UF`,
@@ -127,7 +133,7 @@ FROM restaurante2.avaliacao
 		</band>
 	</columnHeader>
 	<detail>
-		<band height="125" splitType="Stretch">
+		<band height="59" splitType="Stretch">
 			<textField>
 				<reportElement x="500" y="0" width="51" height="30" uuid="cc89b0e6-f370-44d4-aa5e-c881012c0eac"/>
 				<box>
