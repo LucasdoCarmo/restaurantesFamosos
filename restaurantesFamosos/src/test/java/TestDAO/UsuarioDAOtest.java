@@ -12,7 +12,7 @@ public class UsuarioDAOtest {
 	@Test
 	public void deveInserirNovoUsuario() {
 		Usuario user = new Usuario();
-		user.setNome("Lucas do rio verde");
+		user.setNome("T");
 		user.setEmail("test@test.com");
 		user.setSenha("test");
 		UsuarioDAO UsuarioDAO = DAOFactory.get().usuarioDAO();
@@ -24,19 +24,22 @@ public class UsuarioDAOtest {
 	@Test
 	public void deveAlterarUsuario() {
 		Usuario user = new Usuario();
-		user.setNome("Lucas do rio verde");
-		user.setEmail("test@test.com");
-		user.setSenha("test");
+		user.setNome("L");
+		user.setEmail("t@test.com");
+		user.setSenha("t");
 		UsuarioDAO usuarioDAO = DAOFactory.get().usuarioDAO();
-		usuarioDAO.alterar(user);
+		usuarioDAO.inserir(user);
 		user.setNome("Usuario alterado");
 		user.setEmail("asdsa");
 		user.setSenha("asdas");
-		
+		usuarioDAO.alterar(user);
 		Usuario EstadoBanco = usuarioDAO.get(user.getCodigo());
 		assertEquals("Usuario alterado", EstadoBanco.getNome());
 		assertEquals("asdsa", EstadoBanco.getEmail());
 		assertEquals("asdas", EstadoBanco.getSenha());
-		usuarioDAO.excluir(user.getCodigo());
+		usuarioDAO.excluir(EstadoBanco.getCodigo());
+		
+		
+		
 	}
 }

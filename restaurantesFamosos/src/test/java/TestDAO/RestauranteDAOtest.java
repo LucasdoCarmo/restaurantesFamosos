@@ -48,7 +48,6 @@ public class RestauranteDAOtest {
 		restaurane.setTema("ar livre");
 		restaurane.setCidade(new Cidade(1L));
 
-		restaurane.setCidade(new Cidade(1L));
 		restaurantedao.alterar(restaurane);
 
 		Restaurante RestauranteBanco = restaurantedao.get(restaurane.getCodigo());

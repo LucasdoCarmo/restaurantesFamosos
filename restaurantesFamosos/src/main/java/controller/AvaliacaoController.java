@@ -2,7 +2,9 @@ package controller;
 
 import java.io.IOException;
 
+import conexao.Conexao;
 import dao.AvaliacaoDAO;
+import dao.RestauranteJDBC;
 import factory.DAOFactory;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -18,6 +20,7 @@ import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import model.Avaliacao;
+import model.Restaurante;
 
 public class AvaliacaoController {
 
@@ -247,20 +250,26 @@ public class AvaliacaoController {
 	private Button btnSalvar;
 
 	private AvaliacaoDAO avaliacaoDAO;
+	
+	private Conexao conexao;
 
 	@FXML
 	void Voltar(ActionEvent event) {
 		AbreTela("TelaVazia.fxml");
 	}
 
-	public AvaliacaoController() {
+	public AvaliacaoController(Conexao conexao) {
 		avaliacaoDAO = DAOFactory.get().avaliacaoDAO();
 		avaliacaoDAO = DAOFactory.get().avaliacaoDAO();
-
+		this.conexao = conexao;
 	}
 
 	@FXML
 	void Salvar(ActionEvent event) {
+		if(!tfNomeRestaurante.getText().isEmpty()){
+			RestauranteJDBC restaurante = new RestauranteJDBC(conexao);
+			restaurante.getPorNome(tfNomeRestaurante.getText());
+		}
 		Avaliacao avaliacao = criaAvaliacao();
 		avaliacao.setNotaAtendimento(Integer.valueOf(radioAtendimento()));
 		avaliacao.setNotaAspecto(Integer.valueOf(radioAspecto()));

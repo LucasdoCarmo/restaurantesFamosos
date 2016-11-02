@@ -16,6 +16,7 @@ public class Avaliacao implements Entidade {
 	private Integer notaPagamento;
 	private String avaliacaoDescritiva;
 	private Integer notaGeral;
+	private Restaurante restaurante;
 
 	public Avaliacao(Long codigo) {
 		this.codigo = codigo;

@@ -10,6 +10,7 @@ import java.util.List;
 
 import conexao.Conexao;
 import model.Avaliacao;
+import model.Restaurante;
 
 public class AvaliacaoJDBC implements AvaliacaoDAO {
 
@@ -117,7 +118,8 @@ public class AvaliacaoJDBC implements AvaliacaoDAO {
 	private Avaliacao getAvaliacao(ResultSet rs) throws SQLException {
 		Avaliacao avaliacao = new Avaliacao(rs.getLong("idAvaliacao"), rs.getInt("Nota_Atendimento"),
 				rs.getInt("Nota_Comida"), rs.getInt("Nota_aspecto"), rs.getInt("Nota_pagamento"),
-				rs.getString("Avaliacao_Descritiva"), rs.getInt("Nota_Geral"));
+				rs.getString("Avaliacao_Descritiva"), rs.getInt("Nota_Geral"),
+				new Restaurante(rs.getLong("idRestaurante")));
 		return avaliacao;
 	}
 	

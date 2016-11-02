@@ -39,7 +39,7 @@ public class UsuarioJDBC implements UsuarioDAO {
 	}
 
 	public void alterar(Usuario objeto){
-		String update = "update usuario set Nome=?, email=?, senha=? where idUsuario =?";
+		String update = "update usuario set Nome=? , email=? , senha=? where idUsuario =?";
 		try {
 			PreparedStatement ps = conexao.get().prepareStatement(update);
 			ps.setString(1, objeto.getNome());
@@ -127,7 +127,7 @@ public class UsuarioJDBC implements UsuarioDAO {
 	        ps.setObject(2, senha);
 	        ResultSet rs = ps.executeQuery();
 	        if (rs.next()) {
-	            usuario = new Usuario(null, rs.getString("Nome"), rs.getString("senha"), null);
+	            usuario = new Usuario(rs.getLong("isUsuario"), rs.getString("Nome"), rs.getString("email"), rs.getString("senha"));
 	        }
 	        return usuario;
 	    }
