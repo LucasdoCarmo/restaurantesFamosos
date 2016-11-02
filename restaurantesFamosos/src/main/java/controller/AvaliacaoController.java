@@ -1,7 +1,6 @@
 package controller;
 
-import java.io.IOException;
-
+import application.Main;
 import conexao.Conexao;
 import dao.AvaliacaoDAO;
 import dao.RestauranteJDBC;
@@ -9,6 +8,7 @@ import factory.DAOFactory;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
@@ -17,12 +17,14 @@ import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.StackPane;
 import model.Avaliacao;
-import model.Restaurante;
 
 public class AvaliacaoController {
+
+	@FXML
+	private StackPane stack;
 
 	@FXML
 	private BorderPane panelSecundario;
@@ -250,12 +252,12 @@ public class AvaliacaoController {
 	private Button btnSalvar;
 
 	private AvaliacaoDAO avaliacaoDAO;
-	
+
 	private Conexao conexao;
 
 	@FXML
 	void Voltar(ActionEvent event) {
-		AbreTela("TelaVazia.fxml");
+		AbreTela("Principal.fxml");
 	}
 
 	public AvaliacaoController(Conexao conexao) {
@@ -266,7 +268,7 @@ public class AvaliacaoController {
 
 	@FXML
 	void Salvar(ActionEvent event) {
-		if(!tfNomeRestaurante.getText().isEmpty()){
+		if (!tfNomeRestaurante.getText().isEmpty()) {
 			RestauranteJDBC restaurante = new RestauranteJDBC(conexao);
 			restaurante.getPorNome(tfNomeRestaurante.getText());
 		}
@@ -275,7 +277,7 @@ public class AvaliacaoController {
 		avaliacao.setNotaAspecto(Integer.valueOf(radioAspecto()));
 		avaliacao.setNotaComida(Integer.valueOf(radioCardapio()));
 		avaliacao.setNotaPagamento(Integer.valueOf(radioPagamento()));
-		//avaliacao.setNotaGeral(notaGeral());
+		// avaliacao.setNotaGeral(notaGeral());
 		avaliacao.setAvaliacaoDescritiva(taDescricao.getText());
 		avaliacaoDAO.salvar(avaliacao);
 
@@ -292,15 +294,19 @@ public class AvaliacaoController {
 	}
 
 	/* _____________________________________________________________________________________________________________________________________ */
+
 	public void AbreTela(String tela) {
-		FXMLLoader loader = new FXMLLoader();
-		loader.setLocation(getClass().getResource("/telas/" + tela));
+		stack.getChildren().clear();
+		stack.getChildren().add(getNode(tela));
+	}
+
+	public Node getNode(String node) {
+		Node no = null;
 		try {
-			AnchorPane telaView = (AnchorPane) loader.load();
-			panelSecundario.setCenter(telaView);
-		} catch (IOException e1) {
-			e1.printStackTrace();
+			no = FXMLLoader.load(getClass().getResource(Main.PATH_VIEW + node));
+		} catch (Exception e) {
 		}
+		return no;
 	}
 
 	/* _____________________________________________________________________________________________________________________________________ */
@@ -387,13 +393,4 @@ public class AvaliacaoController {
 		}
 		return radio;
 	}
-
-	/*-------------------------------------------------------------------------------------------------------------------------------------*/
-	//public Integer notaGeral(){
-	//	Integer nota =0;
-	//	Integer soma =0;
-	//	soma = Integer.valueOf(radioAspecto()) + Integer.valueOf(radioAtendimento()) + Integer.valueOf(radioCardapio()) + Integer.valueOf(radioPagamento());
-	//	nota = soma /4;
-	//	return nota;
-	//}
 }

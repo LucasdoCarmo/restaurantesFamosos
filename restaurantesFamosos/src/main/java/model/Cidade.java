@@ -23,4 +23,8 @@ public class Cidade implements Entidade , RenderizaCombo {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+	public Cidade(String nome) {
+		this.nome = nome;
+	}
 }

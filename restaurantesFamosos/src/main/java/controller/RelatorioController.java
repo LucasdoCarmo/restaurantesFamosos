@@ -1,20 +1,24 @@
 package controller;
 
 import java.net.URL;
+import application.Main;
 import conexao.ConexaoMysqlProducao;
 import dao.CidadeDAO;
 import dao.EstadoDAO;
-import dao.PaisDAO;
+//import dao.PaisDAO;
 import factory.DAOFactory;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.TableView;
+import javafx.scene.layout.StackPane;
 import javafx.util.StringConverter;
 import model.Estado;
-import model.Pais;
+//import model.Pais;
 import model.Restaurante;
 import model.Cidade;
 import net.sf.jasperreports.engine.JRException;
@@ -25,8 +29,11 @@ import net.sf.jasperreports.view.JasperViewer;
 
 public class RelatorioController {
 
+	// @FXML
+	// private ComboBox<Pais> cbPais;
+
 	@FXML
-	private ComboBox<Pais> cbPais;
+	private StackPane stack;
 
 	@FXML
 	private ComboBox<Estado> cbEstado;
@@ -62,20 +69,24 @@ public class RelatorioController {
 	private Button btnMenor;
 
 	@FXML
-	private TableView<Restaurante> tbResultado;
-
-	@FXML
 	private Button btnTodos;
 
-	private PaisDAO paisDAO;
+	@FXML
+	private TableView<Restaurante> tbResultado;
+
+	// private PaisDAO paisDAO;
 	private EstadoDAO estadoDAO;
 	private CidadeDAO cidadeDAO;
 
+	/*-------------------------------------------------------------------------------------------------------------------------------------*/
+
 	public RelatorioController() {
-		paisDAO = DAOFactory.get().paisDAO();
+		// paisDAO = DAOFactory.get().paisDAO();
 		cidadeDAO = DAOFactory.get().cidadeDAO();
 		estadoDAO = DAOFactory.get().estadoDAO();
 	}
+
+	/*-------------------------------------------------------------------------------------------------------------------------------------*/
 
 	@FXML
 	void Todos(ActionEvent event) {
@@ -90,6 +101,8 @@ public class RelatorioController {
 		}
 	}
 
+	/*-------------------------------------------------------------------------------------------------------------------------------------*/
+
 	@FXML
 	void VinteMelhores(ActionEvent event) {
 		URL url = getClass().getResource("/relatorio/Relatorio20Melhores.jasper");
@@ -102,6 +115,8 @@ public class RelatorioController {
 			e.printStackTrace();
 		}
 	}
+
+	/*-------------------------------------------------------------------------------------------------------------------------------------*/
 
 	@FXML
 	void CincoMelhores(ActionEvent event) {
@@ -116,6 +131,8 @@ public class RelatorioController {
 		}
 	}
 
+	/*-------------------------------------------------------------------------------------------------------------------------------------*/
+
 	@FXML
 	void DezMelhores(ActionEvent event) {
 		URL url = getClass().getResource("/relatorio/Relatorio10Melhores.jasper");
@@ -128,6 +145,8 @@ public class RelatorioController {
 			e.printStackTrace();
 		}
 	}
+
+	/*-------------------------------------------------------------------------------------------------------------------------------------*/
 
 	@FXML
 	void QuinzeMelhores(ActionEvent event) {
@@ -142,6 +161,8 @@ public class RelatorioController {
 		}
 	}
 
+	/*-------------------------------------------------------------------------------------------------------------------------------------*/
+
 	@FXML
 	void MaiorPreco(ActionEvent event) {
 		URL url = getClass().getResource("/relatorio/RelatorioMaiorPreco.jasper");
@@ -155,6 +176,8 @@ public class RelatorioController {
 		}
 	}
 
+	/*-------------------------------------------------------------------------------------------------------------------------------------*/
+
 	@FXML
 	void MenorPreco(ActionEvent event) {
 		URL url = getClass().getResource("/relatorio/RelatorioMenorPreco.jasper");
@@ -167,7 +190,7 @@ public class RelatorioController {
 			e.printStackTrace();
 		}
 	}
-	
+
 	/*-------------------------------------------------------------------------------------------------------------------------------------*/
 
 	public void Cidade() {
@@ -195,9 +218,9 @@ public class RelatorioController {
 			e.printStackTrace();
 		}
 	}
-	
+
 	/*-------------------------------------------------------------------------------------------------------------------------------------*/
-	
+
 	@FXML
 	void GerarRelatorio(ActionEvent event) {
 		if (!cbTipo.getSelectionModel().isEmpty()) {
@@ -207,58 +230,60 @@ public class RelatorioController {
 		}
 	}
 
+	/*-------------------------------------------------------------------------------------------------------------------------------------*/
+
 	@FXML
 	void Sair(ActionEvent event) {
-
+		AbreTela("Principal.fxml");
 	}
 
 	/*-------------------------------------------------------------------------------------------------------------------------------------*/
-	
+
 	@FXML
 	public void initialize() {
-		montaComboPais();
+		// montaComboPais();
 		montaComboEstado();
 		montaComboCidade();
 	}
 
 	/*-------------------------------------------------------------------------------------------------------------------------------------*/
-	
-	private void montaComboPais() {
-		cbPais.getItems().addAll(paisDAO.todos());
 
-		cbPais.setCellFactory((comboBox) -> {
-			return new ListCell<Pais>() {
-				@Override
-				protected void updateItem(Pais item, boolean empty) {
-					super.updateItem(item, empty);
-					if (item == null || empty) {
-						setText(null);
-					} else {
-						setText(item.getNome());
-					}
-				}
-			};
-		});
-		cbPais.setConverter(new StringConverter<Pais>() {
-			@Override
-			public String toString(Pais pais) {
-				if (pais == null) {
-					return null;
-				} else {
-					return pais.getCodigo() + " - " + pais.getNome();
-				}
-			}
-
-			@Override
-			public Pais fromString(String personString) {
-
-				return null;
-			}
-		});
-	}
+	// private void montaComboPais() {
+	// cbPais.getItems().addAll(paisDAO.todos());
+	//
+	// cbPais.setCellFactory((comboBox) -> {
+	// return new ListCell<Pais>() {
+	// @Override
+	// protected void updateItem(Pais item, boolean empty) {
+	// super.updateItem(item, empty);
+	// if (item == null || empty) {
+	// setText(null);
+	// } else {
+	// setText(item.getNome());
+	// }
+	// }
+	// };
+	// });
+	// cbPais.setConverter(new StringConverter<Pais>() {
+	// @Override
+	// public String toString(Pais pais) {
+	// if (pais == null) {
+	// return null;
+	// } else {
+	// return pais.getCodigo() + " - " + pais.getNome();
+	// }
+	// }
+	//
+	// @Override
+	// public Pais fromString(String personString) {
+	//
+	// return null;
+	// }
+	// });
+	// }
 
 	/*-------------------------------------------------------------------------------------------------------------------------------------*/
-	
+
 	private void montaComboEstado() {
 		cbEstado.getItems().addAll(estadoDAO.todos());
 
@@ -294,7 +319,7 @@ public class RelatorioController {
 	}
 
 	/*-------------------------------------------------------------------------------------------------------------------------------------*/
-	
+
 	private void montaComboCidade() {
 		cbCidade.getItems().addAll(cidadeDAO.todos());
 
@@ -329,4 +354,19 @@ public class RelatorioController {
 		});
 	}
 
+	/*-------------------------------------------------------------------------------------------------------------------------------------*/
+
+	public void AbreTela(String tela) {
+		stack.getChildren().clear();
+		stack.getChildren().add(getNode(tela));
+	}
+
+	public Node getNode(String node) {
+		Node no = null;
+		try {
+			no = FXMLLoader.load(getClass().getResource(Main.PATH_VIEW + node));
+		} catch (Exception e) {
+		}
+		return no;
+	}
 }

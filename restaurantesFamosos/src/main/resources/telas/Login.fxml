@@ -1,53 +1,68 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Hyperlink?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.RadioButton?>
-<?import javafx.scene.control.Tab?>
-<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane fx:id="clientLayout" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.LoginController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1170.0" styleClass="fundo" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.LoginController">
    <children>
-      <BorderPane fx:id="panelPrincipal" prefHeight="200.0" prefWidth="200.0" styleClass="telaLogin" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-         <center>
-            <Pane prefHeight="308.0" prefWidth="415.0" BorderPane.alignment="CENTER">
-               <children>
-                  <Text layoutX="486.0" layoutY="85.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Restaurantes Famosos" textAlignment="CENTER">
-                     <font>
-                        <Font size="27.0" />
-                     </font>
-                  </Text>
-                  <Label layoutX="407.0" layoutY="247.0" text="LOGIN">
-                     <font>
-                        <Font size="17.0" />
-                     </font>
-                  </Label>
-                  <Label layoutX="406.0" layoutY="310.0" text="SENHA">
-                     <font>
-                        <Font size="17.0" />
-                     </font>
-                  </Label>
-                  <TextField fx:id="tfLogin" layoutX="512.0" layoutY="245.0" prefHeight="25.0" prefWidth="208.0" />
-                  <TextField fx:id="tfSenha" layoutX="512.0" layoutY="308.0" prefHeight="25.0" prefWidth="208.0" />
-                  <Button fx:id="btnCriarConta" layoutX="633.0" layoutY="447.0" mnemonicParsing="false" onAction="#CriarConta" styleClass="excluir" text="CRIAR CONTA" />
-                  <Button fx:id="btnEntrar" layoutX="447.0" layoutY="447.0" mnemonicParsing="false" onAction="#Entrar" styleClass="salvar" text="ENTRAR" />
-                  <TabPane layoutX="982.0" layoutY="547.0" prefHeight="200.0" prefWidth="272.0" tabClosingPolicy="UNAVAILABLE">
-                    <tabs>
-                      <Tab text="INFO" />
-                    </tabs>
-                  </TabPane>
-                  <RadioButton fx:id="rbLembarSenha" layoutX="447.0" layoutY="373.0" mnemonicParsing="false" onAction="#LembrarSenha" text="Lembrar senha" />
-                  <Hyperlink fx:id="linkEsqueciSenha" layoutX="635.0" layoutY="370.0" onAction="#EsqueciSenha" text="Esqueci senha" />
-               </children>
-            </Pane>
-         </center>
-      </BorderPane>
+      <StackPane fx:id="stack" prefHeight="800.0" prefWidth="1170.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <BorderPane fx:id="panelPrincipal" prefHeight="593.0" prefWidth="1044.0" styleClass="root">
+               <bottom>
+                  <Pane prefHeight="531.0" prefWidth="1170.0" BorderPane.alignment="CENTER">
+                     <children>
+                        <Label layoutX="399.0" layoutY="59.0" styleClass="labelindicador" text="LOGIN">
+                           <font>
+                              <Font size="17.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="398.0" layoutY="122.0" styleClass="labelindicador" text="SENHA">
+                           <font>
+                              <Font size="17.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="tfLogin" alignment="CENTER" layoutX="504.0" layoutY="57.0" prefHeight="25.0" prefWidth="208.0" />
+                        <Button fx:id="btnCriarConta" layoutX="577.0" layoutY="238.0" mnemonicParsing="false" onAction="#CriarConta" prefHeight="40.0" prefWidth="158.0" styleClass="excluir" text="CRIAR CONTA">
+                           <cursor>
+                              <Cursor fx:constant="OPEN_HAND" />
+                           </cursor>
+                        </Button>
+                        <Button fx:id="btnEntrar" layoutX="382.0" layoutY="238.0" mnemonicParsing="false" onAction="#Entrar" prefHeight="40.0" prefWidth="119.0" styleClass="salvar" text="ENTRAR">
+                           <cursor>
+                              <Cursor fx:constant="OPEN_HAND" />
+                           </cursor>
+                        </Button>
+                        <Hyperlink fx:id="linkEsqueciSenha" layoutX="554.0" layoutY="164.0" onAction="#EsqueciSenha" styleClass="esquicisenha" text="Esqueci senha" />
+                        <PasswordField fx:id="tfSenha" alignment="CENTER" layoutX="504.0" layoutY="120.0" prefHeight="26.0" prefWidth="208.0" />
+                     </children>
+                  </Pane>
+               </bottom>
+               <top>
+                  <Pane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                     <children>
+                        <Text layoutX="397.0" layoutY="129.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="titulotelalogin" text="Restaurantes Famosos" textAlignment="CENTER" wrappingWidth="307.8369140625">
+                           <font>
+                              <Font size="27.0" />
+                           </font>
+                           <cursor>
+                              <Cursor fx:constant="DEFAULT" />
+                           </cursor>
+                        </Text>
+                     </children>
+                  </Pane>
+               </top>
+            </BorderPane>
+         </children>
+      </StackPane>
    </children>
 </AnchorPane>

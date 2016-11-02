@@ -21,7 +21,7 @@ public class DAOFactory {
 	private static DAOFactory factory;
 
 	/**
-	 * Pega a fabrica de DAO, instância única para todo mundo. Padrão
+	 * Pega a fabrica de DAO, instancia unica para todo mundo. Padrao
 	 * Singleton simples.
 	 * 
 	 * @return

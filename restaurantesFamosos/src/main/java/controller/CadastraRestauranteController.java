@@ -1,14 +1,17 @@
 package controller;
 
 import java.io.IOException;
+
+import application.Main;
 import dao.CidadeDAO;
 import dao.EstadoDAO;
-import dao.PaisDAO;
+//import dao.PaisDAO;
 import dao.RestauranteDAO;
 import factory.DAOFactory;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
@@ -16,13 +19,17 @@ import javafx.scene.control.ListCell;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.StackPane;
 import javafx.util.StringConverter;
 import model.Cidade;
 import model.Estado;
-import model.Pais;
+//import model.Pais;
 import model.Restaurante;
 
 public class CadastraRestauranteController {
+
+	@FXML
+	private StackPane stack;
 
 	@FXML
 	private BorderPane panelSecundario;
@@ -32,9 +39,9 @@ public class CadastraRestauranteController {
 
 	@FXML
 	private ComboBox<Estado> cbEstado;
-	
-	@FXML
-	private ComboBox<Pais> cbPais;
+
+	// @FXML
+	// private ComboBox<Pais> cbPais;
 
 	@FXML
 	private Button btnAvaliacao;
@@ -69,7 +76,7 @@ public class CadastraRestauranteController {
 	@FXML
 	private TextField tfNome;
 	/*****************************************************************************************************************************************/
-	private PaisDAO paisDAO;
+	// private PaisDAO paisDAO;
 	private EstadoDAO estadoDAO;
 	private CidadeDAO cidadeDAO;
 	private RestauranteDAO restauranteDAO;
@@ -78,7 +85,7 @@ public class CadastraRestauranteController {
 
 	public CadastraRestauranteController() {
 		restauranteDAO = DAOFactory.get().restauranteDAO();
-		paisDAO = DAOFactory.get().paisDAO();
+		// paisDAO = DAOFactory.get().paisDAO();
 		cidadeDAO = DAOFactory.get().cidadeDAO();
 		estadoDAO = DAOFactory.get().estadoDAO();
 	}
@@ -87,7 +94,7 @@ public class CadastraRestauranteController {
 
 	@FXML
 	public void initialize() {
-		montaComboPais();
+		// montaComboPais();
 		montaComboEstado();
 		montaComboCidade();
 	}
@@ -96,7 +103,7 @@ public class CadastraRestauranteController {
 
 	@FXML
 	void Voltar(ActionEvent event) {
-		AbreTela("TelaVazia.fxml");
+		AbreTela("Principal.fxml");
 	}
 
 	/*****************************************************************************************************************************************/
@@ -111,63 +118,71 @@ public class CadastraRestauranteController {
 
 	public void AbreTela(String tela) {
 		FXMLLoader loader = new FXMLLoader();
-		loader.setLocation(getClass().getResource("/telas/" + tela));
+		loader.setLocation(getClass().getResource(Main.PATH_VIEW + tela));
 		try {
 			AnchorPane telaView = (AnchorPane) loader.load();
 			panelSecundario.setCenter(telaView);
 		} catch (IOException e1) {
 			e1.printStackTrace();
 		}
+		
+		//stack.getChildren().clear();
+		//stack.getChildren().add(getNode(tela));
 	}
+
+	public Node getNode(String node) {
+		Node no = null;
+		try {
+			no = FXMLLoader.load(getClass().getResource(Main.PATH_VIEW + node));
+		} catch (Exception e) {
+		}
+		return no;
+	}
+
 	/*-------------------------------------------------------------------------------------------------------------------------------------*/
 
 	// Metodos nao usados no fx
 	// Metodos utilizados para montar os combobox
+
+	/*-------------------------------------------------------------------------------------------------------------------------------------*/
+	// Caso exista a necessidade de se implementar um combo de pais no sistema
+	// este método está pronto para renderizar o combo com o nome dos paises a
+	// serem escolhidos
+	/*-------------------------------------------------------------------------------------------------------------------------------------*/
 	// private void montaComboPais() {
 	// cbPais.getItems().addAll(paisDAO.todos());
+
 	// cbPais.setCellFactory((comboBox) -> {
-	// return new ListCellBean<Pais>();
+	// return new ListCell<Pais>() {
+	// @Override
+	// protected void updateItem(Pais item, boolean empty) {
+	// super.updateItem(item, empty);
+	// if (item == null || empty) {
+	// setText(null);
+	// } else {
+	// setText(item.getNome());
+	// }
+	// }
+	// };
 	// });
-	// cbPais.setConverter(new StringConverterBean<>());
+	// cbPais.setConverter(new StringConverter<Pais>() {
+	// @Override
+	// public String toString(Pais pais) {
+	// if (pais == null) {
+	// return null;
+	// } else {
+	// return pais.getCodigo() + " - " + pais.getNome();
+	// }
+	// }
+	//
+	// @Override
+	// public Pais fromString(String personString) {
+	//
+	// return null;
+	// }
+	// });
 	// }
 
-	/*-------------------------------------------------------------------------------------------------------------------------------------*/
-	
-	/*-------------------------------------------------------------------------------------------------------------------------------------*/
-	private void montaComboPais() {
-		cbPais.getItems().addAll(paisDAO.todos());
-
-		cbPais.setCellFactory((comboBox) -> {
-			return new ListCell<Pais>() {
-				@Override
-				protected void updateItem(Pais item, boolean empty) {
-					super.updateItem(item, empty);
-					if (item == null || empty) {
-						setText(null);
-					} else {
-						setText(item.getNome());
-					}
-				}
-			};
-		});
-		cbPais.setConverter(new StringConverter<Pais>() {
-			@Override
-			public String toString(Pais pais) {
-				if (pais == null) {
-					return null;
-				} else {
-					return pais.getCodigo() + " - " + pais.getNome();
-				}
-			}
-
-			@Override
-			public Pais fromString(String personString) {
-
-				return null;
-			}
-		});
-	}	
-	
 	/*-------------------------------------------------------------------------------------------------------------------------------------*/
 	private void montaComboEstado() {
 		cbEstado.getItems().addAll(estadoDAO.todos());

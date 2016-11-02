@@ -1,78 +1,85 @@
 package controller;
 
-import java.io.IOException;
+import application.Main;
 import dao.UsuarioDAO;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.StackPane;
 import model.Usuario;
 
 public class EditaPerfilController {
 
 	@FXML
-    private BorderPane panelSecundario;
-	
-    @FXML
-    private Button btnConfirmar;
+	private StackPane stack;
 
-    @FXML
-    private TextField tfCodigo;
-    
-    @FXML
-    private TextField tfSenha;
+	@FXML
+	private BorderPane panelSecundario;
 
-    @FXML
-    private Button btnVoltar;
+	@FXML
+	private Button btnConfirmar;
 
-    @FXML
-    private TextField tfEmail;
+	@FXML
+	private TextField tfCodigo;
 
-    @FXML
-    private TextField tfConfirmaSenha;
+	@FXML
+	private TextField tfSenha;
 
-    @FXML
-    private TextField tfNome;
+	@FXML
+	private Button btnVoltar;
 
-    private UsuarioDAO usuarioDAO;
-    
-    @FXML
-    void Voltar(ActionEvent event) {
-    	AbreTela("TelaVazia.fxml");
-    }
+	@FXML
+	private TextField tfEmail;
 
-    @FXML
-    void Confirmar(ActionEvent event) {
-    	Usuario usuario = modificaUsuario();
-    	usuarioDAO.salvar(usuario);
-    }
-    
-    
+	@FXML
+	private TextField tfConfirmaSenha;
+
+	@FXML
+	private TextField tfNome;
+
+	private UsuarioDAO usuarioDAO;
+
+	@FXML
+	void Voltar(ActionEvent event) {
+		AbreTela("Principal.fxml");
+	}
+
+	@FXML
+	void Confirmar(ActionEvent event) {
+		Usuario usuario = modificaUsuario();
+		usuarioDAO.salvar(usuario);
+		AbreTela("Principal.fxml");
+	}
+
 	private Usuario modificaUsuario() {
-    	//implementar uma forma de salvar a avaliação do usuário
+		// implementar uma forma de salvar a avaliação do usuário
 		usuarioDAO.excluir(Long.valueOf(tfCodigo.getText()));
 		Usuario usuario = new Usuario();
 		usuario.setNome(tfNome.getText());
 		usuario.setEmail(tfEmail.getText());
-		if(tfConfirmaSenha.getText() == tfSenha.getText()){
-			if(!tfSenha.getText().isEmpty())
-			usuario.setSenha(tfSenha.getText());	
+		if (tfConfirmaSenha.getText() == tfSenha.getText()) {
+			if (!tfSenha.getText().isEmpty())
+				usuario.setSenha(tfSenha.getText());
 		}
 		return usuario;
 	}
-    
-	  public void AbreTela(String tela) {
-			FXMLLoader loader = new FXMLLoader();
-			loader.setLocation(getClass().getResource("/telas/" +tela));
-			try {
-				AnchorPane telaView = (AnchorPane) loader.load();
-				panelSecundario.setCenter(telaView);
-			} catch (IOException e1) {
-				e1.printStackTrace();
-			}
-		}  
-	
+
+	public void AbreTela(String tela) {
+		stack.getChildren().clear();
+		stack.getChildren().add(getNode(tela));
+	}
+
+	public Node getNode(String node) {
+		Node no = null;
+		try {
+			no = FXMLLoader.load(getClass().getResource(Main.PATH_VIEW + node));
+		} catch (Exception e) {
+		}
+		return no;
+	}
+
 }

@@ -1,13 +1,14 @@
 package controller;
 
-import java.io.IOException;
 import java.util.Collection;
+import application.Main;
 import dao.RestauranteDAO;
 import factory.DAOFactory;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
@@ -16,12 +17,14 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
-import model.Cidade;
+import javafx.scene.layout.StackPane;
 import model.Restaurante;
 
 public class BuscarController {
+
+	@FXML
+	private StackPane stack;
 
 	@FXML
 	private BorderPane panelSecundario;
@@ -46,10 +49,10 @@ public class BuscarController {
 
 	@FXML
 	private TextField tfTema;
-	
+
 	@FXML
 	private TextField tfNome;
-	
+
 	@FXML
 	private TextField tfTipo;
 
@@ -62,20 +65,20 @@ public class BuscarController {
 	@FXML
 	private TableColumn<Restaurante, String> tcTelefone;
 
-	@FXML
-	private TableColumn<Restaurante, String> tcTipo;
+	// @FXML
+	// private TableColumn<Restaurante, String> tcTipo;
 
 	@FXML
 	private TableColumn<Restaurante, String> tcTema;
 
-    @FXML
-    private TableColumn<Restaurante, String> tcRua;
+	@FXML
+	private TableColumn<Restaurante, String> tcRua;
 
-    @FXML
-    private TableColumn<Restaurante, String> tcNumero;
+	@FXML
+	private TableColumn<Restaurante, String> tcNumero;
 
-    @FXML
-    private TableColumn<Cidade, String> tcCidade;
+	// @FXML
+	// private TableColumn<Cidade, String> tcCidade;
 
 	private RestauranteDAO restauranteDAO;
 
@@ -89,11 +92,12 @@ public class BuscarController {
 	public void initialize() {
 		tcNome.setCellValueFactory(new PropertyValueFactory<>("Nome"));
 		tcTelefone.setCellValueFactory(new PropertyValueFactory<>("Telefone"));
-		tcTipo.setCellValueFactory(new PropertyValueFactory<>("Tipo_de_estabelicimento"));
+		// tcTipo.setCellValueFactory(new
+		// PropertyValueFactory<>("Tipo_de_estabelicimento"));
 		tcRua.setCellValueFactory(new PropertyValueFactory<>("Rua"));
 		tcNumero.setCellValueFactory(new PropertyValueFactory<>("Numero"));
 		tcTema.setCellValueFactory(new PropertyValueFactory<>("Tema"));
-		tcCidade.setCellValueFactory(new PropertyValueFactory<>("Cidade"));
+		// tcCidade.setCellValueFactory(new PropertyValueFactory<>("idCidade"));
 	}
 
 	@FXML
@@ -129,14 +133,14 @@ public class BuscarController {
 
 	@FXML
 	void Voltar(ActionEvent event) {
-		AbreTela("TelaVazia.fxml");
+		AbreTela("Principal.fxml");
 	}
 
 	@FXML
 	void BuscaAvancada(ActionEvent event) {
 		AbreTela("BuscaAvancada.fxml");
 	}
-	
+
 	/* _____________________________________________________________________________________________________________________________________ */
 
 	private void atualizaTabelaTodos() {
@@ -147,24 +151,28 @@ public class BuscarController {
 	/* _____________________________________________________________________________________________________________________________________ */
 
 	public void AbreTela(String tela) {
-		FXMLLoader loader = new FXMLLoader();
-		loader.setLocation(getClass().getResource("/telas/" + tela));
+		stack.getChildren().clear();
+		stack.getChildren().add(getNode(tela));
+	}
+
+	public Node getNode(String node) {
+		Node no = null;
 		try {
-			AnchorPane telaView = (AnchorPane) loader.load();
-			panelSecundario.setTop(telaView);
-		} catch (IOException e1) {
-			e1.printStackTrace();
+			no = FXMLLoader.load(getClass().getResource(Main.PATH_VIEW + node));
+		} catch (Exception e) {
 		}
+		return no;
 	}
 
 	/* _____________________________________________________________________________________________________________________________________ */
-	
+
 	public void BuscarPorNome(String texto) {
 		if (texto != null) {
 			Collection<Restaurante> restaurantes = restauranteDAO.getPorNome(texto);
 			tbResultado.setItems(FXCollections.observableArrayList(restaurantes));
 		} else {
-			Alert alert = new Alert(AlertType.INFORMATION,"Restaurante não encontrado! carregando todos os restaurantes.",ButtonType.CLOSE);
+			Alert alert = new Alert(AlertType.INFORMATION,
+					"Restaurante não encontrado! carregando todos os restaurantes.", ButtonType.CLOSE);
 			alert.show();
 			atualizaTabelaTodos();
 		}
@@ -175,7 +183,8 @@ public class BuscarController {
 			Collection<Restaurante> restaurantes = restauranteDAO.getPorTema(texto);
 			tbResultado.setItems(FXCollections.observableArrayList(restaurantes));
 		} else {
-			Alert alert = new Alert(AlertType.INFORMATION,"Tema não encontrado! carregando todos os restaurantes.",ButtonType.CLOSE);
+			Alert alert = new Alert(AlertType.INFORMATION, "Tema não encontrado! carregando todos os restaurantes.",
+					ButtonType.CLOSE);
 			alert.show();
 			atualizaTabelaTodos();
 		}
@@ -186,13 +195,13 @@ public class BuscarController {
 			Collection<Restaurante> restaurantes = restauranteDAO.getPorTipo(texto);
 			tbResultado.setItems(FXCollections.observableArrayList(restaurantes));
 		} else {
-			Alert alert = new Alert(AlertType.INFORMATION,"Tipo não encontrado! carregando todos os restaurantes.",ButtonType.CLOSE);
+			Alert alert = new Alert(AlertType.INFORMATION, "Tipo não encontrado! carregando todos os restaurantes.",
+					ButtonType.CLOSE);
 			alert.show();
 			atualizaTabelaTodos();
 		}
 	}
-	
+
 	/* _____________________________________________________________________________________________________________________________________ */
 
-	
 }

@@ -199,11 +199,11 @@ public class RestauranteJDBC implements RestauranteDAO {
 			while (rs.next()) {
 				Restaurante restaurante = new Restaurante(null, rs.getString("Nome"), 
 						rs.getString("Telefone"), 
-						rs.getString("Tipo_de_estabelicimento"), 
+						null, 
 						rs.getString("Rua"), 
 						rs.getString("Numero"), 
 						rs.getString("Tema"), 
-						new Cidade(rs.getLong("idCidade")));
+						null);
 				restaurantes.add(restaurante);
 			}
 		} catch (SQLException e) {
@@ -218,7 +218,7 @@ public class RestauranteJDBC implements RestauranteDAO {
 
 	@Override
 	public Collection<Restaurante> getPorTema(String tema) {
-		String sql = "select Nome, Telefone, Tipo_de_estabelicimento,Rua,Numero, Tema" + " from Restaurante where Tema =? ";
+		String sql = "select Nome, Telefone, Tipo_de_estabelicimento,Rua,Numero, Tema, idCidade" + " from Restaurante where Tema =? ";
 		List<Restaurante> restaurantes = new ArrayList<>();
 		try {
 			PreparedStatement ps = conexao.get().prepareStatement(sql);
@@ -227,11 +227,11 @@ public class RestauranteJDBC implements RestauranteDAO {
 			while (rs.next()) {
 				Restaurante restaurante = new Restaurante(null, rs.getString("Nome"), 
 						rs.getString("Telefone"), 
-						rs.getString("Tipo_de_estabelicimento"), 
+						null, 
 						rs.getString("Rua"), 
 						rs.getString("Numero"), 
 						rs.getString("Tema"), 
-						new Cidade(rs.getLong("idCidade")));
+						null);
 				restaurantes.add(restaurante);
 			}
 		} catch (SQLException e) {
@@ -245,7 +245,7 @@ public class RestauranteJDBC implements RestauranteDAO {
 	/* _____________________________________________________________________________________________________________________________________ */
 	@Override
 	public Collection<Restaurante> getPorNome(String nome) {
-		String sql = "select Nome, Telefone, Tipo_de_estabelicimento, Rua, Numero, Tema" + " from Restaurante where Nome =? ";
+		String sql = "select Nome, Telefone, Rua, Numero, Tema  from Restaurante where Nome =? ";
 		List<Restaurante> restaurantes = new ArrayList<>();
 		try {
 			PreparedStatement ps = conexao.get().prepareStatement(sql);
@@ -254,11 +254,11 @@ public class RestauranteJDBC implements RestauranteDAO {
 			while (rs.next()) {
 				Restaurante restaurante = new Restaurante(null, rs.getString("Nome"), 
 						rs.getString("Telefone"), 
-						rs.getString("Tipo_de_estabelicimento"), 
+						null, 
 						rs.getString("Rua"), 
 						rs.getString("Numero"), 
 						rs.getString("Tema"), 
-						new Cidade(rs.getLong("idCidade")));
+						null);
 				restaurantes.add(restaurante);
 			}
 		} catch (SQLException e) {

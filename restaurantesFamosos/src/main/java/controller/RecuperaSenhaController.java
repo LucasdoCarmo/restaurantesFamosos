@@ -2,14 +2,18 @@ package controller;
 
 import java.io.IOException;
 
-
+import application.Main;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
+import javafx.stage.Stage;
 
 public class RecuperaSenhaController {
 
@@ -38,24 +42,31 @@ public class RecuperaSenhaController {
 
     @FXML
     void Confirmar(ActionEvent event) {
-    	AbreTela("RedefiniSenha.fxml");
+    	AbreTela(event,"RedefiniSenha.fxml");
     }
 
     @FXML
     void Cancelar(ActionEvent event) {
-    	AbreTela("Login.fxml");
+    	AbreTela(event,"Login.fxml");
     }
   
     
-    public void AbreTela(String tela) {
+	public void AbreTela(ActionEvent event, String tela) {
 		FXMLLoader loader = new FXMLLoader();
-		loader.setLocation(getClass().getResource("/telas/" +tela));
+		loader.setLocation(getClass().getResource(Main.PATH_VIEW + tela));
+		Node node = (Node) event.getSource();
+		Stage stage = (Stage) node.getScene().getWindow();
+		Parent root = null;
 		try {
-			AnchorPane telaView = (AnchorPane) loader.load();
-			panelPrincipal.setCenter(telaView);
+			AnchorPane produtoView = (AnchorPane) loader.load();
+			Scene scene = new Scene(produtoView);
+			scene.getStylesheets().add("/css/style.css");
+			stage.setScene(scene);
+
 		} catch (IOException e1) {
 			e1.printStackTrace();
 		}
 	}
+
 
 }
