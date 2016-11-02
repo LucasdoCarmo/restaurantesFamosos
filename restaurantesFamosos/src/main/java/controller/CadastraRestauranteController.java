@@ -12,6 +12,8 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
@@ -112,32 +114,34 @@ public class CadastraRestauranteController {
 		Restaurante restaurante = criaRestaurante();
 		restauranteDAO.salvar(restaurante);
 
-		AbreTela("Avaliacao.fxml");
+		//try {
+			AbreTela("Avaliacao.fxml");
+		//} catch (Exception e) {
+			//Alert alert = new Alert(AlertType.ERROR, "Erro interno código: #6B8E23");
+			//alert.show();
+		//}
 	}
 	/* _____________________________________________________________________________________________________________________________________ */
 
 	public void AbreTela(String tela) {
-		FXMLLoader loader = new FXMLLoader();
-		loader.setLocation(getClass().getResource(Main.PATH_VIEW + tela));
+		stack.getChildren().clear();
 		try {
-			AnchorPane telaView = (AnchorPane) loader.load();
-			panelSecundario.setCenter(telaView);
-		} catch (IOException e1) {
-			e1.printStackTrace();
+			Node no = FXMLLoader.load(getClass().getResource(Main.PATH_VIEW + tela));
+			stack.getChildren().add(no);
+		} catch (IOException e) {
+			e.printStackTrace();
 		}
-		
-		//stack.getChildren().clear();
-		//stack.getChildren().add(getNode(tela));
+
 	}
 
-	public Node getNode(String node) {
-		Node no = null;
-		try {
-			no = FXMLLoader.load(getClass().getResource(Main.PATH_VIEW + node));
-		} catch (Exception e) {
-		}
-		return no;
-	}
+//	public Node getNode(String node) {
+//		Node no = null;
+//		try {
+//			no = FXMLLoader.load(getClass().getResource(Main.PATH_VIEW + node));
+//		} catch (Exception e) {
+//		}
+//		return no;
+//	}
 
 	/*-------------------------------------------------------------------------------------------------------------------------------------*/
 

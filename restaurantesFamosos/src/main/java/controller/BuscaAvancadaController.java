@@ -142,11 +142,6 @@ public class BuscaAvancadaController {
 		AbreTela("EditaRestaurante.fxml");
 	}
 
-	private void atualizaTabela() {
-		Collection<Restaurante> restaurantes = restauranteDAO.todos();
-		tbResultado.setItems(FXCollections.observableArrayList(restaurantes));
-	}
-
 	/* _____________________________________________________________________________________________________________________________________ */
 
 	public void BuscarPorNome(String texto) {
@@ -157,7 +152,7 @@ public class BuscaAvancadaController {
 			Alert alert = new Alert(AlertType.INFORMATION,
 					"Restaurante não encontrado! carregando todos os restaurantes.", ButtonType.CLOSE);
 			alert.show();
-			atualizaTabela();
+			atualizaTabelaTodos();
 		}
 	}
 
@@ -171,7 +166,7 @@ public class BuscaAvancadaController {
 			Alert alert = new Alert(AlertType.INFORMATION, "Tipo não encontrado! carregando todos os restaurantes.",
 					ButtonType.CLOSE);
 			alert.show();
-			atualizaTabela();
+			atualizaTabelaTodos();
 		}
 	}
 
@@ -199,6 +194,11 @@ public class BuscaAvancadaController {
 		} catch (Exception e) {
 		}
 		return no;
+	}
+
+	private void atualizaTabelaTodos() {
+		Collection<Restaurante> restaurantes = restauranteDAO.todos();
+		tbResultado.setItems(FXCollections.observableArrayList(restaurantes));
 	}
 
 }

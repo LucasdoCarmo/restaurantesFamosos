@@ -1,9 +1,7 @@
 package controller;
 
 import application.Main;
-import conexao.Conexao;
 import dao.AvaliacaoDAO;
-import dao.RestauranteJDBC;
 import factory.DAOFactory;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -253,25 +251,19 @@ public class AvaliacaoController {
 
 	private AvaliacaoDAO avaliacaoDAO;
 
-	private Conexao conexao;
-
 	@FXML
 	void Voltar(ActionEvent event) {
-		AbreTela("Principal.fxml");
+		AbreTela("TelaVazia.fxml");
 	}
 
-	public AvaliacaoController(Conexao conexao) {
+	public AvaliacaoController() {
 		avaliacaoDAO = DAOFactory.get().avaliacaoDAO();
 		avaliacaoDAO = DAOFactory.get().avaliacaoDAO();
-		this.conexao = conexao;
+
 	}
 
 	@FXML
 	void Salvar(ActionEvent event) {
-		if (!tfNomeRestaurante.getText().isEmpty()) {
-			RestauranteJDBC restaurante = new RestauranteJDBC(conexao);
-			restaurante.getPorNome(tfNomeRestaurante.getText());
-		}
 		Avaliacao avaliacao = criaAvaliacao();
 		avaliacao.setNotaAtendimento(Integer.valueOf(radioAtendimento()));
 		avaliacao.setNotaAspecto(Integer.valueOf(radioAspecto()));
@@ -294,7 +286,6 @@ public class AvaliacaoController {
 	}
 
 	/* _____________________________________________________________________________________________________________________________________ */
-
 	public void AbreTela(String tela) {
 		stack.getChildren().clear();
 		stack.getChildren().add(getNode(tela));
@@ -393,4 +384,15 @@ public class AvaliacaoController {
 		}
 		return radio;
 	}
+
+	/*-------------------------------------------------------------------------------------------------------------------------------------*/
+	// public Integer notaGeral(){
+	// Integer nota =0;
+	// Integer soma =0;
+	// soma = Integer.valueOf(radioAspecto()) +
+	// Integer.valueOf(radioAtendimento()) + Integer.valueOf(radioCardapio()) +
+	// Integer.valueOf(radioPagamento());
+	// nota = soma /4;
+	// return nota;
+	// }
 }
