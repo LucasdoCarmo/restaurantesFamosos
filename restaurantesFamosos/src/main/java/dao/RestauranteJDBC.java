@@ -278,8 +278,9 @@ public class RestauranteJDBC implements RestauranteDAO {
 	// Elaborar uma forma de filtrar os melhores
 	@Override
 	public Collection<Restaurante> get5Melhores() {
-		String sql = "select Nome, Telefone, Tipo_de_estabelicimento, Rua, Numero, Tema, idCidade"
-				+ " from Restaurante having count(Nome) < 6 ";
+		String sql = "select Nome, Telefone, Tipo_de_estabelicimento, Rua, Numero, Tema, idCidade,Nota_Geral  from Restaurante "
+				+ "join avaliacao on restaurante.idRestaurante = avaliacao.idRestaurante"
+				+ "order by Nota_Geral desc limit 5 ";
 		List<Restaurante> restaurantes = new ArrayList<>();
 		try {
 			PreparedStatement ps = conexao.get().prepareStatement(sql);
@@ -300,44 +301,159 @@ public class RestauranteJDBC implements RestauranteDAO {
 
 	@Override
 	public Collection<Restaurante> get10Melhores() {
-		// TODO Auto-generated method stub
-		return null;
+		String sql = "select Nome, Telefone, Tipo_de_estabelicimento, Rua, Numero, Tema, idCidade,Nota_Geral  from Restaurante "
+				+ "join avaliacao on restaurante.idRestaurante = avaliacao.idRestaurante"
+				+ "order by Nota_Geral desc limit 10";
+		List<Restaurante> restaurantes = new ArrayList<>();
+		try {
+			PreparedStatement ps = conexao.get().prepareStatement(sql);
+			ResultSet rs = ps.executeQuery();
+			while (rs.next()) {
+				Restaurante restaurante = new Restaurante(null, rs.getString("Nome"), rs.getString("Telefone"),
+						rs.getString("Tipo_de_estabelicimento"), rs.getString("Rua"), rs.getString("Numero"),
+						rs.getString("Tema"), new Cidade(rs.getLong("idCidade")));
+				restaurantes.add(restaurante);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			conexao.close();
+		}
+		return restaurantes;
 	}
 
 	@Override
 	public Collection<Restaurante> get15Melhores() {
-		// TODO Auto-generated method stub
-		return null;
+		String sql = "select Nome, Telefone, Tipo_de_estabelicimento, Rua, Numero, Tema, idCidade,Nota_Geral  from Restaurante "
+				+ "join avaliacao on restaurante.idRestaurante = avaliacao.idRestaurante"
+				+ "order by Nota_Geral desc limit 15 ";
+		List<Restaurante> restaurantes = new ArrayList<>();
+		try {
+			PreparedStatement ps = conexao.get().prepareStatement(sql);
+			ResultSet rs = ps.executeQuery();
+			while (rs.next()) {
+				Restaurante restaurante = new Restaurante(null, rs.getString("Nome"), rs.getString("Telefone"),
+						rs.getString("Tipo_de_estabelicimento"), rs.getString("Rua"), rs.getString("Numero"),
+						rs.getString("Tema"), new Cidade(rs.getLong("idCidade")));
+				restaurantes.add(restaurante);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			conexao.close();
+		}
+		return restaurantes;
 	}
 
 	@Override
 	public Collection<Restaurante> get20Melhores() {
-		// TODO Auto-generated method stub
-		return null;
+		String sql = "select Nome, Telefone, Tipo_de_estabelicimento, Rua, Numero, Tema, idCidade,Nota_Geral  from Restaurante "
+				+ "join avaliacao on restaurante.idRestaurante = avaliacao.idRestaurante"
+				+ "order by Nota_Geral desc limit 20 ";
+		List<Restaurante> restaurantes = new ArrayList<>();
+		try {
+			PreparedStatement ps = conexao.get().prepareStatement(sql);
+			ResultSet rs = ps.executeQuery();
+			while (rs.next()) {
+				Restaurante restaurante = new Restaurante(null, rs.getString("Nome"), rs.getString("Telefone"),
+						rs.getString("Tipo_de_estabelicimento"), rs.getString("Rua"), rs.getString("Numero"),
+						rs.getString("Tema"), new Cidade(rs.getLong("idCidade")));
+				restaurantes.add(restaurante);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			conexao.close();
+		}
+		return restaurantes;
 	}
 
 	@Override
 	public Collection<Restaurante> getMaiorPreco() {
-		// TODO Auto-generated method stub
-		return null;
+		String sql = "select Nome, Telefone, Tipo_de_estabelicimento, Rua, Numero, Tema, idCidade,Valor_Gasto  from Restaurante "
+				+ "join visita on restaurante.idRestaurante = visita.Restaurante_idRestaurante"
+				+ "order by Valor_Gasto desc";
+		List<Restaurante> restaurantes = new ArrayList<>();
+		try {
+			PreparedStatement ps = conexao.get().prepareStatement(sql);
+			ResultSet rs = ps.executeQuery();
+			while (rs.next()) {
+				Restaurante restaurante = new Restaurante(null, rs.getString("Nome"), rs.getString("Telefone"),
+						rs.getString("Tipo_de_estabelicimento"), rs.getString("Rua"), rs.getString("Numero"),
+						rs.getString("Tema"), new Cidade(rs.getLong("idCidade")));
+				restaurantes.add(restaurante);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			conexao.close();
+		}
+		return restaurantes;
 	}
 
 	@Override
 	public Collection<Restaurante> getMenorPreco() {
-		// TODO Auto-generated method stub
-		return null;
+		String sql = "select Nome, Telefone, Tipo_de_estabelicimento, Rua, Numero, Tema, idCidade,Valor_Gasto  from Restaurante "
+				+ "join visita on restaurante.idRestaurante = visita.Restaurante_idRestaurante"
+				+ "order by Valor_Gasto";
+		List<Restaurante> restaurantes = new ArrayList<>();
+		try {
+			PreparedStatement ps = conexao.get().prepareStatement(sql);
+			ResultSet rs = ps.executeQuery();
+			while (rs.next()) {
+				Restaurante restaurante = new Restaurante(null, rs.getString("Nome"), rs.getString("Telefone"),
+						rs.getString("Tipo_de_estabelicimento"), rs.getString("Rua"), rs.getString("Numero"),
+						rs.getString("Tema"), new Cidade(rs.getLong("idCidade")));
+				restaurantes.add(restaurante);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			conexao.close();
+		}
+		return restaurantes;
 	}
 
 	@Override
 	public Collection<Restaurante> getEndereco() {
-		// TODO Auto-generated method stub
-		return null;
+		String sql = "select Nome, Telefone, Tipo_de_estabelicimento, Rua, Numero, Tema, idCidade  from Restaurante where idCidade =?";
+		List<Restaurante> restaurantes = new ArrayList<>();
+		try {
+			PreparedStatement ps = conexao.get().prepareStatement(sql);
+			ResultSet rs = ps.executeQuery();
+			while (rs.next()) {
+				Restaurante restaurante = new Restaurante(null, rs.getString("Nome"), rs.getString("Telefone"),
+						rs.getString("Tipo_de_estabelicimento"), rs.getString("Rua"), rs.getString("Numero"),
+						rs.getString("Tema"), new Cidade(rs.getLong("idCidade")));
+				restaurantes.add(restaurante);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			conexao.close();
+		}
+		return restaurantes;
 	}
 
 	@Override
 	public Collection<Restaurante> getTipo() {
-		// TODO Auto-generated method stub
-		return null;
+		String sql = "select Nome, Telefone, Tipo_de_estabelicimento, Rua, Numero, Tema, idCidade  from Restaurante where Tipo_de_estabelecimento =?";
+		List<Restaurante> restaurantes = new ArrayList<>();
+		try {
+			PreparedStatement ps = conexao.get().prepareStatement(sql);
+			ResultSet rs = ps.executeQuery();
+			while (rs.next()) {
+				Restaurante restaurante = new Restaurante(null, rs.getString("Nome"), rs.getString("Telefone"),
+						rs.getString("Tipo_de_estabelicimento"), rs.getString("Rua"), rs.getString("Numero"),
+						rs.getString("Tema"), new Cidade(rs.getLong("idCidade")));
+				restaurantes.add(restaurante);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			conexao.close();
+		}
+		return restaurantes;
 	}
 
 }
