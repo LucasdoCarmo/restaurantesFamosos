@@ -90,6 +90,8 @@ public class BuscaAvancadaController {
 
 	private ObservableList<Restaurante> restauranteList = FXCollections.observableArrayList();
 
+	
+	//IMPLEMENTAR METODOS DE MONTAR OS COMBO
 	@FXML
 	private void initialize() {
 		// Monta a tabela

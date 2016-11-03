@@ -21,4 +21,8 @@ public class Avaliacao implements Entidade {
 	public Avaliacao(Long codigo) {
 		this.codigo = codigo;
 	}
+
+	public void setRestauranteCOD(Long rest) {
+		restaurante.getCodigo();
+	}
 }

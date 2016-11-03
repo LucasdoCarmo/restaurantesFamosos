@@ -33,9 +33,6 @@ public class EditaPerfilController {
 	private Button btnVoltar;
 
 	@FXML
-	private TextField tfEmail;
-
-	@FXML
 	private TextField tfConfirmaSenha;
 
 	@FXML
@@ -60,7 +57,6 @@ public class EditaPerfilController {
 		usuarioDAO.excluir(Long.valueOf(tfCodigo.getText()));
 		Usuario usuario = new Usuario();
 		usuario.setNome(tfNome.getText());
-		usuario.setEmail(tfEmail.getText());
 		if (tfConfirmaSenha.getText() == tfSenha.getText()) {
 			if (!tfSenha.getText().isEmpty())
 				usuario.setSenha(tfSenha.getText());

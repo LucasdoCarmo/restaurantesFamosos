@@ -119,15 +119,15 @@ public class CidadeJDBC implements CidadeDAO {
 
 	@Override
 	public List<Cidade> porEstado(Long estado) {
-		String sql = "select * from cidade c join estado e on "
-				+ "c.idEstado = e.idEstado where idEstado =?";
+		String sql = "select * from cidade where idEstado =?";
 		List<Cidade> cidades = new ArrayList<>();
 		try {
 			PreparedStatement ps = conexao.get().prepareStatement(sql);
 			ps.setLong(1, estado);
 			ResultSet rs = ps.executeQuery();
 			while (rs.next()) {
-				Cidade cidade = new Cidade();
+				Cidade cidade = new Cidade(rs.getLong("idCidade"), rs.getString("Cidade"),
+						new Estado(rs.getLong("idEstado")));
 				cidades.add(cidade);
 			}
 		} catch (SQLException e) {

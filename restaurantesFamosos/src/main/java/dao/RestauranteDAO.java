@@ -31,4 +31,6 @@ public interface RestauranteDAO extends CrudDAO<Restaurante> {
 	Collection<Restaurante> getEndereco();
 
 	Collection<Restaurante> getTipo();
+
+	Long getIDPorNome(String nome);
 }

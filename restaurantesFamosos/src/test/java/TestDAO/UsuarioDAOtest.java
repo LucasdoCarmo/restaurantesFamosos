@@ -13,7 +13,6 @@ public class UsuarioDAOtest {
 	public void deveInserirNovoUsuario() {
 		Usuario user = new Usuario();
 		user.setNome("T");
-		user.setEmail("test@test.com");
 		user.setSenha("test");
 		UsuarioDAO UsuarioDAO = DAOFactory.get().usuarioDAO();
 		UsuarioDAO.inserir(user);
@@ -25,17 +24,14 @@ public class UsuarioDAOtest {
 	public void deveAlterarUsuario() {
 		Usuario user = new Usuario();
 		user.setNome("L");
-		user.setEmail("t@test.com");
 		user.setSenha("t");
 		UsuarioDAO usuarioDAO = DAOFactory.get().usuarioDAO();
 		usuarioDAO.inserir(user);
 		user.setNome("Usuario alterado");
-		user.setEmail("asdsa");
 		user.setSenha("asdas");
 		usuarioDAO.alterar(user);
 		Usuario EstadoBanco = usuarioDAO.get(user.getCodigo());
 		assertEquals("Usuario alterado", EstadoBanco.getNome());
-		assertEquals("asdsa", EstadoBanco.getEmail());
 		assertEquals("asdas", EstadoBanco.getSenha());
 		usuarioDAO.excluir(EstadoBanco.getCodigo());
 		

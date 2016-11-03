@@ -1,6 +1,10 @@
 package controller;
 
 import application.Main;
+import dao.RestauranteDAO;
+import dao.UsuarioDAO;
+import dao.VisitaDAO;
+import factory.DAOFactory;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -37,10 +41,22 @@ public class CadastraVisitaController {
 
 	@FXML
 	private Button btnFinalizar;
+	
+	private UsuarioDAO usuarioDAO;
+	private RestauranteDAO restauranteDAO;
+	private VisitaDAO visitaDAO;
+	
+	public CadastraVisitaController() {
+		usuarioDAO = DAOFactory.get().usuarioDAO();
+		restauranteDAO = DAOFactory.get().restauranteDAO();
+		visitaDAO = DAOFactory.get().visitaDAO();
+
+	}
 
 	@FXML
 	void Salvar(ActionEvent event) {
-		criaVisita();
+		Visita visita = criaVisita();
+		visitaDAO.salvar(visita);
 		Alert alert = new Alert(AlertType.CONFIRMATION, "Avaliação efetuada com sucesso!!", ButtonType.CLOSE);
 		alert.show();
 		AbreTela("TelaVazia.fxml");
@@ -48,9 +64,14 @@ public class CadastraVisitaController {
 	}
 
 	private Visita criaVisita() {
+		Long user = usuarioDAO.getIDPorNome(tfUsuario.getText());
+		Long rest = restauranteDAO.getIDPorNome(tfNomeRestaurante.getText());
+		
+		
 		Visita visita = new Visita();
-		visita.setUsuario(tfUsuario.getText());
-		visita.setRestaurante(tfNomeRestaurante.getText());
+		
+		visita.setRestauranteCOD(rest);
+		visita.setUsuarioCOD(user);
 		visita.setData(dpVisita.getValue().toString());
 		visita.setValorGasto(Double.valueOf(tfValor.getText()));
 

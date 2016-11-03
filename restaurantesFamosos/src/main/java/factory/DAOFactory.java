@@ -15,6 +15,8 @@ import dao.RestauranteDAO;
 import dao.RestauranteJDBC;
 import dao.UsuarioDAO;
 import dao.UsuarioJDBC;
+import dao.VisitaDAO;
+import dao.VisitaJDBC;
 
 public class DAOFactory {
 
@@ -59,6 +61,10 @@ public class DAOFactory {
 
 	public UsuarioDAO usuarioDAO() {
 		return new UsuarioJDBC(new ConexaoMysqlProducao());
+	}
+
+	public VisitaDAO visitaDAO() {
+		return new VisitaJDBC(new ConexaoMysqlProducao());
 	}
 
 

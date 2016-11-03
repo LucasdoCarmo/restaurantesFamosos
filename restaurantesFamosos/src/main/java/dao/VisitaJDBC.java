@@ -8,7 +8,6 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import conexao.Conexao;
-import model.Avaliacao;
 import model.Restaurante;
 import model.Usuario;
 import model.Visita;
@@ -22,14 +21,13 @@ public class VisitaJDBC implements VisitaDAO {
 	}
 
 	public void inserir(Visita objeto) {
-		String insert = "insert into visita (Data,Valor_Gasto,Restaurante_idRestaurante,Usuario_idUsuario,Avaliacao_idAvaliacao) values(?,?,?,?,?)";
+		String insert = "insert into visita (Data,Valor_Gasto,Restaurante_idRestaurante,Usuario_idUsuario) values(?,?,?,?)";
 		try {
 			PreparedStatement ps = conexao.get().prepareStatement(insert, Statement.RETURN_GENERATED_KEYS);
 			ps.setString(1, objeto.getData());		
 			ps.setDouble(2, objeto.getValorGasto());
 			ps.setLong(3, objeto.getRestaurante().getCodigo());
 			ps.setLong(4, objeto.getUsuario().getCodigo());
-			ps.setLong(5, objeto.getAvaliacao().getCodigo());
 
 			ps.executeUpdate();
 			ResultSet rs = ps.getGeneratedKeys();
@@ -43,15 +41,14 @@ public class VisitaJDBC implements VisitaDAO {
 	}
 
 	public void alterar(Visita objeto) {
-		String update = "update visita set Data=?, set Valor_Gasto=?, set Restaurante_idRestaurante=?, set Usuario_idUsuario=?, set Avaliacao_idAvaliacao=?"
-				+ "where idVisita = ?";
+		String update = "update visita set Data=?, Valor_Gasto=?, Restaurante_idRestaurante=?, Usuario_idUsuario=? where idVisita = ?";
 		try {
 			PreparedStatement ps = conexao.get().prepareStatement(update);
 			ps.setString(1, objeto.getData());
 			ps.setDouble(2, objeto.getValorGasto());
 			ps.setLong(3, objeto.getRestaurante().getCodigo());
 			ps.setLong(4, objeto.getUsuario().getCodigo());
-			ps.setLong(5, objeto.getAvaliacao().getCodigo());
+			ps.setLong(5, objeto.getCodigo());
 			ps.executeUpdate();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -61,7 +58,7 @@ public class VisitaJDBC implements VisitaDAO {
 	}
 
 	public void excluir(Long codigo) {
-		String del = "delete from visita" + "where idVisita = ?";
+		String del = "delete from visita where idVisita = ?";
 		try {
 			PreparedStatement ps = conexao.get().prepareStatement(del);
 			ps.setLong(1, codigo);
@@ -116,9 +113,11 @@ public class VisitaJDBC implements VisitaDAO {
 	}
 
 	private Visita getVisita(ResultSet rs) throws SQLException {
-		Visita visita = new Visita(rs.getLong("idVisita"), rs.getString("Data"), rs.getDouble("Valor_Gasto"),
-				new Restaurante(rs.getLong("idRestaurante")), new Usuario(rs.getLong("idUsuario")),
-				new Avaliacao(rs.getLong("idAvaliacao")));
+		Visita visita = new Visita(rs.getLong("idVisita"), 
+				rs.getString("Data"),
+				rs.getDouble("Valor_Gasto"),
+				new Restaurante(rs.getLong("Restaurante_idRestaurante")), 
+				new Usuario(rs.getLong("Usuario_idUsuario")));
 		return visita;
 	}
 

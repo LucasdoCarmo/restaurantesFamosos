@@ -11,7 +11,6 @@ public class Usuario implements Entidade {
 
 	private Long codigo;
 	private String nome;
-	private String email;
 	private String senha;
 	
 	

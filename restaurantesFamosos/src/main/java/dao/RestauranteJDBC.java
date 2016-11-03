@@ -76,8 +76,6 @@ public class RestauranteJDBC implements RestauranteDAO {
 
 	}
 
-
-
 	public Restaurante get(Long codigo) {
 		String sql = "select *from restaurante where idRestaurante =?";
 		Restaurante restaurante = null;
@@ -107,32 +105,26 @@ public class RestauranteJDBC implements RestauranteDAO {
 	private Restaurante getRestaurante(ResultSet rs) throws SQLException {
 		Restaurante restaurante = new Restaurante(rs.getLong("idRestaurante"), rs.getString("Nome"),
 				rs.getString("Telefone"), rs.getString("Tipo_de_estabelicimento"), rs.getString("Rua"),
-				rs.getString("Numero"), rs.getString("Tema"),
-				new Cidade(rs.getLong("idCidade")));
+				rs.getString("Numero"), rs.getString("Tema"), new Cidade(rs.getLong("idCidade")));
 		return restaurante;
 	}
 
 	/* _____________________________________________________________________________________________________________________________________ */
 
-	
-	//Ainda não está pronto
+	// Ainda não está pronto
 	@Override
 	public Collection<Restaurante> getPorCidade(String cidade) {
 		String sql = "select Nome, Telefone, Tipo_de_estabelicimento,Rua,Numero, Tema"
 				+ " from Restaurante r join cidade c on  r.idCidade = c.idCidade";
-		List<Restaurante> restaurantes = new ArrayList<>();	
+		List<Restaurante> restaurantes = new ArrayList<>();
 		try {
 			PreparedStatement ps = conexao.get().prepareStatement(sql);
 			ps.setString(1, cidade);
 			ResultSet rs = ps.executeQuery();
-			while(rs.next()){
-				Restaurante restaurante = new Restaurante(null, rs.getString("Nome"), 
-						rs.getString("Telefone"), 
-						rs.getString("Tipo_de_estabelicimento"), 
-						rs.getString("Rua"), 
-						rs.getString("Numero"), 
-						rs.getString("Tema"), 
-						new Cidade(rs.getLong("idCidade")));
+			while (rs.next()) {
+				Restaurante restaurante = new Restaurante(null, rs.getString("Nome"), rs.getString("Telefone"),
+						rs.getString("Tipo_de_estabelicimento"), rs.getString("Rua"), rs.getString("Numero"),
+						rs.getString("Tema"), new Cidade(rs.getLong("idCidade")));
 				restaurantes.add(restaurante);
 			}
 		} catch (SQLException e) {
@@ -145,32 +137,31 @@ public class RestauranteJDBC implements RestauranteDAO {
 
 	/* _____________________________________________________________________________________________________________________________________ */
 
-	//@Override
-//	public ObservableList<Restaurante> todosTabela() {
-	//	String sql = "select Nome, Telefone, Tipo_de_estabelicimento, Tema"
-		//		+ " from Restaurante where Nome =? ";
-		//ObservableList<Restaurante> restaurantes = new ArrayList<>();	
-	//	try {
-		//	PreparedStatement ps = conexao.get().prepareStatement(sql);
-		//	ps.setString(1, nome);
-	//		ResultSet rs = ps.executeQuery();
-	//		while(rs.next()){
-	//			Restaurante restaurante = new Restaurante(null, rs.getString("Nome"), 
-	//					rs.getString("Telefone"), 
-	//					rs.getString("Tipo_de_estabelicimento"), 
-	//					null, 
-	//					rs.getString("Tema"), null, null, null, null);
-		//		restaurantes.add(restaurante);
-	//		}
-	//	} catch (SQLException e) {
-	//		e.printStackTrace();
-	//	} finally {
-	//		conexao.close();
-	//	}
-		//return restaurantes;
-	//}
+	// @Override
+	// public ObservableList<Restaurante> todosTabela() {
+	// String sql = "select Nome, Telefone, Tipo_de_estabelicimento, Tema"
+	// + " from Restaurante where Nome =? ";
+	// ObservableList<Restaurante> restaurantes = new ArrayList<>();
+	// try {
+	// PreparedStatement ps = conexao.get().prepareStatement(sql);
+	// ps.setString(1, nome);
+	// ResultSet rs = ps.executeQuery();
+	// while(rs.next()){
+	// Restaurante restaurante = new Restaurante(null, rs.getString("Nome"),
+	// rs.getString("Telefone"),
+	// rs.getString("Tipo_de_estabelicimento"),
+	// null,
+	// rs.getString("Tema"), null, null, null, null);
+	// restaurantes.add(restaurante);
+	// }
+	// } catch (SQLException e) {
+	// e.printStackTrace();
+	// } finally {
+	// conexao.close();
+	// }
+	// return restaurantes;
+	// }
 
-	
 	public Collection<Restaurante> todos() {
 		String sql = "select *from restaurante";
 		List<Restaurante> restaurantes = new ArrayList<>();
@@ -185,25 +176,20 @@ public class RestauranteJDBC implements RestauranteDAO {
 		}
 		return restaurantes;
 	}
-	
+
 	/* _____________________________________________________________________________________________________________________________________ */
 
-	
 	public Collection<Restaurante> getPorTipo(String tipo) {
-		String sql = "select Nome, Telefone, Tipo_de_estabelicimento,Rua,Numero, Tema" + " from Restaurante where Tipo_de_estabelicimento =? ";
+		String sql = "select Nome, Telefone, Tipo_de_estabelicimento,Rua,Numero, Tema"
+				+ " from Restaurante where Tipo_de_estabelicimento =? ";
 		List<Restaurante> restaurantes = new ArrayList<>();
 		try {
 			PreparedStatement ps = conexao.get().prepareStatement(sql);
 			ps.setString(1, tipo);
 			ResultSet rs = ps.executeQuery();
 			while (rs.next()) {
-				Restaurante restaurante = new Restaurante(null, rs.getString("Nome"), 
-						rs.getString("Telefone"), 
-						null, 
-						rs.getString("Rua"), 
-						rs.getString("Numero"), 
-						rs.getString("Tema"), 
-						null);
+				Restaurante restaurante = new Restaurante(null, rs.getString("Nome"), rs.getString("Telefone"), null,
+						rs.getString("Rua"), rs.getString("Numero"), rs.getString("Tema"), null);
 				restaurantes.add(restaurante);
 			}
 		} catch (SQLException e) {
@@ -218,20 +204,16 @@ public class RestauranteJDBC implements RestauranteDAO {
 
 	@Override
 	public Collection<Restaurante> getPorTema(String tema) {
-		String sql = "select Nome, Telefone, Tipo_de_estabelicimento,Rua,Numero, Tema, idCidade" + " from Restaurante where Tema =? ";
+		String sql = "select Nome, Telefone, Tipo_de_estabelicimento,Rua,Numero, Tema, idCidade"
+				+ " from Restaurante where Tema =? ";
 		List<Restaurante> restaurantes = new ArrayList<>();
 		try {
 			PreparedStatement ps = conexao.get().prepareStatement(sql);
 			ps.setString(1, tema);
 			ResultSet rs = ps.executeQuery();
 			while (rs.next()) {
-				Restaurante restaurante = new Restaurante(null, rs.getString("Nome"), 
-						rs.getString("Telefone"), 
-						null, 
-						rs.getString("Rua"), 
-						rs.getString("Numero"), 
-						rs.getString("Tema"), 
-						null);
+				Restaurante restaurante = new Restaurante(null, rs.getString("Nome"), rs.getString("Telefone"), null,
+						rs.getString("Rua"), rs.getString("Numero"), rs.getString("Tema"), null);
 				restaurantes.add(restaurante);
 			}
 		} catch (SQLException e) {
@@ -252,13 +234,8 @@ public class RestauranteJDBC implements RestauranteDAO {
 			ps.setString(1, nome);
 			ResultSet rs = ps.executeQuery();
 			while (rs.next()) {
-				Restaurante restaurante = new Restaurante(null, rs.getString("Nome"), 
-						rs.getString("Telefone"), 
-						null, 
-						rs.getString("Rua"), 
-						rs.getString("Numero"), 
-						rs.getString("Tema"), 
-						null);
+				Restaurante restaurante = new Restaurante(null, rs.getString("Nome"), rs.getString("Telefone"), null,
+						rs.getString("Rua"), rs.getString("Numero"), rs.getString("Tema"), null);
 				restaurantes.add(restaurante);
 			}
 		} catch (SQLException e) {
@@ -275,23 +252,19 @@ public class RestauranteJDBC implements RestauranteDAO {
 		return null;
 	}
 
-	
-	//Elaborar uma forma de filtrar os melhores
+	// Elaborar uma forma de filtrar os melhores
 	@Override
 	public Collection<Restaurante> get5Melhores() {
-		String sql = "select Nome, Telefone, Tipo_de_estabelicimento, Rua, Numero, Tema, idCidade" + " from Restaurante having count(Nome) < 6 ";
+		String sql = "select Nome, Telefone, Tipo_de_estabelicimento, Rua, Numero, Tema, idCidade"
+				+ " from Restaurante having count(Nome) < 6 ";
 		List<Restaurante> restaurantes = new ArrayList<>();
 		try {
 			PreparedStatement ps = conexao.get().prepareStatement(sql);
 			ResultSet rs = ps.executeQuery();
 			while (rs.next()) {
-				Restaurante restaurante = new Restaurante(null, rs.getString("Nome"), 
-						rs.getString("Telefone"), 
-						rs.getString("Tipo_de_estabelicimento"), 
-						rs.getString("Rua"), 
-						rs.getString("Numero"), 
-						rs.getString("Tema"), 
-						new Cidade(rs.getLong("idCidade")));
+				Restaurante restaurante = new Restaurante(null, rs.getString("Nome"), rs.getString("Telefone"),
+						rs.getString("Tipo_de_estabelicimento"), rs.getString("Rua"), rs.getString("Numero"),
+						rs.getString("Tema"), new Cidade(rs.getLong("idCidade")));
 				restaurantes.add(restaurante);
 			}
 		} catch (SQLException e) {
@@ -342,6 +315,29 @@ public class RestauranteJDBC implements RestauranteDAO {
 	public Collection<Restaurante> getTipo() {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	public Long getIDPorNome(String nome) {
+		String sql = "select idRestaurante from restaurante where Nome =?";
+		Long rest = null;
+		try {
+			PreparedStatement ps = conexao.get().prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+			ps.setString(1, nome);
+			ResultSet rs = 
+					//ps.executeQuery();
+					ps.getGeneratedKeys();
+			while (rs.next()) {
+				rest = rs.getLong("idRestaurante");
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			conexao.close();
+
+		}
+		return rest;
+
 	}
 
 }

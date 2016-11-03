@@ -21,7 +21,7 @@ public class AvaliacaoJDBC implements AvaliacaoDAO {
 	}
 
 	public void inserir(Avaliacao objeto) {
-		String insert = "insert into avaliacao (Nota_Atendimento,Nota_Comida,Nota_aspecto,Nota_pagamento,Avaliacao_Descritiva) values(?,?,?,?,?)";
+		String insert = "insert into avaliacao (Nota_Atendimento,Nota_Comida,Nota_aspecto,Nota_pagamento,Avaliacao_Descritiva,idRestaurante) values(?,?,?,?,?,?)";
 		try {
 			PreparedStatement ps = conexao.get().prepareStatement(insert, Statement.RETURN_GENERATED_KEYS);
 			ps.setInt(1, objeto.getNotaAtendimento());
@@ -29,6 +29,7 @@ public class AvaliacaoJDBC implements AvaliacaoDAO {
 			ps.setInt(3, objeto.getNotaAspecto());
 			ps.setInt(4, objeto.getNotaPagamento());
 			ps.setString(5, objeto.getAvaliacaoDescritiva());
+			ps.setLong(6, objeto.getRestaurante().getCodigo());
 			//ps.setInt(6, objeto.getNotaGeral());
 			ps.executeUpdate();
 			ResultSet rs = ps.getGeneratedKeys();
@@ -42,7 +43,7 @@ public class AvaliacaoJDBC implements AvaliacaoDAO {
 	}
 
 	public void alterar(Avaliacao objeto) {
-		String update = "update avaliacao set Nota_Atendimento=?,Nota_Comida=?,Nota_aspecto=?,Nota_pagamento=?,Avaliacao_Descritiva=? where idAvaliacao=?";
+		String update = "update avaliacao set Nota_Atendimento=?,Nota_Comida=?,Nota_aspecto=?,Nota_pagamento=?,Avaliacao_Descritiva=?,idRestaurante=? where idAvaliacao=?";
 		try {
 			PreparedStatement ps = conexao.get().prepareStatement(update);
 			ps.setInt(1, objeto.getNotaAtendimento());
@@ -50,6 +51,7 @@ public class AvaliacaoJDBC implements AvaliacaoDAO {
 			ps.setInt(3, objeto.getNotaAspecto());
 			ps.setInt(4, objeto.getNotaPagamento());
 			ps.setString(5, objeto.getAvaliacaoDescritiva());
+			ps.setLong(6, objeto.getRestaurante().getCodigo());
 			//ps.setInt(6, objeto.getNotaGeral());
 			ps.setLong(7, objeto.getCodigo());
 			ps.executeUpdate();

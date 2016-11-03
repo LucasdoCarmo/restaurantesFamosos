@@ -7,6 +7,9 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+
+import org.eclipse.jdt.internal.compiler.ast.ReturnStatement;
+
 import conexao.Conexao;
 import model.Usuario;
 
@@ -19,12 +22,11 @@ public class UsuarioJDBC implements UsuarioDAO {
 	}
 
 	public void inserir(Usuario objeto) {
-		String insert = "insert into usuario (Nome,email,senha) values(?,?,?)";
+		String insert = "insert into usuario (Nome,senha) values(?,?)";
 		try {
 			PreparedStatement ps = conexao.get().prepareStatement(insert, Statement.RETURN_GENERATED_KEYS);
 			ps.setString(1, objeto.getNome());
-			ps.setString(2, objeto.getEmail());
-			ps.setString(3, objeto.getSenha());
+			ps.setString(2, objeto.getSenha());
 
 			ps.executeUpdate();
 			ResultSet rs = ps.getGeneratedKeys();
@@ -38,14 +40,13 @@ public class UsuarioJDBC implements UsuarioDAO {
 		}
 	}
 
-	public void alterar(Usuario objeto){
-		String update = "update usuario set Nome=? , email=? , senha=? where idUsuario =?";
+	public void alterar(Usuario objeto) {
+		String update = "update usuario set Nome=? , senha=? where idUsuario =?";
 		try {
 			PreparedStatement ps = conexao.get().prepareStatement(update);
 			ps.setString(1, objeto.getNome());
-			ps.setString(2, objeto.getEmail());
-			ps.setString(3, objeto.getSenha());
-			ps.setLong(4, objeto.getCodigo());
+			ps.setString(2, objeto.getSenha());
+			ps.setLong(3, objeto.getCodigo());
 			ps.executeUpdate();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -111,24 +112,45 @@ public class UsuarioJDBC implements UsuarioDAO {
 	}
 
 	private Usuario getUsuario(ResultSet rs) throws SQLException {
-		Usuario usuario = new Usuario(rs.getLong("idUsuario"), 
-				rs.getString("Nome"), 
-				rs.getString("email"),
-				rs.getString("senha"));
+		Usuario usuario = new Usuario(rs.getLong("idUsuario"), rs.getString("Nome"), rs.getString("senha"));
 		return usuario;
 
 	}
-	
-	 public Usuario login(String login, String senha) throws SQLException {
-	        Usuario usuario = null;
-	        String sql = "SELECT * FROM usuario WHERE Nome=? AND senha=?";
-	        PreparedStatement ps = conexao.get().prepareStatement(sql);
-	        ps.setObject(1, login);
-	        ps.setObject(2, senha);
-	        ResultSet rs = ps.executeQuery();
-	        if (rs.next()) {
-	            usuario = new Usuario(rs.getLong("isUsuario"), rs.getString("Nome"), rs.getString("email"), rs.getString("senha"));
-	        }
-	        return usuario;
-	    }
+
+	public Usuario login(String login, String senha) throws SQLException {
+		Usuario usuario = null;
+		String sql = "SELECT * FROM usuario WHERE Nome=? AND senha=?";
+		PreparedStatement ps = conexao.get().prepareStatement(sql);
+		ps.setObject(1, login);
+		ps.setObject(2, senha);
+		ResultSet rs = ps.executeQuery();
+		if (rs.next()) {
+			usuario = new Usuario(rs.getLong("isUsuario"), rs.getString("Nome"), rs.getString("senha"));
+		}
+		return usuario;
+	}
+
+	@Override
+	public Long getIDPorNome(String nome) {
+		String sql = "select idUsuario from usuario where Nome = ?";
+		Long usuario = null;
+		try {
+			PreparedStatement ps = conexao.get().prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+			ps.setString(1, nome);
+			ResultSet rs = 
+					//ps.executeQuery();
+							ps.getGeneratedKeys();
+			while (rs.next()) {
+				usuario = rs.getLong("idUsuario");
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			conexao.close();
+
+		}
+		return usuario;
+
+	}
+
 }

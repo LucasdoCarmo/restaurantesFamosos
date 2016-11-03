@@ -1,7 +1,9 @@
 package controller;
 
 import application.Main;
+import componente.Alerta;
 import dao.AvaliacaoDAO;
+import dao.RestauranteDAO;
 import factory.DAOFactory;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -18,6 +20,7 @@ import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.StackPane;
 import model.Avaliacao;
+import model.Restaurante;
 
 public class AvaliacaoController {
 
@@ -250,30 +253,42 @@ public class AvaliacaoController {
 	private Button btnSalvar;
 
 	private AvaliacaoDAO avaliacaoDAO;
+	private RestauranteDAO restauranteDAO;
 
 	@FXML
 	void Voltar(ActionEvent event) {
-		AbreTela("TelaVazia.fxml");
+		AbreTela("Principal.fxml");
 	}
 
 	public AvaliacaoController() {
 		avaliacaoDAO = DAOFactory.get().avaliacaoDAO();
-		avaliacaoDAO = DAOFactory.get().avaliacaoDAO();
+		restauranteDAO = DAOFactory.get().restauranteDAO();
 
 	}
 
 	@FXML
 	void Salvar(ActionEvent event) {
-		Avaliacao avaliacao = criaAvaliacao();
-		avaliacao.setNotaAtendimento(Integer.valueOf(radioAtendimento()));
-		avaliacao.setNotaAspecto(Integer.valueOf(radioAspecto()));
-		avaliacao.setNotaComida(Integer.valueOf(radioCardapio()));
-		avaliacao.setNotaPagamento(Integer.valueOf(radioPagamento()));
-		// avaliacao.setNotaGeral(notaGeral());
-		avaliacao.setAvaliacaoDescritiva(taDescricao.getText());
-		avaliacaoDAO.salvar(avaliacao);
+		if(!tfNomeRestaurante.getText().isEmpty()){
+			Long rest = restauranteDAO.getIDPorNome(tfNomeRestaurante.getText());
+			Avaliacao avaliacao = criaAvaliacao();
+			avaliacao.setRestaurante(new Restaurante(rest));
+			avaliacao.setNotaAtendimento(Integer.valueOf(radioAtendimento()));
+			avaliacao.setNotaAspecto(Integer.valueOf(radioAspecto()));
+			avaliacao.setNotaComida(Integer.valueOf(radioCardapio()));
+			avaliacao.setNotaPagamento(Integer.valueOf(radioPagamento()));
+			// avaliacao.setNotaGeral(notaGeral());
+			avaliacao.setAvaliacaoDescritiva(taDescricao.getText());
+			avaliacaoDAO.salvar(avaliacao);
+			AbreTela("CadastraVisita.fxml");
+		}else {
+			Alerta alert = new Alerta();
+			alert.nulo();
+		}
+		
+		
+		
 
-		AbreTela("CadastraVisita.fxml");
+		
 	}
 	/* _____________________________________________________________________________________________________________________________________ */
 
