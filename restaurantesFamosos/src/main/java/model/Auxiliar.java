@@ -1,15 +1,9 @@
 package model;
 
-import java.io.IOException;
-
 import application.Main;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.scene.layout.AnchorPane;
-import javafx.stage.Stage;
+import javafx.scene.layout.StackPane;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
@@ -19,20 +13,17 @@ import lombok.Data;
 public class Auxiliar {
 
 	
-	public void AbreTela(ActionEvent event, String tela) {
-		FXMLLoader loader = new FXMLLoader();
-		loader.setLocation(getClass().getResource(Main.PATH_VIEW + tela));
-		Node node = (Node) event.getSource();
-		Stage stage = (Stage) node.getScene().getWindow();
-		Parent root = null;
-		try {
-			AnchorPane produtoView = (AnchorPane) loader.load();
-			Scene scene = new Scene(produtoView);
-			scene.getStylesheets().add("/css/style.css");
-			stage.setScene(scene);
+	public void AbreTela(StackPane stack, String tela) {
+		stack.getChildren().clear();
+		stack.getChildren().add(getNode(tela));
+	}
 
-		} catch (IOException e1) {
-			e1.printStackTrace();
+	public Node getNode(String node) {
+		Node no = null;
+		try {
+			no = FXMLLoader.load(getClass().getResource(Main.PATH_VIEW + node));
+		} catch (Exception e) {
 		}
+		return no;
 	}
 }

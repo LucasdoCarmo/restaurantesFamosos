@@ -7,11 +7,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
-
-import org.eclipse.jdt.internal.compiler.ast.ReturnStatement;
-
 import conexao.Conexao;
-import model.Restaurante;
 import model.Usuario;
 
 public class UsuarioJDBC implements UsuarioDAO {
@@ -136,10 +132,11 @@ public class UsuarioJDBC implements UsuarioDAO {
 		String sql = "select idUsuario from usuario where Nome = ?";
 		Usuario usuario = null;
 		try {
-			PreparedStatement ps = conexao.get().prepareStatement(sql); //, Statement.RETURN_GENERATED_KEYS);
+			PreparedStatement ps = conexao.get().prepareStatement(sql); // ,
+																		// Statement.RETURN_GENERATED_KEYS);
 			ps.setString(1, nome);
 			ResultSet rs = ps.executeQuery();
-							//ps.getGeneratedKeys();
+			// ps.getGeneratedKeys();
 			while (rs.next()) {
 				usuario = ((UsuarioJDBC) rs).getUsuario(rs);
 			}
@@ -151,8 +148,5 @@ public class UsuarioJDBC implements UsuarioDAO {
 		}
 		return usuario;
 	}
-	
-	
-	
-	
+
 }

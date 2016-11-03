@@ -1,6 +1,5 @@
 package controller;
 
-import java.io.IOException;
 import application.Main;
 import dao.UsuarioDAO;
 import factory.DAOFactory;
@@ -8,19 +7,19 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Alert.AlertType;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
-import javafx.stage.Stage;
+import javafx.scene.layout.StackPane;
 import model.Usuario;
 
 public class CadastraUsuarioController {
+
+	@FXML
+	private StackPane stack;
 
 	@FXML
 	private BorderPane panelSecundario;
@@ -39,12 +38,12 @@ public class CadastraUsuarioController {
 
 	@FXML
 	private TextField tfNome;
-	
-	//@FXML
-	//private TextField tfEmail;
-	
-	//@FXML
-	//private TextField tfConfirmaEmail;
+
+	// @FXML
+	// private TextField tfEmail;
+
+	// @FXML
+	// private TextField tfConfirmaEmail;
 
 	private UsuarioDAO usuarioDAO;
 
@@ -54,14 +53,14 @@ public class CadastraUsuarioController {
 
 	@FXML
 	void Voltar(ActionEvent event) {
-		AbreTela(event, "Login.fxml");
+		AbreTela("Login.fxml");
 	}
 
 	@FXML
 	void FinalizaCadastro(ActionEvent event) {
 		Usuario usuario = novoUsuario();
 		usuarioDAO.salvar(usuario);
-		AbreTela(event, "Login.fxml");
+		AbreTela("Login.fxml");
 	}
 
 	private Usuario novoUsuario() {
@@ -77,21 +76,18 @@ public class CadastraUsuarioController {
 		return usuario;
 	}
 
-	public void AbreTela(ActionEvent event, String tela) {
-		FXMLLoader loader = new FXMLLoader();
-		loader.setLocation(getClass().getResource(Main.PATH_VIEW + tela));
-		Node node = (Node) event.getSource();
-		Stage stage = (Stage) node.getScene().getWindow();
-		Parent root = null;
-		try {
-			AnchorPane produtoView = (AnchorPane) loader.load();
-			Scene scene = new Scene(produtoView);
-			scene.getStylesheets().add("/css/style.css");
-			stage.setScene(scene);
+	public void AbreTela(String tela) {
+		stack.getChildren().clear();
+		stack.getChildren().add(getNode(tela));
+	}
 
-		} catch (IOException e1) {
-			e1.printStackTrace();
+	public Node getNode(String node) {
+		Node no = null;
+		try {
+			no = FXMLLoader.load(getClass().getResource(Main.PATH_VIEW + node));
+		} catch (Exception e) {
 		}
+		return no;
 	}
 
 }

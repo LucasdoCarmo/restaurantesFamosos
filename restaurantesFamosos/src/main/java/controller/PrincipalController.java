@@ -26,9 +26,9 @@ public class PrincipalController {
 
 	@FXML
 	private MenuItem menuNovo;
-	
-    @FXML
-    private MenuItem menuUsuarioNovo;
+
+	@FXML
+	private MenuItem menuUsuarioNovo;
 
 	@FXML
 	private MenuItem menuEditar;
@@ -41,19 +41,19 @@ public class PrincipalController {
 		AbreTela("Buscar.fxml");
 	}
 
-	//Cadastra novo restaurante
+	// Cadastra novo restaurante
 	@FXML
 	void CadastrarNovo(ActionEvent event) {
 		AbreTela("CadastraRestaurante.fxml");
 
 	}
 
-	//Cadastra novo Usuario
+	// Cadastra novo Usuario
 	@FXML
-	void NovoUsuario(ActionEvent event){
+	void NovoUsuario(ActionEvent event) {
 		AbreTela("CadastraUsuario.fxml");
 	}
-	
+
 	@FXML
 	void EditarPerfil(ActionEvent event) {
 		AbreTela("EditaPerfil.fxml");
@@ -70,23 +70,7 @@ public class PrincipalController {
 
 	}
 
-	// public void AbreTela(ActionEvent event, String tela) {
-	// //ActionEvent event = null;
-	// FXMLLoader loader = new FXMLLoader();
-	// loader.setLocation(getClass().getResource(Main.PATH_VIEW + tela));
-	// Node node = (Node) event.getSource();
-	// Stage stage = (Stage) node.getScene().getWindow();
-	// Parent root = null;
-	// try {
-	// AnchorPane produtoView = (AnchorPane) loader.load();
-	// Scene scene = new Scene(produtoView);
-	// scene.getStylesheets().add("/css/style.css");
-	// stage.setScene(scene);
-	//
-	// } catch (IOException e1) {
-	// e1.printStackTrace();
-	// }
-
+	//Metdodo abre tela
 	public void AbreTela(String tela) {
 		stack.getChildren().clear();
 		stack.getChildren().add(getNode(tela));
@@ -100,20 +84,4 @@ public class PrincipalController {
 		}
 		return no;
 	}
-
-	// tela.setTitle("Segunda janela");
-	// StackPane sp = new StackPane();
-	//// Scene sc = new Scene();
-	//// tela.setScene(sc);
-	// tela.show();
-
-	// FXMLLoader loader = new FXMLLoader();
-	// loader.setLocation(getClass().getResource(Main.PATH_VIEW + tela));
-	// try {
-	// AnchorPane produtoView = (AnchorPane) loader.load();
-	// panelPrincipal.setCenter(produtoView);
-	// } catch (IOException e1) {
-	// e1.printStackTrace();
-	// }
-	// }
 }

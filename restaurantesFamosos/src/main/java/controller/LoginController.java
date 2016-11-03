@@ -47,6 +47,8 @@ public class LoginController {
 	private Button btnEntrar;
 	private Conexao log;
 
+	public boolean logado = false;
+	
 	private UsuarioDAO usuarioDAO;
 
 	public LoginController() {
@@ -78,6 +80,7 @@ public class LoginController {
 					alerta1.entrar();
 
 					AbreTela("Principal.fxml");
+					logado = true;
 				}
 				return;
 			}
@@ -94,24 +97,11 @@ public class LoginController {
 		AbreTela("EditaPerfil.fxml");
 	}
 
+	
+	//Metodo de abrir tela que fecha tela antiga e cria nova
 	public void AbreTela(String tela) {
 		stack.getChildren().clear();
 		stack.getChildren().add(getNode(tela));
-
-		// FXMLLoader loader = new FXMLLoader();
-		// loader.setLocation(getClass().getResource(Main.PATH_VIEW + tela));
-		// Node node = (Node) event.getSource();
-		// Stage stage = (Stage) node.getScene().getWindow();
-		// Parent root = null;
-		// try {
-		// AnchorPane produtoView = (AnchorPane) loader.load();
-		// Scene scene = new Scene(produtoView);
-		// scene.getStylesheets().add("/css/style.css");
-		// stage.setScene(scene);
-		//
-		// } catch (IOException e1) {
-		// e1.printStackTrace();
-		// }
 	}
 
 	public Node getNode(String node) {
