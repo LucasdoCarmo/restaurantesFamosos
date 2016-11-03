@@ -17,6 +17,8 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.StackPane;
+import model.Restaurante;
+import model.Usuario;
 import model.Visita;
 
 public class CadastraVisitaController {
@@ -59,22 +61,19 @@ public class CadastraVisitaController {
 		visitaDAO.salvar(visita);
 		Alert alert = new Alert(AlertType.CONFIRMATION, "Avaliação efetuada com sucesso!!", ButtonType.CLOSE);
 		alert.show();
-		AbreTela("TelaVazia.fxml");
+		AbreTela("Principal.fxml");
 
 	}
 
 	private Visita criaVisita() {
-		Long user = usuarioDAO.getIDPorNome(tfUsuario.getText());
-		Long rest = restauranteDAO.getIDPorNome(tfNomeRestaurante.getText());
-		
+		Usuario user = usuarioDAO.getIDPorNome(tfUsuario.getText());
+		Restaurante rest = restauranteDAO.getIDPorNome(tfNomeRestaurante.getText()); 
 		
 		Visita visita = new Visita();
-		
-		visita.setRestauranteCOD(rest);
-		visita.setUsuarioCOD(user);
 		visita.setData(dpVisita.getValue().toString());
 		visita.setValorGasto(Double.valueOf(tfValor.getText()));
-
+		visita.setRestaurante(rest);
+		visita.setUsuario(user);
 		return visita;
 	}
 

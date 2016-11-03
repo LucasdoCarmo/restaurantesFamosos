@@ -269,15 +269,16 @@ public class AvaliacaoController {
 	@FXML
 	void Salvar(ActionEvent event) {
 		if(!tfNomeRestaurante.getText().isEmpty()){
-			Long rest = restauranteDAO.getIDPorNome(tfNomeRestaurante.getText());
+			Restaurante rest = restauranteDAO.getIDPorNome(tfNomeRestaurante.getText());
 			Avaliacao avaliacao = criaAvaliacao();
-			avaliacao.setRestaurante(new Restaurante(rest));
+			
 			avaliacao.setNotaAtendimento(Integer.valueOf(radioAtendimento()));
 			avaliacao.setNotaAspecto(Integer.valueOf(radioAspecto()));
 			avaliacao.setNotaComida(Integer.valueOf(radioCardapio()));
 			avaliacao.setNotaPagamento(Integer.valueOf(radioPagamento()));
 			// avaliacao.setNotaGeral(notaGeral());
 			avaliacao.setAvaliacaoDescritiva(taDescricao.getText());
+			avaliacao.setRestaurante(rest);
 			avaliacaoDAO.salvar(avaliacao);
 			AbreTela("CadastraVisita.fxml");
 		}else {

@@ -11,6 +11,7 @@ import java.util.List;
 import org.eclipse.jdt.internal.compiler.ast.ReturnStatement;
 
 import conexao.Conexao;
+import model.Restaurante;
 import model.Usuario;
 
 public class UsuarioJDBC implements UsuarioDAO {
@@ -131,17 +132,16 @@ public class UsuarioJDBC implements UsuarioDAO {
 	}
 
 	@Override
-	public Long getIDPorNome(String nome) {
+	public Usuario getIDPorNome(String nome) {
 		String sql = "select idUsuario from usuario where Nome = ?";
-		Long usuario = null;
+		Usuario usuario = null;
 		try {
-			PreparedStatement ps = conexao.get().prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+			PreparedStatement ps = conexao.get().prepareStatement(sql); //, Statement.RETURN_GENERATED_KEYS);
 			ps.setString(1, nome);
-			ResultSet rs = 
-					//ps.executeQuery();
-							ps.getGeneratedKeys();
+			ResultSet rs = ps.executeQuery();
+							//ps.getGeneratedKeys();
 			while (rs.next()) {
-				usuario = rs.getLong("idUsuario");
+				usuario = ((UsuarioJDBC) rs).getUsuario(rs);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -150,7 +150,9 @@ public class UsuarioJDBC implements UsuarioDAO {
 
 		}
 		return usuario;
-
 	}
-
+	
+	
+	
+	
 }

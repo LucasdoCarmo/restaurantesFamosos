@@ -4,6 +4,6 @@ import model.Usuario;
 
 public interface UsuarioDAO extends CrudDAO<Usuario> {
 
-	Long getIDPorNome(String nome);
+	Usuario getIDPorNome(String nome);
 
 }

@@ -102,6 +102,29 @@ public class RestauranteJDBC implements RestauranteDAO {
 		return restaurantes;
 	}
 
+	@Override
+	public Restaurante getIDPorNome(String nome) {
+		String sql = "select idRestaurante from restaurante where Nome =?";
+		Restaurante rest = null;
+		try {
+			PreparedStatement ps = conexao.get().prepareStatement(sql);// ,
+																		// Statement.RETURN_GENERATED_KEYS);
+			ps.setString(1, nome);
+			ResultSet rs = ps.executeQuery();
+			// ps.getGeneratedKeys();
+			while (rs.next()) {
+				rest = ((RestauranteJDBC) rs).getRestaurante(rs);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			conexao.close();
+
+		}
+		return rest;
+
+	}
+
 	private Restaurante getRestaurante(ResultSet rs) throws SQLException {
 		Restaurante restaurante = new Restaurante(rs.getLong("idRestaurante"), rs.getString("Nome"),
 				rs.getString("Telefone"), rs.getString("Tipo_de_estabelicimento"), rs.getString("Rua"),
@@ -315,29 +338,6 @@ public class RestauranteJDBC implements RestauranteDAO {
 	public Collection<Restaurante> getTipo() {
 		// TODO Auto-generated method stub
 		return null;
-	}
-
-	@Override
-	public Long getIDPorNome(String nome) {
-		String sql = "select idRestaurante from restaurante where Nome =?";
-		Long rest = null;
-		try {
-			PreparedStatement ps = conexao.get().prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-			ps.setString(1, nome);
-			ResultSet rs = 
-					//ps.executeQuery();
-					ps.getGeneratedKeys();
-			while (rs.next()) {
-				rest = rs.getLong("idRestaurante");
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			conexao.close();
-
-		}
-		return rest;
-
 	}
 
 }
