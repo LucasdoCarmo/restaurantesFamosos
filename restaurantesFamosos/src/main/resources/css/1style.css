@@ -1,0 +1,161 @@
+/* 
+.salvar{
+	-fx-background-color:
+        linear-gradient(#f0ff35, #a9ff00),
+        radial-gradient(center 50% -40%, radius 200%, #b8ee36 45%, #80c800 50%);
+    -fx-background-radius: 6, 5;
+    -fx-background-insets: 0, 1;
+    -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.4) , 5, 0.0 , 0 , 1 );
+    -fx-text-fill: #395306;
+	
+}
+* 
+*/
+.menubarprincipal{
+	 -fx-width: 95.0%;
+  -fx-margin: 0.0px 0.0px 0.0px 0.0px;
+  -fx-padding: 7.0px 6.0px 4.0px 6.0px;
+  -fx-height: 41.0px;
+  -fx-line-height: 100.0%;
+  -fx-border-radius: 24.0px;
+  -fx-webkit-border-radius: 24.0px;
+  -fx-moz-border-radius: 24.0px;
+  -fx-box-shadow: 2.0px 2.0px 3.0px #666666;
+  -fx-webkit-box-shadow: 2.0px 2.0px 3.0px #666666;
+  -fx-moz-box-shadow: 2.0px 2.0px 3.0px #666666;
+  -fx-background: #8B8B8B;
+  -fx-background: linear-gradient(top,  #A9A9A9,  #7A7A7A);
+  -fx-background: -ms-linear-gradient(top,  #A9A9A9,  #7A7A7A);
+  -fx-background: -webkit-gradient(linear, left top, left bottom, from(#A9A9A9), to(#7A7A7A));
+  -fx-background: -moz-linear-gradient(top,  #A9A9A9,  #7A7A7A);
+ -fx-border: solid 1.0px #6D6D6D;
+  
+}
+.labeltitulo{
+
+-fx-font-weight: bold;
+  -fx-font-size: 40.0px;
+  -fx-font-family: "Arial";
+  -fx-text-align: center;
+  -fx-text-fill:#FF4500 ;
+ 
+}
+.labelindicador,.esquicisenha{ 
+	-fx-font-weight: bold;
+  -fx-font-size: 20.0px;
+  -fx-font-family: "Arial";
+  
+ 
+  -fx-text-align: center;
+	-fx-text-fill:black;
+	
+}
+.novo{ 
+	-fx-background-color: 
+        #c3c4c4,
+        linear-gradient(#d6d6d6 50.0%, white 100.0%),
+        radial-gradient(center 50.0% -40.0%, radius 200.0%, #e6e6e6 45.0%, rgba(230.0,230.0,230.0,0.0) 50.0%);
+    -fx-background-radius: 30.0;
+    -fx-background-insets: 0.0,1.0,1.0;
+    -fx-font-weight: bold;
+    -fx-text-fill: black;
+    -fx-effect: dropshadow( three-pass-box , rgba(0.0,0.0,0.0,0.6) , 3.0, 0.0 , 0.0 , 1.0 )
+
+	
+}
+.salvar{
+	
+	-fx-background-radius: 30.0, 30.0, 29.0, 28.0;
+
+	    -fx-padding: 3.0px 10.0px 3.0px 10.0px;
+
+	    -fx-background-color: linear-gradient(#f0ff35, #a9ff00);
+ 	
+	 
+    -fx-text-fill: #395306;
+	
+}
+
+
+ .excluir{
+ 	
+ 	-fx-background-radius: 30.0, 30.0, 29.0, 28.0;
+
+	    -fx-padding: 3.0px 10.0px 3.0px 10.0px;
+
+	    -fx-background-color: linear-gradient(#ff5400, #be1d00 );
+ 	
+	 -fx-text-fill: white;
+	
+}
+ 
+
+.salvar:hover,.novo:hover,.excluir:hover,.esquicisenha:hover{
+	-fx-background-color:grey;
+}
+/*
+.telaLogin{
+ -fx-background-image: url("../imagens/restaurante4.jpg");
+   -fx-background-size: cover;
+   
+}
+* 
+*/
+.telaPrincipal{
+ -fx-background-image: url("../imagens/restaurante4.jpg");
+   -fx-background-size: cover;
+   
+
+
+}
+.labelCadastraRestaurante{
+	 -fx-text-fill: red;
+}
+
+.root {
+
+	 -fx-background-color:  linear-gradient(lightgray, gray);
+	 -fx-border-color: white;
+
+	 -fx-border-radius: 20.0;
+
+	 -fx-padding: 10.0 10.0 10.0 10.0;
+
+	 -fx-background-radius: 20.0;
+
+	  
+
+	}
+
+	 
+
+	.bp {
+
+	 -fx-background-color:  linear-gradient(gray,DimGrey );
+
+	  
+
+	}
+
+	 
+
+	.esquicisenha{
+
+	    -fx-background-radius: 30.0, 30.0, 29.0, 28.0;
+
+	    -fx-padding: 3.0px 10.0px 3.0px 10.0px;
+
+	    -fx-background-color: linear-gradient(orange, orangered );
+
+	}
+
+	 
+
+	.titulotelalogin {
+		
+	-fx-font-weight: bold;
+  -fx-font-size: 40.0px;
+  -fx-font-family: "Arial";
+  
+
+-fx-fill: linear-gradient(orange , orangered);}

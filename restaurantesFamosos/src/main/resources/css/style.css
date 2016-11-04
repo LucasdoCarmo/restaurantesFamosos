@@ -1,3 +1,4 @@
+
 /* 
 .salvar{
 	-fx-background-color:
@@ -11,93 +12,210 @@
 }
 * 
 */
-.menubarprincipal{
-	 -fx-width: 95.0%;
-  -fx-margin: 0.0px 0.0px 0.0px 0.0px;
-  -fx-padding: 7.0px 6.0px 4.0px 6.0px;
-  -fx-height: 41.0px;
-  -fx-line-height: 100.0%;
-  -fx-border-radius: 24.0px;
-  -fx-webkit-border-radius: 24.0px;
-  -fx-moz-border-radius: 24.0px;
-  -fx-box-shadow: 2.0px 2.0px 3.0px #666666;
-  -fx-webkit-box-shadow: 2.0px 2.0px 3.0px #666666;
-  -fx-moz-box-shadow: 2.0px 2.0px 3.0px #666666;
-  -fx-background: #8B8B8B;
-  -fx-background: linear-gradient(top,  #A9A9A9,  #7A7A7A);
-  -fx-background: -ms-linear-gradient(top,  #A9A9A9,  #7A7A7A);
-  -fx-background: -webkit-gradient(linear, left top, left bottom, from(#A9A9A9), to(#7A7A7A));
-  -fx-background: -moz-linear-gradient(top,  #A9A9A9,  #7A7A7A);
- -fx-border: solid 1.0px #6D6D6D;
+.menubarprincipal,.submenu{
+	
+	
+	 -fx-background-color: linear-gradient(orange, orangered );
+     -fx-border-color: white;
+
+	 -fx-border-radius: 20;
+
+	
+	-fx-background-radius: 20;
+
+ 
   
 }
 .labeltitulo{
 
 -fx-font-weight: bold;
-  -fx-font-size: 40.0px;
+  -fx-font-size: 40px;
   -fx-font-family: "Arial";
   -fx-text-align: center;
   -fx-text-fill:#FF4500 ;
  
 }
-.labelindicador,.esquicisenha{ 
-	-fx-font-weight: bold;
-  -fx-font-size: 20.0px;
+.labelagradecimento{
+	fx-font-weight: bold;
+  -fx-font-size: 40px;
   -fx-font-family: "Arial";
-  
- 
   -fx-text-align: center;
-	-fx-text-fill:black;
+  -fx-text-fill: #333333;
+    -fx-effect: dropshadow( gaussian , rgba(255,255,255,0.5) , 0,0,0,1 );
+}
+.labelindicador,.esquicisenha{ 
+	-fx-font-size: 20px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #333333;
+    -fx-effect: dropshadow( gaussian , rgba(255,255,255,0.5) , 0,0,0,1 );
 	
 }
 .novo{ 
 	-fx-background-color: 
         #c3c4c4,
-        linear-gradient(#d6d6d6 50.0%, white 100.0%),
-        radial-gradient(center 50.0% -40.0%, radius 200.0%, #e6e6e6 45.0%, rgba(230.0,230.0,230.0,0.0) 50.0%);
-    -fx-background-radius: 30.0;
-    -fx-background-insets: 0.0,1.0,1.0;
+        linear-gradient(#d6d6d6 50%, white 100%),
+        radial-gradient(center 50% -40%, radius 200%, #e6e6e6 45%, rgba(230,230,230,0) 50%);
+    -fx-background-radius: 30;
+    -fx-background-insets: 0,1,1;
     -fx-font-weight: bold;
     -fx-text-fill: black;
-    -fx-effect: dropshadow( three-pass-box , rgba(0.0,0.0,0.0,0.6) , 3.0, 0.0 , 0.0 , 1.0 )
+     -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );
 
 	
 }
+
+	.esquicisenha{
+		
+		
+		-fx-background-color: 
+         orangered,
+        linear-gradient(orange, orangered ),
+        radial-gradient(center 50% -40%, radius 200%,orange 45%, rgba(230,230,230,0) 50%);
+    -fx-background-radius: 30;
+    -fx-background-insets: 0,1,1;
+    -fx-font-weight: bold;
+    -fx-text-fill: black;
+    -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 3, 0.0 , 0 , 1 );
+
+	 
+	}
 .salvar{
 	
-	-fx-background-radius: 30.0, 30.0, 29.0, 28.0;
-
-	    -fx-padding: 3.0px 10.0px 3.0px 10.0px;
-
-	    -fx-background-color: linear-gradient(#f0ff35, #a9ff00);
- 	
-	 
-    -fx-text-fill: #395306;
+	-fx-background-color: 
+       #a9ff00
+        linear-gradient(#f0ff35, #a9ff00),
+        radial-gradient(center 50% -40%, radius 200%, #f0ff35 45%, rgba(230,230,230,0) 50%);
+    -fx-background-radius: 30;
+    -fx-background-insets: 0,1,1;
+    -fx-font-weight: bold;
+    -fx-text-fill: black;
+     -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );
+	
+	
 	
 }
 
 
  .excluir{
  	
- 	-fx-background-radius: 30.0, 30.0, 29.0, 28.0;
-
-	    -fx-padding: 3.0px 10.0px 3.0px 10.0px;
-
-	    -fx-background-color: linear-gradient(#ff5400, #be1d00 );
- 	
-	 -fx-text-fill: white;
+ 	-fx-background-color: 
+         #be1d00,
+        linear-gradient(#ff5400, #be1d00),
+        radial-gradient(center 50% -40%, radius 200%,#ff5400 45%, rgba(230,230,230,0) 50%);
+    -fx-background-radius: 30;
+    -fx-background-insets: 0,1,1;
+    -fx-font-weight: bold;
+    -fx-text-fill: black;
+    -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 3, 0.0 , 0 , 1 );
+     
+ 
+}
+.labelcadastrausuario{
+	-fx-font-size: 20px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #333333;
+    -fx-effect: dropshadow( gaussian , rgba(255,255,255,0.5) , 0,0,0,1 );
+    }
+	
+	
+	.labelrelatorio{
+	-fx-font-size: 20px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #333333;
+    -fx-effect: dropshadow( gaussian , rgba(255,255,255,0.5) , 0,0,0,1 );
+	
+}
+.labelbusca{
+	-fx-font-size: 20px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #333333;
+    -fx-effect: dropshadow( gaussian , rgba(255,255,255,0.5) , 0,0,0,1 );}
+	.labelrelatorio{
+	-fx-font-size: 20px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #333333;
+    -fx-effect: dropshadow( gaussian , rgba(255,255,255,0.5) , 0,0,0,1 );
+}
+.labelcadastravisita{
+	-fx-font-size: 20px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #333333;
+    -fx-effect: dropshadow( gaussian , rgba(255,255,255,0.5) , 0,0,0,1 );
+}
+.labeleditaperfil{	-fx-font-size: 20px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #333333;
+    -fx-effect: dropshadow( gaussian , rgba(255,255,255,0.5) , 0,0,0,1 );}
+	.tituloreltorio{
+		-fx-font-weight: bold;
+  -fx-font-size: 20px;
+  -fx-font-family: "Arial";
+  -fx-text-align: center;
+  -fx-text-fill:#FF4500 ;
+}
+.tituloperfil{
+				-fx-font-weight: bold;
+  -fx-font-size: 20px;
+  -fx-font-family: "Arial";
+  -fx-text-align: center;
+  -fx-text-fill:#FF4500 ;
+}
+.tituloperfil2{
+					-fx-font-weight: bold;
+  -fx-font-size: 10px;
+  -fx-font-family: "Arial";
+  -fx-text-align: center;
+  -fx-text-fill:#FF4500 ;
+	
+}
+.titulocadastravisita{
+			-fx-font-weight: bold;
+  -fx-font-size: 20px;
+  -fx-font-family: "Arial";
+  -fx-text-align: center;
+  -fx-text-fill:#FF4500 ;
+	
+}
+.labelbuscaavancada{
+	-fx-font-size: 20px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #333333;
+    -fx-effect: dropshadow( gaussian , rgba(255,255,255,0.5) , 0,0,0,1 );
+	
+}
+.date{
+	-fx-background-color: linear-gradient(#FF8C00, #FFA500 );
+}
+.tf{
+	-fx-background-color: linear-gradient(#FF8C00, #FFA500);
+     -fx-border-color: white;
+	 -fx-border-radius: 20;
+	 -fx-background-radius: 20;
+	  -fx-text-fill:#2F4F4F ;
+	  -fx-font-weight: bold;
+	  -fx-font-size: 15px;
+}
+.titulobuscaavancada{
+		-fx-font-weight: bold;
+  -fx-font-size: 20px;
+  -fx-font-family: "Arial";
+  -fx-text-align: center;
+  -fx-text-fill:#FF4500 ;
 	
 }
  
 
 .salvar:hover,.novo:hover,.excluir:hover,.esquicisenha:hover{
 	-fx-background-color:grey;
+	
 }
 /*
 .telaLogin{
  -fx-background-image: url("../imagens/restaurante4.jpg");
    -fx-background-size: cover;
    
+
+
 }
 * 
 */
@@ -117,11 +235,12 @@
 	 -fx-background-color:  linear-gradient(lightgray, gray);
 	 -fx-border-color: white;
 
-	 -fx-border-radius: 20.0;
+	 -fx-border-radius: 20;
 
-	 -fx-padding: 10.0 10.0 10.0 10.0;
+	
 
-	 -fx-background-radius: 20.0;
+	 -fx-background-radius: 20;
+
 
 	  
 
@@ -129,7 +248,7 @@
 
 	 
 
-	.bp {
+	.fundo {
 
 	 -fx-background-color:  linear-gradient(gray,DimGrey );
 
@@ -139,23 +258,22 @@
 
 	 
 
-	.esquicisenha{
-
-	    -fx-background-radius: 30.0, 30.0, 29.0, 28.0;
-
-	    -fx-padding: 3.0px 10.0px 3.0px 10.0px;
-
-	    -fx-background-color: linear-gradient(orange, orangered );
-
-	}
 
 	 
 
 	.titulotelalogin {
 		
 	-fx-font-weight: bold;
-  -fx-font-size: 40.0px;
+    
+  -fx-font-size: 40px;
   -fx-font-family: "Arial";
   
+  
 
--fx-fill: linear-gradient(orange , orangered);}
+	-fx-fill:  linear-gradient(orange , orangered);
+	-fx-animated-infinite : flash;
+	}
+
+ 
+ 
+      

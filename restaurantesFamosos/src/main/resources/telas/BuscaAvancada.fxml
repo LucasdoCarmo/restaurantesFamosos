@@ -11,66 +11,63 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.text.Font?>
-<?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.BuscaAvancadaController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="680.0" prefWidth="1210.0" styleClass="fundo" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.BuscaAvancadaController">
    <children>
-      <StackPane fx:id="stack" prefHeight="150.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <StackPane fx:id="stack" prefHeight="680.0" prefWidth="1210.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <BorderPane fx:id="panelSecundario" prefHeight="488.0" prefWidth="587.0">
+            <BorderPane fx:id="panelSecundario" prefHeight="589.0" prefWidth="1120.0" styleClass="root">
                <center>
                   <Pane prefHeight="600.0" prefWidth="1280.0" BorderPane.alignment="CENTER">
                      <children>
-                        <Text layoutX="238.0" layoutY="48.0" strokeType="OUTSIDE" strokeWidth="0.0" text="COMPLETE OS DADOS DESEJADOS E CLIQUE EM BUSCAR">
-                           <font>
-                              <Font size="23.0" />
-                           </font>
-                        </Text>
-                        <Label layoutX="836.0" layoutY="103.0" text="ESTADO">
+                        <Label layoutX="637.0" layoutY="129.0" prefHeight="21.0" prefWidth="121.0" styleClass="labelbuscaavancada" text="ESTADO">
                            <font>
                               <Font size="17.0" />
                            </font>
                         </Label>
-                        <Label layoutX="836.0" layoutY="146.0" text="CIDADE">
+                        <Label layoutX="636.0" layoutY="188.0" prefHeight="21.0" prefWidth="123.0" styleClass="labelbuscaavancada" text="CIDADE">
                            <font>
                               <Font size="17.0" />
                            </font>
                         </Label>
-                        <Label layoutX="837.0" layoutY="57.0" text="ENDEREÇO">
+                        <Label layoutX="758.0" layoutY="70.0" prefHeight="21.0" prefWidth="182.0" styleClass="labelbuscaavancada" text="ENDEREÇO">
                            <font>
                               <Font size="17.0" />
                            </font>
                         </Label>
-                        <Label layoutX="453.0" layoutY="75.0" text="TIPO DE ESTABELECIMENTO">
+                        <Label layoutX="294.0" layoutY="116.0" prefHeight="21.0" prefWidth="318.0" styleClass="labelbuscaavancada" text="TIPO DE ESTABELECIMENTO">
                            <font>
                               <Font size="17.0" />
                            </font>
                         </Label>
-                        <ComboBox fx:id="cbEstado" layoutX="916.0" layoutY="98.0" prefHeight="36.0" prefWidth="156.0" />
-                        <ComboBox fx:id="cbCidade" layoutX="916.0" layoutY="141.0" prefHeight="36.0" prefWidth="156.0" />
-                        <TextField fx:id="tfNome" layoutX="161.0" layoutY="101.0" prefHeight="36.0" prefWidth="239.0" />
-                        <Label layoutX="161.0" layoutY="75.0" text="POR NOME">
+                        <ComboBox fx:id="cbEstado" layoutX="781.0" layoutY="121.0" prefHeight="36.0" prefWidth="156.0" styleClass="tf" />
+                        <ComboBox fx:id="cbCidade" layoutX="783.0" layoutY="180.0" prefHeight="36.0" prefWidth="156.0" styleClass="tf" />
+                        <TextField fx:id="tfNome" layoutX="23.0" layoutY="153.0" prefHeight="36.0" prefWidth="239.0" />
+                        <Label layoutX="28.0" layoutY="118.0" prefHeight="21.0" prefWidth="159.0" styleClass="labelbuscaavancada" text="POR NOME">
                            <font>
                               <Font size="17.0" />
                            </font>
                         </Label>
-                        <Button layoutX="51.0" layoutY="180.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="110.0" text="PREÇO" />
-                        <Button fx:id="btnPrecoMaior" layoutX="58.0" layoutY="218.0" mnemonicParsing="false" onAction="#MaiorPreco" prefHeight="36.0" prefWidth="96.0" text="maior" />
-                        <Button fx:id="btnPrecoMenor" layoutX="58.0" layoutY="254.0" mnemonicParsing="false" onAction="#MenorPreco" prefHeight="36.0" prefWidth="96.0" text="menor" />
-                        <TableView fx:id="tbResultado" layoutX="55.0" layoutY="322.0" prefHeight="202.0" prefWidth="1161.0">
+                        <Button fx:id="btnPrecoMaior" layoutX="34.0" layoutY="324.0" mnemonicParsing="false" onAction="#MaiorPreco" prefHeight="36.0" prefWidth="96.0" styleClass="novo" text="maior" />
+                        <Button fx:id="btnPrecoMenor" layoutX="33.0" layoutY="374.0" mnemonicParsing="false" onAction="#MenorPreco" prefHeight="36.0" prefWidth="96.0" styleClass="novo" text="menor" />
+                        <TableView fx:id="tbResultado" layoutX="190.0" layoutY="236.0" prefHeight="202.0" prefWidth="866.0">
                            <columns>
-                              <TableColumn fx:id="tcNome" prefWidth="410.0" text="Nome" />
-                              <TableColumn fx:id="tcTelefone" minWidth="0.0" prefWidth="151.0" text="Telefone" />
-                              <TableColumn fx:id="tcRua" prefWidth="277.0" text="Rua" />
-                              <TableColumn fx:id="tcNumero" prefWidth="122.0" text="Numero" />
-                              <TableColumn fx:id="tcTema" prefWidth="200.0" text="Tema" />
+                              <TableColumn fx:id="tcNome" prefWidth="108.0" text="Nome" />
+                              <TableColumn fx:id="tcTelefone" minWidth="0.0" prefWidth="129.99996948242188" text="Telefone" />
+                              <TableColumn fx:id="tcTipo" prefWidth="223.0" text="Tipo de Estabelecimento" />
+                              <TableColumn fx:id="tcRua" prefWidth="68.0" text="Rua" />
+                              <TableColumn fx:id="tcNumero" prefWidth="111.0" text="Numero" />
+                              <TableColumn fx:id="tcTema" prefWidth="99.0" text="Tema" />
+                              <TableColumn fx:id="tcCidade" minWidth="0.0" prefWidth="123.0" text="Cidade" />
                            </columns>
                         </TableView>
-                        <Button fx:id="btnBuscar" layoutX="1056.0" layoutY="272.0" mnemonicParsing="false" onAction="#Buscar" prefHeight="36.0" prefWidth="116.0" text="BUSCAR" />
-                        <Button fx:id="btnVoltar" layoutX="738.0" layoutY="540.0" mnemonicParsing="false" onAction="#Voltar" prefHeight="36.0" prefWidth="131.0" text="&lt; Voltar" />
-                        <Button fx:id="btnAvaliar" layoutX="1050.0" layoutY="540.0" mnemonicParsing="false" onAction="#Avaliar" prefHeight="36.0" prefWidth="131.0" styleClass="salvar" text="Avaliar" />
-                        <Button fx:id="btnEditar" layoutX="888.0" layoutY="540.0" mnemonicParsing="false" onAction="#Editar" prefHeight="36.0" prefWidth="131.0" styleClass="novo" text="Editar" />
-                        <TextField fx:id="tfTipoEstabelecimento" layoutX="453.0" layoutY="101.0" prefHeight="36.0" prefWidth="271.0" />
+                        <Button fx:id="btnBuscar" layoutX="785.0" layoutY="479.0" mnemonicParsing="false" onAction="#Buscar" prefHeight="36.0" prefWidth="116.0" styleClass="novo" text="BUSCAR" />
+                        <Button fx:id="btnVoltar" layoutX="244.0" layoutY="478.0" mnemonicParsing="false" onAction="#Voltar" prefHeight="36.0" prefWidth="131.0" styleClass="excluir" text="&lt; Voltar" />
+                        <Button fx:id="btnAvaliar" layoutX="601.0" layoutY="480.0" mnemonicParsing="false" onAction="#Avaliar" prefHeight="36.0" prefWidth="131.0" styleClass="salvar" text="Avaliar" />
+                        <Button fx:id="btnEditar" layoutX="423.0" layoutY="480.0" mnemonicParsing="false" onAction="#Editar" prefHeight="36.0" prefWidth="131.0" styleClass="novo" text="Editar" />
+                        <TextField fx:id="tfTipoEstabelecimento" layoutX="292.0" layoutY="148.0" prefHeight="36.0" prefWidth="271.0" />
+                        <Label layoutX="29.0" layoutY="279.0" prefHeight="16.0" prefWidth="124.0" styleClass="labelbuscaavancada" text="Preço" />
+                        <Label layoutX="177.0" layoutY="29.0" prefHeight="16.0" prefWidth="711.0" styleClass="titulobuscaavancada" text="COMPLETE OS DADOS DESEJADOS E CLIQUE EM BUSCAR" />
                      </children>
                   </Pane>
                </center>

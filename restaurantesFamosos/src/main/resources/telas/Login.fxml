@@ -6,6 +6,7 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.Reflection?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.Pane?>
@@ -13,44 +14,41 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1170.0" styleClass="fundo" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.LoginController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="646.0" prefWidth="1170.0" styleClass="fundo" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.LoginController">
    <children>
-      <StackPane fx:id="stack" prefHeight="800.0" prefWidth="1170.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <StackPane fx:id="stack" layoutX="290.0" layoutY="39.0" prefHeight="409.0" prefWidth="648.0" AnchorPane.bottomAnchor="198.0" AnchorPane.leftAnchor="290.0" AnchorPane.rightAnchor="232.0" AnchorPane.topAnchor="39.0">
          <children>
-            <BorderPane fx:id="panelPrincipal" prefHeight="593.0" prefWidth="1044.0" styleClass="root">
-               <bottom>
-                  <Pane prefHeight="531.0" prefWidth="1170.0" BorderPane.alignment="CENTER">
+            <BorderPane fx:id="panelPrincipal" prefHeight="767.0" prefWidth="1170.0" styleClass="root">
+               <effect>
+                  <Reflection bottomOpacity="0.05" fraction="1.0" topOpacity="0.2" />
+               </effect>
+               <center>
+                  <Pane prefHeight="331.0" prefWidth="648.0" BorderPane.alignment="CENTER">
                      <children>
-                        <Label layoutX="399.0" layoutY="59.0" styleClass="labelindicador" text="LOGIN">
+                        <Label layoutX="171.0" layoutY="155.0" styleClass="labelindicador" text="LOGIN">
                            <font>
                               <Font size="17.0" />
                            </font>
                         </Label>
-                        <Label layoutX="398.0" layoutY="122.0" styleClass="labelindicador" text="SENHA">
+                        <Label layoutX="167.0" layoutY="212.0" styleClass="labelindicador" text="SENHA">
                            <font>
                               <Font size="17.0" />
                            </font>
                         </Label>
-                        <TextField fx:id="tfLogin" alignment="CENTER" layoutX="504.0" layoutY="57.0" prefHeight="25.0" prefWidth="208.0" />
-                        <Button fx:id="btnCriarConta" layoutX="577.0" layoutY="238.0" mnemonicParsing="false" onAction="#CriarConta" prefHeight="40.0" prefWidth="158.0" styleClass="excluir" text="CRIAR CONTA">
+                        <TextField fx:id="tfLogin" alignment="CENTER" layoutX="284.0" layoutY="153.0" prefHeight="25.0" prefWidth="208.0" styleClass="tf" />
+                        <Button fx:id="btnCriarConta" layoutX="330.0" layoutY="334.0" mnemonicParsing="false" onAction="#CriarConta" prefHeight="40.0" prefWidth="158.0" styleClass="excluir" text="CRIAR CONTA">
                            <cursor>
                               <Cursor fx:constant="OPEN_HAND" />
                            </cursor>
                         </Button>
-                        <Button fx:id="btnEntrar" layoutX="382.0" layoutY="238.0" mnemonicParsing="false" onAction="#Entrar" prefHeight="40.0" prefWidth="119.0" styleClass="salvar" text="ENTRAR">
+                        <Button fx:id="btnEntrar" layoutX="154.0" layoutY="338.0" mnemonicParsing="false" onAction="#Entrar" prefHeight="40.0" prefWidth="119.0" styleClass="salvar" text="ENTRAR">
                            <cursor>
                               <Cursor fx:constant="OPEN_HAND" />
                            </cursor>
                         </Button>
-                        <Hyperlink fx:id="linkEsqueciSenha" layoutX="554.0" layoutY="164.0" onAction="#EsqueciSenha" styleClass="esquicisenha" text="Esqueci senha" />
-                        <PasswordField fx:id="tfSenha" alignment="CENTER" layoutX="504.0" layoutY="120.0" prefHeight="26.0" prefWidth="208.0" />
-                     </children>
-                  </Pane>
-               </bottom>
-               <top>
-                  <Pane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
-                     <children>
-                        <Text layoutX="397.0" layoutY="129.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="titulotelalogin" text="Restaurantes Famosos" textAlignment="CENTER" wrappingWidth="307.8369140625">
+                        <Hyperlink fx:id="linkEsqueciSenha" layoutX="291.0" layoutY="259.0" onAction="#EsqueciSenha" prefHeight="42.0" prefWidth="176.0" styleClass="esquicisenha" text="Esqueci senha" />
+                        <PasswordField fx:id="tfSenha" alignment="CENTER" layoutX="286.0" layoutY="209.0" prefHeight="26.0" prefWidth="208.0" styleClass="tf" />
+                        <Text layoutX="176.0" layoutY="65.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="titulotelalogin" text="Restaurantes Famosos" textAlignment="CENTER" wrappingWidth="307.8369140625">
                            <font>
                               <Font size="27.0" />
                            </font>
@@ -60,7 +58,7 @@
                         </Text>
                      </children>
                   </Pane>
-               </top>
+               </center>
             </BorderPane>
          </children>
       </StackPane>
